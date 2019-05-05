@@ -1,0 +1,220 @@
+<resources>
+    <string name="app_name">在线视频</string>
+    <string name="hang_up">挂断</string>
+    <string name="switch_camera">切摄像头</string>
+    <string name="mute_mic"> 静音</string>
+    <string name="unmute_mic">取消静音</string>
+    <string name="switch_speaker_mode">打开听筒模式</string>
+    <string name="close_switch_speaker_mode">关闭听筒模式</string>
+    <string name="switch_call_module">语音模式</string>
+    <string name="close_switch_call_module">语音退出</string>
+    <string name="start_switch_call_module">已开启通话语音模式</string>
+    <string name="switch_call_in">语音通话中</string>
+    <string name="cell_state_pstn_incall">通话中...</string>
+    <string name="cell_state_audio_only_incall">语音通话中</string>
+
+    <string name="hand_up">举手</string>
+    <string name="hand_down">取消举手</string>
+    <string name="end_speech">结束发言</string>
+    <string name="close_video">关闭视频</string>
+    <string name="open_video">打开视频</string>
+    <string name="call_to">视频通话邀请中&#8230;</string>
+    <string name="conf_control_text">会控</string>
+    <string name="pstn_app_cell_text">电话语音</string>
+
+    <string name="interaction_text">互动</string>
+
+
+    <string name="start_record_video">录制</string>
+    <string name="end_record_video">录制结束</string>
+    <string name="call_video_mute">视频暂停</string>
+    <string name="call_no_video">网络不给力，暂时无法接收视频</string>
+    <string name="MuteByNoInput">对方未开启视频</string>
+
+    <string name="MuteByUser">对方忙，暂时关闭视频</string>
+    <string name="MuteByBWLimit">对方网络不稳定，无法传输视频</string>
+    <string name="MuteByConfMgmt">对方视频已被主持人关闭</string>
+    <string name="call_video_requesting">视频正在请求中...</string>
+
+    <string name="button_text_record">开始录制</string>
+    <string name="button_text_stop">停止录制</string>
+    <string name="recording_text_stopped">录制结束</string>
+    <string name="recording_text">录制中 </string>
+    <string name="recording_text_stopped_nemo_no_space">您的终端存储空间不足，录制失败</string>
+    <string name="recording_text_stopped_no_nemo_exist">远端不是终端设备，无法录制</string>
+    <string name="recording_text_stopped_expired">本次录制已达最大时长30分钟，录制自动停止</string>
+    <string name="recording_text_stopped_account_no_space">您的帐户空间不足，无法录制新的视频</string>
+    <string name="third_conf_record_notice">录制完成，录制视频已保存到云会议室管理员的文件夹</string>
+    <string name="recording_text_preparing">录制中 00:00:00</string>
+    <string name="who_is_recording" formatted="false">%s正在录制</string>
+    <string name="recording_non_enetrprise_meeting">云会议室不属于任何，无法录制</string>
+    <string name="recording_storage_not_enough">录制的存储空间已满，您无法开始录制。\n请删除已有的录制视频，\n或联系管理员购买更多存储空间。</string>
+    <string name="recording_expire">录制失败，您的尚未开通录制服务或服务已过期，\n请联系管理员购买。</string>
+    <string name="recording_fail">录制失败</string>
+    <string name="recording_service_unavailable">录制服务暂时不可用，请稍候再试</string>
+    <string name="someone_is_recording">其他用户已发起了录制，您无法重复录制</string>
+    <string name="record_exceed_concurrency_limit">已达最大录制方数，不能发起录制</string>
+    <string name="h323gw_no_resource">当前在线呼叫数已达网关服务上限，请稍候重试</string>
+    <string name="service_reach_max_count">当前在线呼叫数已达服务上限，请稍候再试</string>
+    <string name="service_expired">服务已过期，请管理员更新服务许可证</string>
+    <string name="no_operation_permission">您无操作权限</string>
+
+    <string name="im_notification_ccs_transfer">正在转接中，请稍候</string>
+    <string name="im_notification_ccs">坐席忙，请耐心等待</string>
+
+
+    <string name="call_enter_service">正在转接客服</string>
+    <string name="queen_top_part">在您之前还有</string>
+    <string name="queen_bottom_part">位用户正在等待</string>
+    <string name="locked_people">主屏已锁定</string>
+    <string name="unlock_people">解锁</string>
+
+
+    <string name="statistics_network">网络探测</string>
+    <string name="statistics_content">内容共享</string>
+    <string name="statistics_participant">与会者</string>
+    <string name="statistics_local_name">本地</string>
+    <string name="statistics_channel_name">通道名称</string>
+    <string name="statistics_codec">Codec</string>
+    <string name="statistics_resolution">分辨率</string>
+    <string name="statistics_frame_rate">帧率(fps)</string>
+    <string name="statistics_band_width">带宽(kbps)</string>
+    <string name="statistics_bit_rate">码率(kbps)</string>
+    <string name="statistics_atx">音频发送</string>
+    <string name="statistics_arx">音频接收</string>
+    <string name="statistics_vtx">视频发送</string>
+    <string name="statistics_vrx">视频接收</string>
+    <string name="statistics_rtt">往返时延(ms)</string>
+    <string name="statistics_jitter">抖动(ms)</string>
+    <string name="statistics_package_lost">丢包率(%)</string>
+    <string name="statistics_tx">发送</string>
+    <string name="statistics_rx">接收</string>
+    <string name="update_brand_confirm">confirm</string>
+    <string name="audio_debug_open_aeconfig">AE调试开关已打开</string>
+    <string name="share_download_link">Share Download Link</string>
+    <string name="call_hold_meeting_more">更多</string>
+    <string name="call_dtmf_keyboard">键盘</string>
+    <string name="add_other">邀请通话</string>
+    <string name="button_close_pip">关闭画中画</string>
+    <string name="button_open_pip">打开画中画</string>
+    <string name="default_feedback_content">请输入您的宝贵意见和建议</string>
+    <string name="send_feedback">发送</string>
+    <string name="feedback_success">已收录，感谢您的反馈</string>
+    <string name="feedback">快速反馈</string>
+
+
+    <string name="call_statistics_pvtx">vout</string>
+    <string name="call_statistics_pvrx">vin</string>
+    <string name="call_statistics_atx">aout</string>
+    <string name="call_statistics_arx">ain</string>
+    <string name="call_statistics_others">others</string>
+    <string name="call_statistics_dba">dba</string>
+
+    <string name="dtmf_0">0</string>
+    <string name="dtmf_1">1</string>
+    <string name="dtmf_2">2</string>
+    <string name="dtmf_3">3</string>
+    <string name="dtmf_4">4</string>
+    <string name="dtmf_5">5</string>
+    <string name="dtmf_6">6</string>
+    <string name="dtmf_7">7</string>
+    <string name="dtmf_8">8</string>
+    <string name="dtmf_9">9</string>
+    <string name="dtmf_s">*</string>
+    <string name="dtmf_p">#</string>
+
+
+    <!-- log releated strings -->
+    <string name="ziping">正在压缩</string>
+    <string name="zip_success">压缩成功</string>
+    <string name="uploading">正在上传</string>
+    <string name="upload_result">上传%s</string>
+    <string name="upload_failed_no_response">上传失败，请检查网络连接</string>
+    <string name="cancel">取消</string>
+    <string name="downloading">正在下载新版本</string>
+
+    <string name="xy_reason_not_logged_in">系统未注册</string>
+    <string name="xy_reason_peer_not_found">对方不在线</string>
+    <string name="xy_reason_time_out">对方没有应答</string>
+    <string name="xy_reason_busy">对方忙</string>
+    <string name="xy_reason_invalid_nemono">无效呼叫号码</string>
+    <string name="xy_reason_invalid_password">密码错误</string>
+    <string name="xy_reason_session">呼叫无效</string>
+    <string name="xy_reason_local_net_disconnect">本地网络异常</string>
+    <string name="xy_reason_peer_net_disconnect">对方网络中断</string>
+    <string name="xy_reason_not_allow_nemo_call">对方不允许陌生人呼叫</string>
+    <string name="xy_reason_user_not_allowed">对方不允许拨打</string>
+    <string name="xy_reason_tel_reach_maxtime">已达最大呼叫时长</string>
+    <string name="xy_reason_confmgmt_kickout">您已被管理员请出会议</string>
+    <string name="xy_reason_confmgmt_confover">主持人已结束会议</string>
+    <string name="xy_reason_meeting_locked">会议已被锁定，无法加入，请联系会议发起人解锁后进入</string>
+    <string name="xy_reason_sdp_invalid">通讯失败，请升级到最新版本</string>
+    <string name="xy_reason_version_stale_local">版本过低，请升级后再试</string>
+    <string name="xy_reason_version_stale_remote">对方版本过低，通话无法接通</string>
+    <string name="xy_reason_unsupport_call">您的终端目前无法支持此类呼叫</string>
+    <string name="xy_reason_stream_resource_unavailable">直播服务暂时不可用</string>
+    <string name="xy_reason_no_udp_package">当前网络UDP被禁用</string>
+    <string name="xy_reason_app_session_exceed">您呼叫的会议已达最大支持人数</string>
+    <string name="xy_reason_en_conf_session_exceed_low_balance">企业会议容量使用现在达到上限，无法加入会议。请联系管理员购买更多会议端口</string>
+    <string name="xy_reason_service_expired">服务已过期，请企业管理员更新服务许可证</string>
+    <string name="xy_reason_service_reach_max_count">当前在线呼叫数已达服务上限</string>
+    <string name="xy_reason_already_in_call">已经在通话中</string>
+    <string name="xy_reason_server_disconnected">与服务器连接断开</string>
+    <string name="xy_reason_other">呼叫失败，请稍后重试</string>
+
+    <string name="update_apk_str">您当前版本过低，请更新至最新版本</string>
+    <string name="update_find_newapk_str">发现新版本</string>
+    <string name="update_apk_cancle_str">下次安装</string>
+    <string name="update_apk_confirm_str">立即安装</string>
+    <string name="update_apk_notice_str">发现新版本，是否更新？</string>
+
+    <string name="test_title">测试页面</string>
+    <string name="title_activity_bottom_test">BottomTestActivity</string>
+    <string name="bottom_str_home">首页</string>
+    <string name="bottom_str_adress_list">通讯录</string>
+    <string name="bottom_str_bottom_file">文件夹</string>
+    <string name="bottom_str_bottom_my">我的</string>
+
+    <string name="title_str_home">首页</string>
+    <string name="title_str_meet">会议</string>
+    <string name="title_str_file">文件夹</string>
+    <string name="title_str_address_list">通讯录</string>
+    <string name="title_str_mine">我的</string>
+    <string name="title_str_user_info">个人信息</string>
+    <string name="title_str_my_cloud_meet">我的云会议室</string>
+    <string name="title_str_about">关于</string>
+    <string name="title_str_modify_password">修改密码</string>
+
+    <string name="my_cloud_meet">我的云会议室</string>
+    <string name="about_str">关于</string>
+
+    <string name="meet_name_str">会议室名称</string>
+    <string name="meet_number_str">会议室号</string>
+    <string name="meet_capacity_str">容量</string>
+    <string name="meet_password_str">入会密码</string>
+
+    <string name="check_app_update_str">检查更新</string>
+    <string name="user_info_name_str">姓名</string>
+    <string name="user_info_account_str">账号</string>
+    <string name="user_info_mailbox_str">邮箱</string>
+    <string name="user_info_modify_password_str">修改密码</string>
+    <string name="user_info_loginout_str">退出登录</string>
+
+    <string name="modify_old_password">请输入原密码</string>
+    <string name="modify_input_new_password">请输入新密码</string>
+    <string name="modify_input_hint_new_password">请输入6至18位密码</string>
+
+    <string name="modify_password_btn">修改密码</string>
+    <string name="input_meet_number">请输入云会议号或者终端号</string>
+    <string name="injion_meet_close_camera">入会时关闭摄像头</string>
+    <string name="injion_meet_close_voice">入会时静音</string>
+
+    <string name="input_login_name">请输入登录名</string>
+    <string name="input_login_password">请输入登录密码</string>
+    <string name="login_str">登录</string>
+    <string name="xylogin_str">xy登录</string>
+
+    <string name="join_meet_will_close_camera_str">入会时将关闭摄像头</string>
+    <string name="join_meet_will_close_voice_str">入会时将关闭麦克风</string>
+    <string name="user_info_title">个人信息</string>
+</resources>

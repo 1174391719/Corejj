@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/zysp_gray_bg_color">
+
+    <com.zyzxsp.view.HeaderTitleView
+        android:id="@+id/mine_header_view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/nemo_green"
+        app:headerCenterTitle="@string/title_str_mine"
+        app:headerLeftDrawbleVisibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></com.zyzxsp.view.HeaderTitleView>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/uesr_info_constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="148dp"
+        android:background="@mipmap/bg_icon_mine"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mine_header_view">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/user_img"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_marginLeft="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            fresco:placeholderImage="@mipmap/icon_user_image"
+            fresco:placeholderImageScaleType="fitCenter"
+            fresco:roundAsCircle="true"
+            fresco:roundedCornerRadius="20dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/user_img"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/user_name_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/test_title"
+                android:textColor="@color/ainemo_white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/user_phone_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/test_title"
+                android:textColor="@color/ainemo_white"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+
+        <ImageView
+            android:layout_width="7dp"
+            android:layout_height="11dp"
+            android:layout_marginRight="15dp"
+            android:src="@mipmap/icon_right_image_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+
+    <RelativeLayout
+        android:id="@+id/my_meet_layout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/ainemo_white"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/uesr_info_constraintLayout">
+
+        <ImageView
+            android:id="@+id/my_meet_image"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/icon_cloud_meet" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/my_meet_image"
+            android:text="@string/my_cloud_meet" />
+
+        <ImageView
+            android:layout_width="7dp"
+            android:layout_height="11dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/icon_right_gray" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/line_layout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/ainemo_white"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/my_meet_layout">
+
+        <View style="@style/division_line_style"></View>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/about_layout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/ainemo_white"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/line_layout1">
+
+        <ImageView
+            android:id="@+id/my_about_image"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/icon_about" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/my_about_image"
+            android:text="@string/about_str" />
+
+        <ImageView
+            android:layout_width="7dp"
+            android:layout_height="11dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/icon_right_gray" />
+
+    </RelativeLayout>
+
+
+</android.support.constraint.ConstraintLayout>

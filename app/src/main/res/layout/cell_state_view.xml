@@ -1,0 +1,216 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/cell_state_black_40_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@color/nemo_black_40"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/cell_state_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg_cell_state_big"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/cell_state_audio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/mic_off"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/cell_state_audio_small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/mic_off_small"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/loading_cell_state_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg_cell_state_big"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/cell_state_mute_audio_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:src="@color/nemo_black_40"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/full_display_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/video_display_name_bg"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxEms="9"
+        android:maxLines="1"
+        android:padding="5dp"
+        android:text="localname"
+        android:textColor="@color/white_90"
+        android:textSize="11sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/small_display_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/video_display_name_bg"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxEms="6"
+        android:maxLines="1"
+        android:padding="2dp"
+        android:text="localname"
+        android:textColor="@color/white_90"
+        android:textSize="11sp"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/cell_state_away"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/video_suspend"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/cell_state_add_other_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@color/nemo_green"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/cell_state_pstn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/pstn_incall"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/cell_state_add_other_failed_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@color/nemo_red"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/bg_turn"
+        android:layout_width="37dp"
+        android:layout_height="37dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/icon_addother_imcoming_turn"
+        android:visibility="gone" />
+
+
+    <!--    <com.ainemo.android.view.RoundedImageView
+            android:id="@+id/cell_state_user_profile_pic"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_remote_mute_default_profile"
+            android:visibility="gone"
+            app:ainemo_border_color="@android:color/white"
+            app:ainemo_border_width="0px"
+            app:is_oval="true" />-->
+
+    <TextView
+        android:id="@+id/cell_state_user_profile_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:textColor="@android:color/white"
+        android:textSize="13sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/cell_state_away_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:textColor="@android:color/white"
+        android:textSize="13sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/cell_state_pstn_incall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:text="@string/cell_state_pstn_incall"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/cell_state_audio_only_incall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:text="@string/cell_state_audio_only_incall"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/cell_video_mute_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minEms="6"
+        android:text="@string/call_video_mute"
+        android:textColor="@android:color/white"
+        android:textSize="13sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/cell_no_video_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:textColor="@android:color/white"
+        android:textSize="13sp"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/cell_cancel_addother"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_cancle_addother" />
+
+    <ImageView
+        android:id="@+id/cell_state_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_cell_state_loading_small"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/cell_state_user_profile_loadingname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:textColor="@android:color/white"
+        android:textSize="13sp"
+        android:visibility="visible" />
+
+</merge>

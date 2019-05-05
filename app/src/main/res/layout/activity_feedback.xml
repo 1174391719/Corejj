@@ -1,0 +1,62 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <LinearLayout
+            android:id="@+id/action_layout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#555555"
+            android:orientation="horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/fecc_fecc"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/feedback"
+            android:textColor="@color/ainemo_white"
+            android:textSize="14sp"
+            android:layout_gravity="center_vertical"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/Feedback_LinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="50dp"
+            android:orientation="vertical">
+
+        <EditText
+                android:id="@+id/FeedbackEditText"
+                style="@style/NemoFeedbackEditText"
+                android:layout_width="match_parent"
+                android:padding="10dip"
+                android:singleLine="false"
+                android:hint="@string/default_feedback_content"
+                android:minLines="6"
+                android:layout_height="150dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"/>
+    </LinearLayout>
+
+    <Button
+            android:id="@+id/send_feedback_bt"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_below="@+id/Feedback_LinearLayout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="13dp"
+            android:layout_marginLeft="11.5dp"
+            android:layout_marginRight="11.5dp"
+            android:background="@drawable/nemo_button_background"
+            android:text="@string/send_feedback"
+            android:textColor="@color/ainemo_white"
+            android:textSize="18sp"/>
+
+</RelativeLayout>

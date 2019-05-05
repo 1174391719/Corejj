@@ -1,0 +1,58 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+        <item name="colorPrimaryDark">@color/zysp_bg_color</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="statistics_label">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/ainemo_white</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+    </style>
+
+
+    <style name="NemoFeedbackEditText">
+        <item name="android:background">@drawable/bg_feedback_edit</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:gravity">top</item>
+        <item name="android:textColor">@color/nemo_black_70</item>
+        <item name="android:textColorHint">@color/nemo_black_40</item>
+        <item name="android:textCursorDrawable">@drawable/cursor_color</item>
+        <item name="android:inputType">textMultiLine</item>
+    </style>
+    <style name="RadioGroupButtonStyle">
+        <!-- 这个属性是去掉button 默认样式-->
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/zy_bottom_text_color_selector</item>
+    </style>
+
+    <style name="division_line_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginRight">15dp</item>
+        <item name="android:background">@color/zysp_line_color</item>
+    </style>
+</resources>

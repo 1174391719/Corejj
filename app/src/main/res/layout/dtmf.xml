@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dtmf"
+    android:layout_width="295dp"
+    android:layout_height="305dp"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
+    android:layout_centerInParent="true"
+    android:background="@color/black_80_percent"
+    android:clickable="true"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/dtmf_text"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:ellipsize="start"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textColor="@color/call_font_color"
+        android:textSize="@dimen/dtmf_text_size" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/call_font_color"
+        android:layout_marginBottom="15dp"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/dtmf_1"
+            android:layout_width="49dp"
+            android:layout_height="49dp"
+            android:background="@drawable/dtmf_selector"
+            android:text="@string/dtmf_1"
+            android:layout_alignParentLeft="true"
+            android:textColor="@color/call_font_color"
+            android:textSize="@dimen/dtmf_key_size" />
+
+        <Button
+            android:id="@+id/dtmf_2"
+            android:layout_width="49dp"
+            android:layout_height="49dp"
+            android:background="@drawable/dtmf_selector"
+            android:text="@string/dtmf_2"
+            android:layout_centerInParent="true"
+            android:textColor="@color/call_font_color"
+            android:textSize="@dimen/dtmf_key_size" />
+
+        <Button
+            android:id="@+id/dtmf_3"
+            android:layout_width="49dp"
+            android:layout_height="49dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/dtmf_selector"
+            android:textColor="@color/call_font_color"
+            android:textSize="@dimen/dtmf_key_size"
+            android:text="@string/dtmf_3" />
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/dtmf_4"
+            android:layout_width="49dp"
+            android:layout_height="49dp"
+            android:background="@drawable/dtmf_selector"
+            android:textColor="@color/call_font_color"
+            android:textSize="@dimen/dtmf_key_size"
+            android:layout_alignParentLeft="true"
+            android:text="@string/dtmf_4"
+            />
+
+        <Button
+            android:id="@+id/dtmf_5"
+            android:layout_width="49dp"
+            android:layout_height="49dp"
+            android:background="@drawable/dtmf_selector"
+            android:textColor="@color/call_font_color"
+            android:textSize="@dimen/dtmf_key_size"
+            android:layout_centerInParent="true"
+            android:text="@string/dtmf_5" />
+
+        <Button
+            android:id="@+id/dtmf_6"
+            android:layout_width="49dp"
+            android:layout_height="49dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/dtmf_selector"
+            android:textColor="@color/call_font_color"
+            android:textSize="@dimen/dtmf_key_size"
+            android:text="@string/dtmf_6"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/dtmf_7"
+            android:layout_width="49dp"
+            android:layout_height="49dp"
+            android:background="@drawable/dtmf_selector"
+            android:textColor="@color/call_font_color"
+            android:textSize="@dimen/dtmf_key_size"
+            android:text="@string/dtmf_7" />
+
+        <Button
+            android:id="@+id/dtmf_8"
+            android:layout_width="49dp"
+            android:layout_height="49dp"
+            android:background="@drawable/dtmf_selector"
+            android:textColor="@color/call_font_color"
+            android:textSize="@dimen/dtmf_key_size"
+            android:layout_centerInParent="true"
+            android:text="@string/dtmf_8" />
+
+        <Button
+            android:id="@+id/dtmf_9"
+            android:layout_width="49dp"
+            android:layout_height="49dp"
+            android:background="@drawable/dtmf_selector"
+            android:textColor="@color/call_font_color"
+            android:textSize="@dimen/dtmf_key_size"
+            android:layout_alignParentRight="true"
+            android:text="@string/dtmf_9" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/dtmf_s"
+            android:layout_width="49dp"
+            android:layout_height="49dp"
+            android:background="@drawable/dtmf_selector"
+            android:textColor="@color/call_font_color"
+            android:textSize="@dimen/dtmf_key_size"
+            android:layout_alignParentLeft="true"
+            android:text="@string/dtmf_s" />
+
+        <Button
+            android:id="@+id/dtmf_0"
+            android:layout_width="49dp"
+            android:layout_height="49dp"
+            android:background="@drawable/dtmf_selector"
+            android:textColor="@color/call_font_color"
+            android:textSize="@dimen/dtmf_key_size"
+            android:layout_centerInParent="true"
+            android:text="@string/dtmf_0" />
+
+        <Button
+            android:id="@+id/dtmf_p"
+            android:layout_width="49dp"
+            android:layout_height="49dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/dtmf_selector"
+            android:textColor="@color/call_font_color"
+            android:textSize="@dimen/dtmf_key_size"
+            android:text="@string/dtmf_p"  />
+    </RelativeLayout>
+
+</LinearLayout>

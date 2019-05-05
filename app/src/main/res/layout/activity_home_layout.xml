@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/zysp_bg_color"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <FrameLayout
+        android:id="@+id/framelayout_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/view_line"
+        android:background="@color/ainemo_white">
+    </FrameLayout>
+
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:alpha="0.6"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintTop_toTopOf="@+id/radio_group_button"/>
+    <RadioGroup
+        android:id="@+id/radio_group_button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@color/ainemo_white"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <RadioButton
+            android:id="@+id/radio_button_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="会议"
+            android:drawableTop="@drawable/tab_home_selector"
+            style="@style/RadioGroupButtonStyle"
+            />
+        <RadioButton
+            android:id="@+id/radio_button_address_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="通讯录"
+            android:drawableTop="@drawable/tab_address_list_selector"
+            style="@style/RadioGroupButtonStyle"
+            />
+        <RadioButton
+            android:id="@+id/radio_button_file"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="文件夹"
+            android:drawableTop="@drawable/tab_file_selector"
+            style="@style/RadioGroupButtonStyle"
+            />
+        <RadioButton
+            android:id="@+id/radio_button_mine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我的"
+            android:drawableTop="@drawable/tab_mine_selector"
+            style="@style/RadioGroupButtonStyle"
+            />
+    </RadioGroup>
+
+</android.support.constraint.ConstraintLayout>

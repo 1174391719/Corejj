@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/black_50"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/close_btn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="5dp"
+        android:padding="8dp"
+        android:src="@drawable/button_close2" />
+
+    <ScrollView
+        android:id="@+id/view_statistics_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="25dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical">
+
+
+            <TextView
+                style="@style/statistics_label"
+                android:text="@string/statistics_network" />
+
+            <com.zyzxsp.view.StringMatrixView
+                android:id="@+id/statistics_network"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/title_content"
+                style="@style/statistics_label"
+                android:text="@string/statistics_content"/>
+
+            <com.zyzxsp.view.StringMatrixView
+                android:id="@+id/statistics_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                style="@style/statistics_label"
+                android:text="@string/statistics_participant" />
+
+            <com.zyzxsp.view.StringMatrixView
+                android:id="@+id/statistics_participant"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                style="@style/statistics_label"
+                android:text="@string/statistics_participant"
+                android:visibility="invisible" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorTransparent">#00000000</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="outgoing_call_bg">#c4c4c4</color>
+    <color name="ainemo_white">#FFFFFFFF</color>
+    <color name="nemo_cursor_color">#52a5eb</color>
+    <color name="nemo_black_70">#B3000000</color>
+    <color name="nemo_black_40">#66000000</color>
+    <color name="black_80_percent">#CC000000</color>
+    <color name="xylink_gray_light">#dddddd</color>
+    <color name="xylink_main_clicked">#3da3e6</color>
+    <color name="xylink_main_blue">#ff44b5ff</color>
+    <color name="xylink_top_bottom_color">#CC000000</color>
+    <color name="white_25">#40FFFFFF</color>
+    <color name="white_20">#33FFFFFF</color>
+    <color name="white_30">#4DFFFFFF</color>
+    <color name="black_20">#33000000</color>
+    <color name="black_50">#80000000</color>
+    <color name="white_90">#e6ffffff</color>
+    <color name="black">#000000</color>
+    <color name="nemo_green">#90b12b</color>
+    <color name="nemo_red">#d2391a</color>
+    <color name="no_video_bg">#CCCCCC</color>
+
+    <!--call color-->
+    <color name="call_line_color_white_30">#4DFFFFFF</color>
+    <color name="fecc_bg">#ff3c36</color>
+    <color name="dtmf_press_color">#26FFFFFF</color>
+    <color name="call_onhold_title_color">#393946</color>
+    <color name="text_color_90393946">#E6393946</color>
+    <color name="text_color_60393946">#99393946</color>
+    <color name="text_color_80393946">#CC393946</color>
+    <color name="text_color_loading">#80393946</color>
+    <color name="contact_text_color">#44b5ff</color>
+
+    <color name="nemo_black_80">#CC000000</color>
+    <color name="nemo_black_60">#99000000</color>
+    <color name="nemo_black_50">#80000000</color>
+    <color name="nemo_black_20">#33000000</color>
+    <color name="nemo_black_30">#4d000000</color>
+    <color name="nemo_black_15">#23000000</color>
+
+    <color name="call_font_color">#8CFFFFFF</color>
+    <color name="ainemo_white_90">#E6FFFFFF</color>
+
+    <color name="ainemo_white_95">#F2FFFFFF</color>
+
+    <color name="zysp_bg_color">#05CBD8</color>
+
+    <color name="zysp_line_color">#141D1D26</color>
+    <color name="zysp_gray_bg_color">#f0f2f2</color>
+    <color name="zysp_gray_color">#666666</color>
+    <color name="zysp_black_color">#1D1D26</color>
+    <color name="zysp_text_gray_color">#999999</color>
+    <color name="zysp_text_bule_color">#05CBD8</color>
+    <color name="zysp_text_red_color">#FF3D3D</color>
+</resources>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:background="@mipmap/icon_bg_title"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:id="@+id/title_left_layout"
+        android:layout_width="30dp"
+        android:layout_height="match_parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="10dp"
+        android:gravity="center">
+        <ImageView
+            android:id="@+id/image_left"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@mipmap/icon_back"/>
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/title_left_layout"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/ainemo_white"
+        android:textSize="19sp"
+        android:text="标题"/>
+
+    <LinearLayout
+        android:id="@+id/title_right_layout"
+        android:layout_width="30dp"
+        android:layout_height="match_parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:gravity="center"
+        android:layout_marginRight="15dp">
+        <ImageView
+            android:id="@+id/image_right"
+            android:layout_width="25dp"
+            android:layout_height="25dp"/>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

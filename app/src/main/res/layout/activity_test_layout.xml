@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.zyzxsp.view.HeaderTitleView
+        android:id="@+id/test_header_view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/nemo_green"
+        app:headerCenterTitle="@string/test_title">
+    </com.zyzxsp.view.HeaderTitleView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin">
+
+        <EditText
+            android:id="@+id/display_name"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/edit_bg"
+            android:hint="请输入displayName"
+            android:paddingLeft="10dp"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/register_external_id"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edit_bg"
+            android:hint="请输入externalId"
+            android:paddingLeft="10dp"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/connect_nemo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/round_corner_clicked"
+            android:text="登  录"
+            android:textAlignment="center"
+            android:textColor="@color/ainemo_white" />
+
+        <Button
+            android:id="@+id/login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="请求测试"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/sign"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="更新软件"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/get_signinfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="获取签名信息"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/go_zyhome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="跳转zyhome"
+            android:visibility="visible" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="更新软件2.0成功"
+            android:visibility="gone" />
+    </LinearLayout>
+
+
+</LinearLayout>

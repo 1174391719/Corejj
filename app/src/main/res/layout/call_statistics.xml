@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/conversation_statics_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="#80000000">
+
+    <ScrollView
+            android:id="@+id/call_statistics_wrap"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                <TextView
+                        android:id="@+id/call_statistics_pvtx"
+                        android:layout_width="40dp"
+                        android:layout_height="32dp"
+                        android:textSize="16sp"
+                        android:gravity="center"
+                        android:text="@string/call_statistics_pvtx"
+                        android:background="@drawable/statistics_left_bg"/>
+
+                <TextView
+                        android:id="@+id/call_statistics_pvrx"
+                        android:layout_width="40dp"
+                        android:layout_height="32dp"
+                        android:textSize="16sp"
+                        android:gravity="center"
+                        android:text="@string/call_statistics_pvrx"
+                        android:background="@drawable/statistics_middle_bg"/>
+                <TextView
+                        android:id="@+id/call_statistics_atx"
+                        android:layout_width="38dp"
+                        android:layout_height="32dp"
+                        android:textSize="16sp"
+                        android:gravity="center"
+                        android:text="@string/call_statistics_atx"
+                        android:background="@drawable/statistics_middle_bg"/>
+                <TextView
+                        android:id="@+id/call_statistics_arx"
+                        android:layout_width="38dp"
+                        android:layout_height="32dp"
+                        android:textSize="16sp"
+                        android:gravity="center"
+                        android:text="@string/call_statistics_arx"
+                        android:background="@drawable/statistics_middle_bg"/>
+                <TextView
+                        android:id="@+id/call_statistics_others"
+                        android:layout_width="50dp"
+                        android:layout_height="32dp"
+                        android:textSize="16sp"
+                        android:gravity="center"
+                        android:text="@string/call_statistics_others"
+                        android:background="@drawable/statistics_middle_bg"/>
+
+                <TextView
+                        android:id="@+id/call_statistics_dba"
+                        android:layout_width="40dp"
+                        android:layout_height="32dp"
+                        android:textSize="16sp"
+                        android:gravity="center"
+                        android:text="@string/call_statistics_dba"
+                        android:background="@drawable/statistics_right_bg"/>
+            </LinearLayout>
+            <TextView
+                    android:id="@+id/statistics_textview"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="top"
+                    android:textColor="#FFFFFF"
+                    android:spacing="2sp"
+                    android:textSize="16sp"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageView
+            android:id="@+id/statistics_close_btn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="10sp"
+            android:layout_marginTop="10sp"
+            android:src="@mipmap/button_close"/>
+
+</RelativeLayout>

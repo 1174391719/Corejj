@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/conversation_roster_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="#50000000">
+
+    <ScrollView
+            android:id="@+id/call_roster_wrap"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+        <TextView
+                android:id="@+id/roster_textview"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:gravity="top"
+                android:textColor="#FFFFFF"
+                android:spacing="2sp"
+                android:textSize="16sp"/>
+    </ScrollView>
+
+    <ImageView
+            android:id="@+id/roster_close_btn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="10sp"
+            android:layout_marginTop="10sp"
+            android:src="@mipmap/button_close"/>
+
+</RelativeLayout>
