@@ -176,7 +176,7 @@
     <string name="bottom_str_bottom_my">我的</string>
 
     <string name="title_str_home">首页</string>
-    <string name="title_str_meet">会议</string>
+    <string name="title_str_meet">加入会议</string>
     <string name="title_str_file">文件夹</string>
     <string name="title_str_address_list">通讯录</string>
     <string name="title_str_mine">我的</string>
@@ -205,12 +205,12 @@
     <string name="modify_input_hint_new_password">请输入6至18位密码</string>
 
     <string name="modify_password_btn">修改密码</string>
-    <string name="input_meet_number">请输入云会议号或者终端号</string>
+    <string name="input_meet_number">输入关键字进行搜索</string>
     <string name="injion_meet_close_camera">入会时关闭摄像头</string>
     <string name="injion_meet_close_voice">入会时静音</string>
 
-    <string name="input_login_name">请输入登录名</string>
-    <string name="input_login_password">请输入登录密码</string>
+    <string name="input_login_name">请输入手机号码</string>
+    <string name="input_login_password">请输入密码</string>
     <string name="login_str">登录</string>
     <string name="xylogin_str">xy登录</string>
 

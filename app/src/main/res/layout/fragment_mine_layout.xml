@@ -17,29 +17,75 @@
         app:layout_constraintRight_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"></com.zyzxsp.view.HeaderTitleView>
 
-    <android.support.constraint.ConstraintLayout
+    <LinearLayout
         android:id="@+id/uesr_info_constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="148dp"
+        android:layout_height="wrap_content"
         android:background="@mipmap/bg_icon_mine"
         android:orientation="horizontal"
-        android:visibility="visible"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mine_header_view">
+        android:visibility="visible">
 
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/user_img"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
-            android:layout_marginLeft="15dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            fresco:placeholderImage="@mipmap/icon_user_image"
-            fresco:placeholderImageScaleType="fitCenter"
-            fresco:roundAsCircle="true"
-            fresco:roundedCornerRadius="20dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="130dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/user_img"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_marginLeft="15dp"
+                fresco:placeholderImage="@mipmap/icon_user_image"
+                fresco:placeholderImageScaleType="fitCenter"
+                fresco:roundAsCircle="true"
+                fresco:roundedCornerRadius="20dp" />
+
+            <LinearLayout
+                android:layout_marginLeft="10dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/user_name_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/test_title"
+                    android:textColor="@color/ainemo_white"
+                    android:textSize="16sp" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/user_phone_textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/test_title"
+                        android:textColor="@color/ainemo_white"
+                        android:textSize="11sp" />
+
+                    <ImageView
+                        android:layout_width="7dp"
+                        android:layout_height="11dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="15dp"
+                        android:src="@mipmap/icon_right_image_white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -50,34 +96,11 @@
             app:layout_constraintLeft_toRightOf="@+id/user_img"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/user_name_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/test_title"
-                android:textColor="@color/ainemo_white"
-                android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/user_phone_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/test_title"
-                android:textColor="@color/ainemo_white"
-                android:textSize="11sp" />
         </LinearLayout>
 
 
-        <ImageView
-            android:layout_width="7dp"
-            android:layout_height="11dp"
-            android:layout_marginRight="15dp"
-            android:src="@mipmap/icon_right_image_white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </android.support.constraint.ConstraintLayout>
+    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/my_meet_layout"

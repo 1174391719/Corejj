@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00000000"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="@dimen/mine_update_dialog_width"
+        android:layout_height="@dimen/mine_update_dialog_height"
+        android:background="@drawable/dialog">
+
+        <TextView
+            android:id="@+id/dialog_confirm_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="@dimen/mine_update_dialog_title_margin_top"
+            android:gravity="center"
+            android:textSize="@dimen/mine_update_dialog_title_text_size" />
+
+        <LinearLayout
+            android:id="@+id/dialog_confirm_positive"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/mine_update_dialog_bottom_height"
+            android:layout_alignParentBottom="true"
+            android:layout_weight="1"
+            android:background="@drawable/dialog_bottom"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/dialog_confirm_positive_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

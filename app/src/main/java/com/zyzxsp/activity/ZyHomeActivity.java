@@ -18,6 +18,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.zyzxsp.R;
+import com.zyzxsp.UserBean;
 import com.zyzxsp.fragment.AddressListFragment;
 import com.zyzxsp.fragment.FileFragment;
 import com.zyzxsp.fragment.HomeFragment;
@@ -26,12 +27,13 @@ import com.zyzxsp.fragment.MineFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ZyHomeActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
+public class ZyHomeActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
     public static final String TAG ="ZyHomeActivity";
     public static final String HOME_FRAGMENT_TAG = "home_fragment_tag";
     public static final String ADDRESSLIST_FRAGMENT_TAG = "addresslist_fragment_tag";
     public static final String FILE_FRAGMENT_TAG = "file_fragment_tag";
     public static final String MINE_FRAGMENT_TAG = "mine_fragment_tag";
+    public static final UserBean sUserBean = new UserBean();
 
     private FrameLayout mFrameLayout;
     private RadioGroup mRadioGroup;

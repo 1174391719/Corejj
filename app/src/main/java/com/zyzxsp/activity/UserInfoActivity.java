@@ -10,29 +10,30 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ainemo.sdk.model.User;
 import com.google.gson.Gson;
 import com.zyzxsp.R;
 import com.zyzxsp.constant.ConstantUrl;
-import com.zyzxsp.data.LoginOutResData;
-import com.zyzxsp.data.LoginResData;
-import com.zyzxsp.data.UserInfoResData;
+import com.zyzxsp.bean.LoginOutResData;
+import com.zyzxsp.bean.UserInfoResData;
+import com.zyzxsp.utils.ZLog;
 import com.zyzxsp.view.HeaderTitleView;
 
-import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import okhttp3.Call;
 import zxsp.com.netlibrary.CallBackUtil;
 import zxsp.com.netlibrary.OkhttpUtil;
 
-public class UserInfoActivity extends AppCompatActivity implements View.OnClickListener {
+public class UserInfoActivity extends BaseActivity implements View.OnClickListener {
     public static final String TAG = "UserInfoActivity";
     private TextView mUserNameTextView;
     private TextView mUserAccountTextView;
     private TextView mUserMailBoxTextView;
     private RelativeLayout mModifyPasswordLayout;
-    private TextView mLoginoutTextView;
+    private RelativeLayout mLoginoutTextView;
     private HeaderTitleView mHeaderTitleView;
 
     private UserInfoResData.UserInfo mUserinfo;
@@ -52,16 +53,16 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         mLoginoutTextView.setOnClickListener(this);
 
         Intent intent = this.getIntent();
-        if(intent != null){
+        if (intent != null) {
             Bundle mBundle = intent.getBundleExtra("userInfoBundle");
-            if(mBundle != null){
+            if (mBundle != null) {
                 mUserinfo = (UserInfoResData.UserInfo) mBundle.getSerializable("userInfoData");
-                if(mUserinfo != null){
+                if (mUserinfo != null) {
                     String mName = mUserinfo.getName();
                     mUserNameTextView.setText(TextUtils.isEmpty(mName) ? "" : mName);
                     String mPhone = mUserinfo.getPhone();
                     mUserAccountTextView.setText(TextUtils.isEmpty(mPhone) ? "" : mPhone);
-                    String  mEmail = mUserinfo.getEmail();
+                    String mEmail = mUserinfo.getEmail();
                     mUserMailBoxTextView.setText(TextUtils.isEmpty(mEmail) ? "" : mEmail);
                 }
             }
@@ -84,9 +85,9 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        switch (id){
+        switch (id) {
             case R.id.modify_password_layout:
-                Intent intent = new Intent(UserInfoActivity.this,ModifyPasswordActivity.class);
+                Intent intent = new Intent(UserInfoActivity.this, ModifyPasswordActivity.class);
                 startActivity(intent);
                 break;
             case R.id.login_out:
@@ -99,39 +100,46 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
     /**
      * 登出请求
      */
-    public void requestLoginOut(){
-        String url = ConstantUrl.headerUrl + ConstantUrl.logoutUrl;
+    public void requestLoginOut() {
+        String url = ConstantUrl.HOST + ConstantUrl.CHECKOUT;
         Log.d(TAG, "requestLoginOut: 登出 url  " + url);
+        Map map = new HashMap();
+        map.put("token", ZyHomeActivity.sUserBean.getToken());
 
-        JSONObject object = new JSONObject();
-        String  objectStr = object.toString();
-
-        Log.d(TAG, "requestLoginOut:   请求参数是  " + objectStr);
-        OkhttpUtil.okHttpPostJson(url,objectStr, new CallBackUtil.CallBackString() {
+        OkhttpUtil.okHttpPostJson(url, null, map, new CallBackUtil.CallBackString() {
             @Override
             public void onFailure(Call call, Exception e) {
-                Call mcall = call;
-                Log.d(TAG, "onFailure:  "+ e.toString());
-
+                ZLog.e(TAG, "onFailure. e:" + e.toString());
             }
 
             @Override
             public void onResponse(String response) {
-                Log.d(TAG, "onResponse:  "+ response);
-                if(response == null){
+                ZLog.d(TAG, "onResponse. response:" + response);
+                if (response == null) {
                     return;
                 }
                 Gson json = new Gson();
-                LoginOutResData dataBean = json.fromJson(response,LoginOutResData.class);
-                if("0".equals(dataBean.getReturnCode())){
-                    Toast.makeText( UserInfoActivity.this,"退出成功",Toast.LENGTH_SHORT).show();
-                }else{
+                LoginOutResData dataBean = json.fromJson(response, LoginOutResData.class);
+                if ("0".equals(dataBean.getReturnCode())) {
+                    Toast.makeText(UserInfoActivity.this, "退出成功", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent();
+                    intent.setAction(BaseActivity.ACTION_CHECKOUT);
+                    UserInfoActivity.this.sendBroadcast(intent);
+                    goLoginActivity();
+                } else {
                     String errorMess = dataBean.getReturnMessage();
-                    if(!TextUtils.isEmpty(errorMess)){
-                        Toast.makeText( UserInfoActivity.this,errorMess,Toast.LENGTH_SHORT).show();
+                    if (!TextUtils.isEmpty(errorMess)) {
+                        Toast.makeText(UserInfoActivity.this, errorMess, Toast.LENGTH_SHORT).show();
                     }
                 }
             }
         });
+    }
+
+    private void goLoginActivity() {
+        Intent intent = new Intent(UserInfoActivity.this, ZyLoginActivity.class);
+        intent.putExtra("MY_NUMBER", "");
+        intent.putExtra("displayName", "");
+        startActivity(intent);
     }
 }

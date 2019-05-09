@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.zyzxsp.R;
 import com.zyzxsp.constant.ConstantUrl;
-import com.zyzxsp.data.LoginOutResData;
+import com.zyzxsp.bean.LoginOutResData;
 import com.zyzxsp.view.HeaderTitleView;
 
 import org.json.JSONException;

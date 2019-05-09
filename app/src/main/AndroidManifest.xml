@@ -34,13 +34,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <!--<activity android:name=".activity.HomeActivity">-->
-        <activity android:name=".activity.ZyLoginActivity">
+        <activity android:name=".activity.StartupActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activity.ZyLoginActivity"
+            android:screenOrientation="portrait" />
         <!-- 登录界面 -->
         <activity
             android:name=".activity.MainActivity"
@@ -67,10 +70,11 @@
         <!-- 被叫功能 -->
         <service android:name=".IncomingCallService" />
 
-        <activity android:name=".activity.MyCloudMeettingActivity" />
+        <activity android:name=".activity.MyCloudMeetingActivity" />
         <activity android:name=".activity.AboutActivity" />
         <activity android:name=".activity.ModifyPasswordActivity" />
-        <activity android:name=".activity.ZyCallActivity"
+        <activity
+            android:name=".activity.ZyCallActivity"
             android:configChanges="screenSize|orientation"
             android:launchMode="singleTask"
             android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />

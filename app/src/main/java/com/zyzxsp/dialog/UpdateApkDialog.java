@@ -7,10 +7,11 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 
 import com.zyzxsp.R;
-import com.zyzxsp.data.UpdateApkData;
+import com.zyzxsp.bean.UpdateApkData;
 import com.zyzxsp.download.DownLoadManagerSingleton;
 
 public class UpdateApkDialog {
@@ -30,8 +31,8 @@ public class UpdateApkDialog {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.dialog_updateapk_layout,null);
-        Button cancleBtn = view.findViewById(R.id.update_apk_cancle);
-        Button confirmBtn = view.findViewById(R.id.update_apk_confirm);
+        LinearLayout cancleBtn = view.findViewById(R.id.update_apk_cancle);
+        LinearLayout confirmBtn = view.findViewById(R.id.update_apk_confirm);
 //        TextView messageText = view.findViewById(R.id.update_message);
 
         builder.setView(view);

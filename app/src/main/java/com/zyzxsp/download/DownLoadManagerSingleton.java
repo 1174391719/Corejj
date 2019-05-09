@@ -5,7 +5,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.Signature;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Environment;
@@ -13,7 +12,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.zyzxsp.data.UpdateApkData;
+import com.zyzxsp.bean.UpdateApkData;
 
 import java.io.File;
 import java.util.ArrayList;

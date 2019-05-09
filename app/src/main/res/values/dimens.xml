@@ -1,5 +1,14 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
+
+    <!-- Mine -->
+    <dimen name="mine_update_dialog_height">119dp</dimen>
+    <dimen name="mine_update_dialog_width">280dp</dimen>
+    <dimen name="mine_update_dialog_title_margin_top">30dp</dimen>
+    <dimen name="mine_update_dialog_title_text_size">15sp</dimen>
+    <dimen name="mine_update_dialog_bottom_height">47dp</dimen>
+    <dimen name="mine_update_dialog_bottom_text_size">16sp</dimen>
+
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="local_cell_pandding">5dp</dimen>

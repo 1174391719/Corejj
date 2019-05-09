@@ -1,60 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".activity.ZyLoginActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="251dp"
+        android:background="@mipmap/login_bg"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/login_logo" />
+    </LinearLayout>
 
     <EditText
         android:id="@+id/login_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="35dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:hint="@string/input_login_name"/>
+        android:layout_marginTop="30dp"
+        android:background="@null"
+        android:hint="@string/input_login_name"
+        android:textColorHint="#BBBBBB"
+        android:textSize="15sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/login_password"
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="19dp"
+        android:layout_marginTop="10dp"
+        android:background="#F0F2F2" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/login_name"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="35dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:hint="@string/input_login_password"/>
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/login_password"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="@string/input_login_password"
+            android:textColorHint="#BBBBBB"
+            android:textSize="15sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_name" />
+
+                     
+
+        <ImageButton
+            android:id="@+id/login_pw_clean"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:background="#00123456"
+            android:src="@mipmap/login_pw_clean"
+            android:textSize="12sp" />
+
+        <CheckBox
+            android:id="@+id/login_pw_visibility"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:button="@drawable/bg_login_pw_visibility_radio"
+            android:checked="false"
+            android:clickable="true" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/login_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/login_password"
-        app:layout_constraintRight_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="25dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
+        android:layout_marginTop="25dp"
         android:background="@drawable/round_corner_clicked"
-        android:text="@string/login_str"/>
-
-    <Button
-        android:id="@+id/xylogin_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/login_button"
+        android:text="@string/login_str"
+        android:textColor="#ffffff"
+        android:textSize="15sp"
         app:layout_constraintRight_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:background="@drawable/round_corner_clicked"
-        android:text="@string/xylogin_str"/>
+        app:layout_constraintTop_toBottomOf="@+id/login_password" />
 
-</android.support.constraint.ConstraintLayout>
+    <!--<Button--><!--android:id="@+id/xylogin_button"--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--app:layout_constraintTop_toBottomOf="@+id/login_button"--><!--app:layout_constraintRight_toLeftOf="parent"--><!--app:layout_constraintRight_toRightOf="parent"--><!--android:layout_marginTop="25dp"--><!--android:layout_marginLeft="15dp"--><!--android:layout_marginRight="15dp"--><!--android:background="@drawable/round_corner_clicked"--><!--android:text="@string/xylogin_str"/>-->
+
+</LinearLayout>
