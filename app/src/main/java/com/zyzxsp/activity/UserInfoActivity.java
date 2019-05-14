@@ -15,6 +15,8 @@ import com.zyzxsp.R;
 import com.zyzxsp.constant.ConstantUrl;
 import com.zyzxsp.bean.LoginOutResData;
 import com.zyzxsp.bean.UserInfoResData;
+import com.zyzxsp.dialog.DialogPresenter;
+import com.zyzxsp.dialog.DialogPresenterImpl;
 import com.zyzxsp.utils.ZLog;
 import com.zyzxsp.view.HeaderTitleView;
 
@@ -91,7 +93,18 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
                 startActivity(intent);
                 break;
             case R.id.login_out:
-                requestLoginOut();
+                DialogPresenter dialog = new DialogPresenterImpl();
+                dialog.choose(UserInfoActivity.this, new DialogPresenter.Callback() {
+                    @Override
+                    public void onPositiveClick() {
+                        requestLoginOut();
+                    }
+
+                    @Override
+                    public void onNegativeClick() {
+
+                    }
+                }, "确认退出？", "取消", "确定");
                 break;
         }
     }
@@ -121,6 +134,8 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
                 Gson json = new Gson();
                 LoginOutResData dataBean = json.fromJson(response, LoginOutResData.class);
                 if ("0".equals(dataBean.getReturnCode())) {
+
+
                     Toast.makeText(UserInfoActivity.this, "退出成功", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent();
                     intent.setAction(BaseActivity.ACTION_CHECKOUT);

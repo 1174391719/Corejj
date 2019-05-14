@@ -1,37 +1,11 @@
 package com.zyzxsp.bean;
 
 import java.io.Serializable;
-import java.util.List;
 
-public class UpdateBean implements Serializable {
-
-    /*{ 410001:缺少参数,
-            0:成功，
-        -999:系统异常}*/
-    private String returnCode;//	结果编码
-
-    /*缺少参数、系统异常*/
-    private String returnMessage;//		结果描述
-
-    private Object bean;//		无内容
-    private List<Object> beans;//	无内容
-    private UpdateApkData object;	//最新版本信息
-
-    public String getReturnCode() {
-        return returnCode;
-    }
-
-    public void setReturnCode(String returnCode) {
-        this.returnCode = returnCode;
-    }
-
-    public String getReturnMessage() {
-        return returnMessage;
-    }
-
-    public void setReturnMessage(String returnMessage) {
-        this.returnMessage = returnMessage;
-    }
+public class UpdateBean extends BaseResData {
+    private Object bean;
+    private Object beans;
+    private Data object;
 
     public Object getBean() {
         return bean;
@@ -41,19 +15,97 @@ public class UpdateBean implements Serializable {
         this.bean = bean;
     }
 
-    public List<Object> getBeans() {
+    public Object getBeans() {
         return beans;
     }
 
-    public void setBeans(List<Object> beans) {
+    public void setBeans(Object beans) {
         this.beans = beans;
     }
 
-    public UpdateApkData getObject() {
+    public Data getObject() {
         return object;
     }
 
-    public void setObject(UpdateApkData object) {
+    public void setObject(Data object) {
         this.object = object;
+    }
+
+    public class Data {
+        Version version;
+
+        public Version getVersion() {
+            return version;
+        }
+
+        public void setVersion(Version version) {
+            this.version = version;
+        }
+    }
+
+    public class Version implements Serializable {
+        private String version;//	版本号
+        private String address;    //版本地址
+        private String message;//版本信息
+        private String md5;    //APP包md5值
+        private boolean upgradeFlag;//		是否强制升级
+        private boolean latestFlag;//		是否最新版本
+        private String signature;//apk签名
+
+        public String getVersion() {
+            return version;
+        }
+
+        public void setVersion(String version) {
+            this.version = version;
+        }
+
+        public String getAddress() {
+            return address;
+        }
+
+        public void setAddress(String address) {
+            this.address = address;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+
+        public void setMessage(String message) {
+            this.message = message;
+        }
+
+        public String getMd5() {
+            return md5;
+        }
+
+        public void setMd5(String md5) {
+            this.md5 = md5;
+        }
+
+        public boolean isUpgradeFlag() {
+            return upgradeFlag;
+        }
+
+        public void setUpgradeFlag(boolean upgradeFlag) {
+            this.upgradeFlag = upgradeFlag;
+        }
+
+        public boolean isLatestFlag() {
+            return latestFlag;
+        }
+
+        public void setLatestFlag(boolean latestFlag) {
+            this.latestFlag = latestFlag;
+        }
+
+        public String getSignature() {
+            return signature;
+        }
+
+        public void setSignature(String signature) {
+            this.signature = signature;
+        }
     }
 }

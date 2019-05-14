@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F0F2F2"
     android:orientation="vertical"
     tools:context=".activity.ZyLoginActivity">
 
@@ -19,71 +20,100 @@
             android:background="@mipmap/login_logo" />
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/login_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="30dp"
-        android:background="@null"
-        android:hint="@string/input_login_name"
-        android:textColorHint="#BBBBBB"
-        android:textSize="15sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="19dp"
-        android:layout_marginRight="19dp"
-        android:layout_marginTop="10dp"
-        android:background="#F0F2F2" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:background="@android:color/white"
+        android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/login_password"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_weight="1"
-            android:background="@null"
-            android:hint="@string/input_login_password"
-            android:textColorHint="#BBBBBB"
-            android:textSize="15sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/login_name" />
+            android:orientation="horizontal">
 
-                     
+            <EditText
+                android:id="@+id/login_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="@string/input_login_name"
+                android:inputType="number"
+                android:maxLength="11"
+                android:paddingBottom="20dp"
+                android:paddingLeft="15dp"
+                android:paddingTop="20dp"
+                android:textColor="#1D1D26"
+                android:textColorHint="#BBBBBB"
+                android:textCursorDrawable="@null"
+                android:textSize="15sp" />
 
-        <ImageButton
-            android:id="@+id/login_pw_clean"
-            android:layout_width="wrap_content"
+            <ImageButton
+                android:id="@+id/login_account_clean"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="25dp"
+                android:background="#00123456"
+                android:src="@mipmap/ic_clean"
+                android:textSize="12sp"
+                android:visibility="invisible" />
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="19dp"
+            android:layout_marginRight="19dp"
+            android:background="#F0F2F2" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
-            android:background="#00123456"
-            android:src="@mipmap/login_pw_clean"
-            android:textSize="12sp" />
+            android:gravity="center"
+            android:orientation="horizontal">
 
-        <CheckBox
-            android:id="@+id/login_pw_visibility"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="15dp"
-            android:button="@drawable/bg_login_pw_visibility_radio"
-            android:checked="false"
-            android:clickable="true" />
+            <EditText
+                android:id="@+id/login_password"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="@string/input_login_password"
+                android:paddingBottom="20dp"
+                android:paddingLeft="15dp"
+                android:paddingTop="20dp"
+                android:textColor="#1D1D26"
+                android:textColorHint="#BBBBBB"
+                android:textCursorDrawable="@null"
+                android:textSize="15sp" />
+
+                         
+
+            <ImageButton
+                android:id="@+id/login_pw_clean"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:background="#00123456"
+                android:src="@mipmap/ic_clean"
+                android:textSize="12sp"
+                android:visibility="invisible" />
+
+            <CheckBox
+                android:id="@+id/login_pw_visibility"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:button="@drawable/bg_login_pw_visibility_radio"
+                android:checked="false"
+                android:clickable="true" />
+        </LinearLayout>
     </LinearLayout>
+
 
     <Button
         android:id="@+id/login_button"
@@ -95,10 +125,7 @@
         android:background="@drawable/round_corner_clicked"
         android:text="@string/login_str"
         android:textColor="#ffffff"
-        android:textSize="15sp"
-        app:layout_constraintRight_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_password" />
+        android:textSize="15sp" />
 
     <!--<Button--><!--android:id="@+id/xylogin_button"--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--app:layout_constraintTop_toBottomOf="@+id/login_button"--><!--app:layout_constraintRight_toLeftOf="parent"--><!--app:layout_constraintRight_toRightOf="parent"--><!--android:layout_marginTop="25dp"--><!--android:layout_marginLeft="15dp"--><!--android:layout_marginRight="15dp"--><!--android:background="@drawable/round_corner_clicked"--><!--android:text="@string/xylogin_str"/>-->
 

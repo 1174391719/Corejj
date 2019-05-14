@@ -37,8 +37,8 @@ import io.reactivex.schedulers.Schedulers;
 import static com.zyzxsp.fragment.HomeFragment.CLOSE_CAMERA;
 import static com.zyzxsp.fragment.HomeFragment.CLOSE_VOICE;
 
-public class ZyCallActivity extends FragmentActivity implements BackHandledInterface ,VideoFragment.HangupListener {
-    public static final String  TAG ="ZyCallActivity";
+public class ZyCallActivity extends FragmentActivity implements BackHandledInterface, VideoFragment.HangupListener {
+    public static final String TAG = "ZyCallActivity";
 
     private VideoFragment mVideoFragment;
     private FragmentManager manager;
@@ -52,18 +52,17 @@ public class ZyCallActivity extends FragmentActivity implements BackHandledInter
 
         Intent intent = getIntent();
         String myNumber = intent.getStringExtra("MY_NUMBER");
-        String displayName=intent.getStringExtra("displayName");
-        boolean closeCamera = intent.getBooleanExtra(CLOSE_CAMERA,false);
-        boolean closeVoice = intent.getBooleanExtra(CLOSE_VOICE,false);
+        String displayName = intent.getStringExtra("displayName");
+        boolean closeCamera = intent.getBooleanExtra(CLOSE_CAMERA, false);
+        boolean closeVoice = intent.getBooleanExtra(CLOSE_VOICE, false);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        Log.d(TAG, "11111 跳转到 ZyCallActivity  closeCamera   " + closeCamera +"   closeVoice  " +closeVoice);
-        mVideoFragment = VideoFragment.newInstance(closeCamera,closeVoice);
+        Log.d(TAG, "11111 跳转到 ZyCallActivity  closeCamera   " + closeCamera + "   closeVoice  " + closeVoice);
+        mVideoFragment = VideoFragment.newInstance(closeCamera, closeVoice);
         mVideoFragment.setHangupListener(this);
 
         manager = getFragmentManager();
         manager.beginTransaction().add(R.id.content_frame_zy, mVideoFragment).commitAllowingStateLoss();
-
 
 
         L.i(TAG, "displayNameCallActivity11=" + displayName);
@@ -72,13 +71,14 @@ public class ZyCallActivity extends FragmentActivity implements BackHandledInter
 //
 //        if(displayName!=null)
 //            mDialFragment.setDisplayName(displayName);
+        mVideoFragment.setCallNumber(myNumber);
 
         boolean isIncomingCall = intent.getBooleanExtra("isIncomingCall", false);
         if (isIncomingCall) {
             final int callIndex = intent.getIntExtra("callIndex", -1);
             String callerName = intent.getStringExtra("callerName");
             String callerNumber = intent.getStringExtra("callerNumber");
-            Log.i(TAG,"showIncomingCallDialog="+callIndex);
+            Log.i(TAG, "showIncomingCallDialog=" + callIndex);
             showIncomingCallDialog(callIndex, callerName, callerNumber);
         }
 
@@ -114,7 +114,7 @@ public class ZyCallActivity extends FragmentActivity implements BackHandledInter
                                 } else if (NemoSDKErrorCode.HOST_ERROR == integer) {
                                     Toast.makeText(ZyCallActivity.this, "私有云host设置错误", Toast.LENGTH_SHORT).show();
                                     //Toast.makeText(CallActivity.this, "host error", Toast.LENGTH_SHORT).show();
-                                }else if (NemoSDKErrorCode.RECORD_PERMISSION == integer) {
+                                } else if (NemoSDKErrorCode.RECORD_PERMISSION == integer) {
                                     Toast.makeText(ZyCallActivity.this, "云会议号没有录制权限", Toast.LENGTH_SHORT).show();
                                 } else if (NemoSDKErrorCode.RECORD_STORAGE == integer) {
                                     Toast.makeText(ZyCallActivity.this, "云会议号空间不足，请联系管理员", Toast.LENGTH_SHORT).show();
@@ -125,7 +125,7 @@ public class ZyCallActivity extends FragmentActivity implements BackHandledInter
 
             @Override
             public void onCallStateChange(final CallState state, final String reason) {
-                Log.i(TAG,"onCallStateChangeNemoSdk state=="+state+"=reason=="+state);
+                Log.i(TAG, "onCallStateChangeNemoSdk state==" + state + "=reason==" + state);
                 Observable.just(state)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
@@ -158,7 +158,7 @@ public class ZyCallActivity extends FragmentActivity implements BackHandledInter
                                         break;
                                     case DISCONNECTED:
 
-                                        Log.i(TAG,"CallInfo nemoSDKDidReceiveCall onCallStateChange  is=="+reason);
+                                        Log.i(TAG, "CallInfo nemoSDKDidReceiveCall onCallStateChange  is==" + reason);
                                         if (reason.equals("CANCEL")) {
                                             Toast.makeText(ZyCallActivity.this, "call canceled", Toast.LENGTH_SHORT).show();
                                             finish();
@@ -170,26 +170,26 @@ public class ZyCallActivity extends FragmentActivity implements BackHandledInter
 //                                            manager.beginTransaction().show(mVideoFragment).commitAllowingStateLoss();
                                             finish();
                                         }
-                                        if("NORMAL_CONF_SESSION_EXCEED".equals(reason)){
+                                        if ("NORMAL_CONF_SESSION_EXCEED".equals(reason)) {
                                             Toast.makeText(ZyCallActivity.this, "您呼叫的会议已达最大支持人数", Toast.LENGTH_LONG).show();
                                             finish();
                                         }
 
 
-                                        if (callNumber!=null&&reason.equals("STATUS_OK")){
-                                            L.i(TAG, "mVideoFragment reason is==" + reason +"==callNumber=="+callNumber);
+                                        if (callNumber != null && reason.equals("STATUS_OK")) {
+                                            L.i(TAG, "mVideoFragment reason is==" + reason + "==callNumber==" + callNumber);
                                             finish();
                                             return;
 //
-                                        }else {
-                                            L.i(TAG, "mVideoFragment reason is 222==" + reason +"==callNumber=="+callNumber);
+                                        } else {
+                                            L.i(TAG, "mVideoFragment reason is 222==" + reason + "==callNumber==" + callNumber);
                                             if (mVideoFragment.isAdded()) {
                                                 mVideoFragment.releaseResource();
 //                                                manager.beginTransaction().hide(mVideoFragment).show(mDialFragment).commitAllowingStateLoss();
 //                                                manager.beginTransaction().hide(mVideoFragment).commitAllowingStateLoss();
                                                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                                             }
-                                            if(mVideoFragment.isAdded()){
+                                            if (mVideoFragment.isAdded()) {
                                                 // L.i(TAG, "mVideoFragment.isAdded()== " + reason);
                                                 mVideoFragment.releaseSwitchResource();
 //                                                manager.beginTransaction().hide(mVideoFragment).show(mDialFragment).commitAllowingStateLoss();
@@ -197,7 +197,7 @@ public class ZyCallActivity extends FragmentActivity implements BackHandledInter
                                                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                                             }
 
-                                            if(mVideoFragment.isAdded()){
+                                            if (mVideoFragment.isAdded()) {
                                                 // L.i(TAG, "MicphoneMutedResource== " + reason);
                                                 mVideoFragment.RecordVideoResource();
 //                                                manager.beginTransaction().hide(mVideoFragment).show(mDialFragment).commitAllowingStateLoss();
@@ -205,7 +205,7 @@ public class ZyCallActivity extends FragmentActivity implements BackHandledInter
                                                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                                             }
 
-                                            if(mVideoFragment.isAdded()){
+                                            if (mVideoFragment.isAdded()) {
                                                 // L.i(TAG, "MicphoneMutedResource== " + reason);
                                                 mVideoFragment.MicPhoneResource();
 //                                                manager.beginTransaction().hide(mVideoFragment).show(mDialFragment).commitAllowingStateLoss();
@@ -231,7 +231,7 @@ public class ZyCallActivity extends FragmentActivity implements BackHandledInter
                             @Override
                             public void accept(List<VideoInfo> videoInfos) {
                                 mVideoFragment.onVideoDataSourceChange(videoInfos);
-                                Log.i(TAG," onVideoDataSourceChange is "+videoInfos.toString());
+                                Log.i(TAG, " onVideoDataSourceChange is " + videoInfos.toString());
                             }
                         });
             }
@@ -247,7 +247,7 @@ public class ZyCallActivity extends FragmentActivity implements BackHandledInter
             }
 
             @Override
-            public void onRecordStatusNotification(final int callIndex,final boolean isStart,final String displayName){
+            public void onRecordStatusNotification(final int callIndex, final boolean isStart, final String displayName) {
                 L.i(TAG, "onRecordStatusNotification called");
 
                 runOnUiThread(new Runnable() {
@@ -285,18 +285,18 @@ public class ZyCallActivity extends FragmentActivity implements BackHandledInter
             }
 
             @Override
-            public void onRosterChange(RosterWrapper roster){
-                L.i(TAG, "onRosterChange called. roster.size="+roster.getRosters().size());
+            public void onRosterChange(RosterWrapper roster) {
+                L.i(TAG, "onRosterChange called. roster.size=" + roster.getRosters().size());
                 if (roster != null) {
                     for (Roster r : roster.getRosters()) {
-                        L.i(TAG, "onRosterChange deviceName="+r.getDeviceName()+", pid="+r.getParticipantId());
+                        L.i(TAG, "onRosterChange deviceName=" + r.getDeviceName() + ", pid=" + r.getParticipantId());
                     }
                 }
             }
 
             @Override
             public void onNetworkIndicatorLevel(final int level) {
-                L.i(TAG, "onNetworkIndicatorLevel called. level="+level);
+                L.i(TAG, "onNetworkIndicatorLevel called. level=" + level);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -307,35 +307,35 @@ public class ZyCallActivity extends FragmentActivity implements BackHandledInter
 
             @Override
             public void onVideoStatusChange(final int videoStatus) {
-                L.i(TAG, "onVideoStatusChange called. videoStatus="+videoStatus);
+                L.i(TAG, "onVideoStatusChange called. videoStatus=" + videoStatus);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if(videoStatus==VideoStatus.VIDEO_STATUS_NORMAL.getStatus()){
-                            Toast.makeText(ZyCallActivity.this,"网络正常",Toast.LENGTH_SHORT).show();
-                        }else if(videoStatus==VideoStatus.VIDEO_STATUS_LOW_AS_LOCAL_BW.getStatus()){
-                            Toast.makeText(ZyCallActivity.this,"本地网络不稳定",Toast.LENGTH_SHORT).show();
-                        }else if(videoStatus==VideoStatus.VIDEO_STATUS_LOW_AS_LOCAL_HARDWARE.getStatus()){
-                            Toast.makeText(ZyCallActivity.this,"系统忙，视频质量降低",Toast.LENGTH_SHORT).show();
-                        }else if(videoStatus==VideoStatus.VIDEO_STATUS_LOW_AS_REMOTE.getStatus()){
-                            Toast.makeText(ZyCallActivity.this,"对方网络不稳定",Toast.LENGTH_SHORT).show();
-                        }else if(videoStatus==VideoStatus.VIDEO_STATUS_NETWORK_ERROR.getStatus()){
-                            Toast.makeText(ZyCallActivity.this,"网络不稳定，请稍候",Toast.LENGTH_SHORT).show();
-                        }else if(videoStatus==VideoStatus.VIDEO_STATUS_LOCAL_WIFI_ISSUE.getStatus()){
-                            Toast.makeText(ZyCallActivity.this,"WiFi信号不稳定",Toast.LENGTH_SHORT).show();
+                        if (videoStatus == VideoStatus.VIDEO_STATUS_NORMAL.getStatus()) {
+                            Toast.makeText(ZyCallActivity.this, "网络正常", Toast.LENGTH_SHORT).show();
+                        } else if (videoStatus == VideoStatus.VIDEO_STATUS_LOW_AS_LOCAL_BW.getStatus()) {
+                            Toast.makeText(ZyCallActivity.this, "本地网络不稳定", Toast.LENGTH_SHORT).show();
+                        } else if (videoStatus == VideoStatus.VIDEO_STATUS_LOW_AS_LOCAL_HARDWARE.getStatus()) {
+                            Toast.makeText(ZyCallActivity.this, "系统忙，视频质量降低", Toast.LENGTH_SHORT).show();
+                        } else if (videoStatus == VideoStatus.VIDEO_STATUS_LOW_AS_REMOTE.getStatus()) {
+                            Toast.makeText(ZyCallActivity.this, "对方网络不稳定", Toast.LENGTH_SHORT).show();
+                        } else if (videoStatus == VideoStatus.VIDEO_STATUS_NETWORK_ERROR.getStatus()) {
+                            Toast.makeText(ZyCallActivity.this, "网络不稳定，请稍候", Toast.LENGTH_SHORT).show();
+                        } else if (videoStatus == VideoStatus.VIDEO_STATUS_LOCAL_WIFI_ISSUE.getStatus()) {
+                            Toast.makeText(ZyCallActivity.this, "WiFi信号不稳定", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
             }
 
             @Override
-            public void onIMNotification(final int callIndex,final String type, final String values) {
-                L.i(TAG, "onIMNotification called. type=="+type+"==values="+values);
+            public void onIMNotification(final int callIndex, final String type, final String values) {
+                L.i(TAG, "onIMNotification called. type==" + type + "==values=" + values);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         if ("[]".equals(values)) {
-                            Toast.makeText(ZyCallActivity.this,R.string.im_notification_ccs_transfer,Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ZyCallActivity.this, R.string.im_notification_ccs_transfer, Toast.LENGTH_SHORT).show();
                         } else {
                             String val = new String();
                             val = values.replace("[", "");
@@ -347,7 +347,7 @@ public class ZyCallActivity extends FragmentActivity implements BackHandledInter
                                     val, getResources().getString(R.string.queen_bottom_part));
                             L.i(TAG, "onIMNotification called. type==1" + str);
 
-                            Toast.makeText(ZyCallActivity.this,str , Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ZyCallActivity.this, str, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -355,14 +355,13 @@ public class ZyCallActivity extends FragmentActivity implements BackHandledInter
 
             @Override
             public void onCallReceive(String name, String number, int callIndex) {
-                Log.i(TAG,"CallInfo nemoSDKDidReceiveCall callActivity is"+name+"==number=="+number+"==callIndex=="+callIndex);
-                callNumber=number;
+                Log.i(TAG, "CallInfo nemoSDKDidReceiveCall callActivity is" + name + "==number==" + number + "==callIndex==" + callIndex);
+                callNumber = number;
             }
 
             @Override
             public void onDualStreamStateChange(int callIndex, NemoDualState state, int mode, String reason) {
-                Log.i(TAG,"nemoSDK onDualStreamStateChange CallActivity is=::"+callIndex+"=state="+state+"=mode="+mode+"=reason="+reason);
-
+                Log.i(TAG, "nemoSDK onDualStreamStateChange CallActivity is=::" + callIndex + "=state=" + state + "=mode=" + mode + "=reason=" + reason);
 
 
             }
@@ -376,7 +375,7 @@ public class ZyCallActivity extends FragmentActivity implements BackHandledInter
     }
 
     public enum VideoStatus {
-        VIDEO_STATUS_NORMAL(0), VIDEO_STATUS_LOW_AS_LOCAL_BW(1), VIDEO_STATUS_LOW_AS_LOCAL_HARDWARE(2), VIDEO_STATUS_LOW_AS_REMOTE(3),VIDEO_STATUS_NETWORK_ERROR(4),VIDEO_STATUS_LOCAL_WIFI_ISSUE(5);
+        VIDEO_STATUS_NORMAL(0), VIDEO_STATUS_LOW_AS_LOCAL_BW(1), VIDEO_STATUS_LOW_AS_LOCAL_HARDWARE(2), VIDEO_STATUS_LOW_AS_REMOTE(3), VIDEO_STATUS_NETWORK_ERROR(4), VIDEO_STATUS_LOCAL_WIFI_ISSUE(5);
         private int status;
 
         private VideoStatus(int status) {
@@ -413,10 +412,10 @@ public class ZyCallActivity extends FragmentActivity implements BackHandledInter
     @Override
     public void onBackPressed() {
         L.i(TAG, "onBackPressed==");
-        if(mBackHandedFragment == null || !mBackHandedFragment.onBackPressed()){
-            if(getSupportFragmentManager().getBackStackEntryCount() == 0){
+        if (mBackHandedFragment == null || !mBackHandedFragment.onBackPressed()) {
+            if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
                 super.onBackPressed();
-            }else{
+            } else {
                 getSupportFragmentManager().popBackStack();
                 NemoSDK.getInstance().logout();
             }

@@ -17,18 +17,24 @@ import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.ainemo.sdk.otf.ConnectNemoCallback;
+import com.ainemo.sdk.otf.LoginResponseData;
+import com.ainemo.sdk.otf.NemoSDK;
 import com.zyzxsp.R;
 import com.zyzxsp.UserBean;
 import com.zyzxsp.fragment.AddressListFragment;
 import com.zyzxsp.fragment.FileFragment;
 import com.zyzxsp.fragment.HomeFragment;
 import com.zyzxsp.fragment.MineFragment;
+import com.zyzxsp.utils.PermissionUtils;
+import com.zyzxsp.utils.Utils;
+import com.zyzxsp.utils.ZLog;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ZyHomeActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
-    public static final String TAG ="ZyHomeActivity";
+    public static final String TAG = "ZyHomeActivity";
     public static final String HOME_FRAGMENT_TAG = "home_fragment_tag";
     public static final String ADDRESSLIST_FRAGMENT_TAG = "addresslist_fragment_tag";
     public static final String FILE_FRAGMENT_TAG = "file_fragment_tag";
@@ -43,22 +49,24 @@ public class ZyHomeActivity extends BaseActivity implements RadioGroup.OnChecked
     private RadioButton mMineRadioButton;
     private List<Fragment> mFragmentList;
     private HomeFragment mHomeFragment;
-    private AddressListFragment mAddressListFragment;
-    private FileFragment mFileFragment;
+    // private AddressListFragment mAddressListFragment;
+    //  private FileFragment mFileFragment;
     private MineFragment mMineFragment;
     private FragmentManager mFragmentManager;
     private FragmentTransaction mFragmentTransaction;
+    private NemoSDK nemoSDK = NemoSDK.getInstance();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        checkPermission();
         setContentView(R.layout.activity_home_layout);
+        ZLog.i(TAG, "onCreate. ");
+        PermissionUtils.checkBasePermission(this);
         mFrameLayout = findViewById(R.id.framelayout_container);
         mRadioGroup = findViewById(R.id.radio_group_button);
         mHomeRadioButton = findViewById(R.id.radio_button_home);
-        mAddressLsitRadioButton = findViewById(R.id.radio_button_address_list);
-        mFileRadioButton = findViewById(R.id.radio_button_file);
+//        mAddressLsitRadioButton = findViewById(R.id.radio_button_address_list);
+//        mFileRadioButton = findViewById(R.id.radio_button_file);
         mMineRadioButton = findViewById(R.id.radio_button_mine);
         mHomeRadioButton.setChecked(true);
         mRadioGroup.setOnCheckedChangeListener(this);
@@ -68,13 +76,31 @@ public class ZyHomeActivity extends BaseActivity implements RadioGroup.OnChecked
 
         Intent intent = getIntent();
         String myNumber = intent.getStringExtra("MY_NUMBER");
-        String displayName=intent.getStringExtra("displayName");
+        String displayName = intent.getStringExtra("displayName");
         L.i(TAG, "displayNameCallActivity11=" + displayName);
+
+
+        nemoSDK.loginExternalAccount("方中信", "6666666", new ConnectNemoCallback() {
+            @Override
+            public void onFailed(int i) {
+                ZLog.e(TAG, "onFailed. i:" + i);
+            }
+
+            @Override
+            public void onSuccess(LoginResponseData loginResponseData, boolean b) {
+                ZLog.e(TAG, "LoginResponseData. loginResponseData:" + loginResponseData);
+            }
+
+            @Override
+            public void onNetworkTopologyDetectionFinished(LoginResponseData loginResponseData) {
+                ZLog.e(TAG, "onNetworkTopologyDetectionFinished. loginResponseData:" + loginResponseData);
+            }
+        });
 
         if (myNumber != null)
             mHomeFragment.setMyNumber(myNumber);
 
-        if(displayName!=null)
+        if (displayName != null)
             mHomeFragment.setDisplayName(displayName);
     }
 
@@ -83,21 +109,21 @@ public class ZyHomeActivity extends BaseActivity implements RadioGroup.OnChecked
 
         mFragmentList = new ArrayList<>();
         mHomeFragment = new HomeFragment();
-        mAddressListFragment = new AddressListFragment();
-        mFileFragment = new FileFragment();
+//        mAddressListFragment = new AddressListFragment();
+//        mFileFragment = new FileFragment();
         mMineFragment = new MineFragment();
 
         mFragmentList.add(mHomeFragment);
-        mFragmentList.add(mAddressListFragment);
-        mFragmentList.add(mFileFragment);
+//        mFragmentList.add(mAddressListFragment);
+//        mFragmentList.add(mFileFragment);
         mFragmentList.add(mMineFragment);
 
 
         FragmentTransaction mTransaction = mFragmentManager.beginTransaction();
-        mTransaction.add(R.id.framelayout_container,mHomeFragment,HOME_FRAGMENT_TAG);
-        mTransaction.add(R.id.framelayout_container,mAddressListFragment,ADDRESSLIST_FRAGMENT_TAG);
-        mTransaction.add(R.id.framelayout_container,mFileFragment,FILE_FRAGMENT_TAG);
-        mTransaction.add(R.id.framelayout_container,mMineFragment,MINE_FRAGMENT_TAG);
+        mTransaction.add(R.id.framelayout_container, mHomeFragment, HOME_FRAGMENT_TAG);
+//        mTransaction.add(R.id.framelayout_container, mAddressListFragment, ADDRESSLIST_FRAGMENT_TAG);
+//        mTransaction.add(R.id.framelayout_container, mFileFragment, FILE_FRAGMENT_TAG);
+        mTransaction.add(R.id.framelayout_container, mMineFragment, MINE_FRAGMENT_TAG);
         mTransaction.commit();
 
     }
@@ -109,36 +135,39 @@ public class ZyHomeActivity extends BaseActivity implements RadioGroup.OnChecked
      */
     private void setTabSelection(int index) {
         mFragmentTransaction = mFragmentManager.beginTransaction();
-        if(mFragmentList == null){
+        if (mFragmentList == null) {
             Log.d(TAG, "setTabSelection:  mFragmentList == null");
             return;
         }
-        Log.d(TAG, "setTabSelection:  mFragmentList size " + mFragmentList.size() + " index  " +index);
-        hideFragment(mFragmentList,mFragmentTransaction);
-        if(index < mFragmentList.size()){
-            if(mFragmentList.get(index) != null){
-                Log.d(TAG, "setTabSelection:  mFragmentList 不为null  show    " + " index  " +index);
+        Log.d(TAG, "setTabSelection:  mFragmentList size " + mFragmentList.size() + " index  " + index);
+        hideFragment(mFragmentList, mFragmentTransaction);
+        if (index < mFragmentList.size()) {
+            if (mFragmentList.get(index) != null) {
+                Log.d(TAG, "setTabSelection:  mFragmentList 不为null  show    " + " index  " + index);
                 mFragmentTransaction.show(mFragmentList.get(index));
-            }else{
-                if(index == 0){
+            } else {
+                if (index == 0) {
                     mHomeFragment = new HomeFragment();
-                    mFragmentTransaction.add(R.id.framelayout_container,mHomeFragment,HOME_FRAGMENT_TAG);
-                }else if(index == 1){
-                    mAddressListFragment = new AddressListFragment();
-                    mFragmentTransaction.add(R.id.framelayout_container,mAddressListFragment,ADDRESSLIST_FRAGMENT_TAG);
-                }else if(index == 2){
-                    mFileFragment = new FileFragment();
-                    mFragmentTransaction.add(R.id.framelayout_container,mFileFragment,FILE_FRAGMENT_TAG);
-                }else if(index == 3){
+                    mFragmentTransaction.add(R.id.framelayout_container, mHomeFragment, HOME_FRAGMENT_TAG);
+                }
+//                else if (index == 1) {
+//                    mAddressListFragment = new AddressListFragment();
+//                    mFragmentTransaction.add(R.id.framelayout_container, mAddressListFragment, ADDRESSLIST_FRAGMENT_TAG);
+//                } else if (index == 2) {
+//                    mFileFragment = new FileFragment();
+//                    mFragmentTransaction.add(R.id.framelayout_container, mFileFragment, FILE_FRAGMENT_TAG);
+//                }
+
+                else if (index == 1) {
                     mMineFragment = new MineFragment();
-                    mFragmentTransaction.add(R.id.framelayout_container,mMineFragment,MINE_FRAGMENT_TAG);
+                    mFragmentTransaction.add(R.id.framelayout_container, mMineFragment, MINE_FRAGMENT_TAG);
                 }
             }
             mFragmentTransaction.commit();
         }
     }
 
-    private void hideFragment(List<Fragment> fragments,FragmentTransaction transaction) {
+    private void hideFragment(List<Fragment> fragments, FragmentTransaction transaction) {
         if (fragments != null) {
             for (int i = 0; i < fragments.size(); i++) {
                 if (fragments.get(i) != null) {
@@ -155,14 +184,14 @@ public class ZyHomeActivity extends BaseActivity implements RadioGroup.OnChecked
             case R.id.radio_button_home:
                 setTabSelection(0);
                 break;
-            case R.id.radio_button_address_list:
-                setTabSelection(1);
-                break;
-            case R.id.radio_button_file:
-                setTabSelection(2);
-                break;
+//            case R.id.radio_button_address_list:
+//                setTabSelection(1);
+//                break;
+//            case R.id.radio_button_file:
+//                setTabSelection(2);
+//                break;
             case R.id.radio_button_mine:
-                setTabSelection(3);
+                setTabSelection(1);
                 break;
         }
 
@@ -171,20 +200,5 @@ public class ZyHomeActivity extends BaseActivity implements RadioGroup.OnChecked
     @Override
     public void onClick(View v) {
 
-    }
-
-    private void checkPermission() {
-        if (!(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) &&
-                !(ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED)) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO}, 0);
-        } else if (!(ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED)) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, 0);
-        } else if (!(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED)) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 0);
-        } else if (!(ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
-        } else if (!(ContextCompat.checkSelfPermission(this, Manifest.permission.SYSTEM_ALERT_WINDOW) == PackageManager.PERMISSION_GRANTED)) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SYSTEM_ALERT_WINDOW}, 0);
-        }
     }
 }

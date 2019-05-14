@@ -1,8 +1,12 @@
 package com.zyzxsp.utils;
 
+import android.Manifest;
 import android.annotation.TargetApi;
+import android.content.pm.PackageManager;
 import android.graphics.Outline;
 import android.os.Build;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Base64;
 import android.view.View;
 import android.view.ViewOutlineProvider;
@@ -20,7 +24,8 @@ import javax.crypto.spec.SecretKeySpec;
 public class Utils {
     private static final String TAG = "Utils";
 
-    public static String encryptionByAES(String str, String key) {
+    public static String encryptionByAES(String str) {
+        String key = "abcdef0123456789";
         if (key == null) {
             return null;
         }
@@ -33,7 +38,6 @@ public class Utils {
             Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");//"算法/模式/补码方式"
             cipher.init(Cipher.ENCRYPT_MODE, skeySpec);
             byte[] encrypted = cipher.doFinal(str.getBytes("utf-8"));
-            ZLog.d(TAG, Base64.encodeToString(encrypted, 0));
             return Base64.encodeToString(encrypted, 0);//此处使用BASE64做转码功能，同时能起到2次加密的作用。
         } catch (Exception e) {
         }

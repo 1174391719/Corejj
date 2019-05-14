@@ -1,6 +1,17 @@
 package com.zyzxsp.constant;
 
 public class ConstantUrl {
+
+    private static String TEST_HOST = "http://221.181.129.90:20111/";
+    private static String OFFICIAL = "http://221.181.129.82:20183/";
+    public static String HOST = TEST_HOST;
+    public static String LOGIN = "vcclient/user/login";
+    public static String CHECKOUT = "/vcclient/user/logout";
+    public static String CHECK_PASSWORD = "/vcclient/user/validatePassword";
+    public static String MODIFY_PASSWORD = "/vcclient/user/comfirmPassword";
+    public static String UPDATE_VERSION = "/vcclient/appVersion/checkAppVersion";
+
+
     //上海
 //    public static String headerUrl="http://192.168.0.200:20183";
     //icvoicetransfer url
@@ -10,12 +21,6 @@ public class ConstantUrl {
 
     //mock数据测试
     public static String headerUrl = "http://zd.test.com";
-
-    private static String TEST_HOST = "http://221.181.129.90:20111/";
-    private static String OFFICIAL = "http://221.181.129.82:20183/";
-    public static String HOST = TEST_HOST;
-    public static String LOGIN = "vcclient/user/login";
-    public static String CHECKOUT = "/vcclient/user/logout";
 
     public static String GET_USER_INFO = "vcclient/user/getUser";
     public static String GET_MEETING_INFO = "vcclient/user/getYunConferenceRoom";

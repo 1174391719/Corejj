@@ -41,22 +41,22 @@
             android:drawableTop="@drawable/tab_home_selector"
             style="@style/RadioGroupButtonStyle"
             />
-        <RadioButton
-            android:id="@+id/radio_button_address_list"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="通讯录"
-            android:drawableTop="@drawable/tab_address_list_selector"
-            style="@style/RadioGroupButtonStyle"
-            />
-        <RadioButton
-            android:id="@+id/radio_button_file"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="文件夹"
-            android:drawableTop="@drawable/tab_file_selector"
-            style="@style/RadioGroupButtonStyle"
-            />
+        <!--<RadioButton-->
+            <!--android:id="@+id/radio_button_address_list"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="通讯录"-->
+            <!--android:drawableTop="@drawable/tab_address_list_selector"-->
+            <!--style="@style/RadioGroupButtonStyle"-->
+            <!--/>-->
+        <!--<RadioButton-->
+            <!--android:id="@+id/radio_button_file"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="文件夹"-->
+            <!--android:drawableTop="@drawable/tab_file_selector"-->
+            <!--style="@style/RadioGroupButtonStyle"-->
+            <!--/>-->
         <RadioButton
             android:id="@+id/radio_button_mine"
             android:layout_width="wrap_content"

@@ -17,57 +17,59 @@ import com.google.gson.Gson;
 import com.zyzxsp.R;
 import com.zyzxsp.constant.ConstantUrl;
 import com.zyzxsp.bean.LoginOutResData;
+import com.zyzxsp.dialog.DialogPresenter;
+import com.zyzxsp.dialog.DialogPresenterImpl;
+import com.zyzxsp.utils.Utils;
+import com.zyzxsp.utils.ZLog;
 import com.zyzxsp.view.HeaderTitleView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import okhttp3.Call;
 import zxsp.com.netlibrary.CallBackUtil;
 import zxsp.com.netlibrary.OkhttpUtil;
 
-public class ModifyPasswordActivity extends AppCompatActivity implements View.OnClickListener{
+public class ModifyPasswordActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String TAG = "ModifyPasswordActivity";
     private HeaderTitleView mHeaderTitleView;
-    private EditText mInputOldPasswordEdit;
-    private ImageView mSeeOldPasswordImage;
-    private ImageView mClearOldPasswordImage;
 
-    private EditText mInputNewPasswordEdit;
-    private ImageView mSeeNewPasswordImage;
-    private ImageView mClearNewPasswordImage;
-
-    private EditText mInputConfirmPasswordEdit;
-    private ImageView mSeeConfirmPasswordImage;
-    private ImageView mClearConfirmPasswordImage;
+    private View mErrorTip = null;
+    private EditText mOldPwEditText;
+    private ImageView mCleanOldPw;
+    private EditText mNewPwEditText;
+    private ImageView mCleanNewPw;
+    private EditText mNewConfirmPwEditText;
+    private ImageView mCleanNewConfirmPw;
 
     private Button mModifyPasswordBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modify_password);
         mHeaderTitleView = findViewById(R.id.modify_password_header_view);
-        mInputOldPasswordEdit = findViewById(R.id.input_old_password_edit);
-        mSeeOldPasswordImage = findViewById(R.id.see_old_password);
-        mClearOldPasswordImage = findViewById(R.id.clear_old_password);
-        mSeeOldPasswordImage.setOnClickListener(this);
-        mClearOldPasswordImage.setOnClickListener(this);
+        mErrorTip = findViewById(R.id.ll_modify_pw_error_tip);
+        mOldPwEditText = findViewById(R.id.et_modify_pw_old_pw);
+        mCleanOldPw = findViewById(R.id.iv_modify_pw_clean_old_pw);
+        mNewPwEditText = findViewById(R.id.et_modify_pw_new_pw);
+        mCleanNewPw = findViewById(R.id.iv_modify_pw_clean_new_pw);
+        mNewConfirmPwEditText = findViewById(R.id.et_modify_pw_new_confirm_pw);
+        mCleanNewConfirmPw = findViewById(R.id.iv_modify_pw_clean_new_confirm_pw);
+        mModifyPasswordBtn = findViewById(R.id.bt_modify_pw);
 
-        mInputNewPasswordEdit = findViewById(R.id.input_new_password_edit);
-        mSeeNewPasswordImage = findViewById(R.id.see_input_new_password);
-        mClearNewPasswordImage = findViewById(R.id.clear_input_new_password);
-        mSeeNewPasswordImage.setOnClickListener(this);
-        mClearNewPasswordImage.setOnClickListener(this);
+        mCleanOldPw = findViewById(R.id.iv_modify_pw_clean_old_pw);
+        mCleanNewPw = findViewById(R.id.iv_modify_pw_clean_new_pw);
+        mCleanNewConfirmPw = findViewById(R.id.iv_modify_pw_clean_new_confirm_pw);
 
-        mInputConfirmPasswordEdit = findViewById(R.id.confirm_password_edit);
-        mSeeConfirmPasswordImage = findViewById(R.id.see_confirm_password);
-        mClearConfirmPasswordImage = findViewById(R.id.clear_confirm_password);
-        mSeeConfirmPasswordImage.setOnClickListener(this);
-        mClearConfirmPasswordImage.setOnClickListener(this);
-
-        mModifyPasswordBtn = findViewById(R.id.modify_password_btn);
         mModifyPasswordBtn.setOnClickListener(this);
+        mCleanOldPw.setOnClickListener(this);
+        mCleanNewPw.setOnClickListener(this);
+        mCleanNewConfirmPw.setOnClickListener(this);
 
         mHeaderTitleView.setmOnHeaderTitleViewClick(new HeaderTitleView.onHeaderTitleViewClick() {
             @Override
@@ -81,20 +83,26 @@ public class ModifyPasswordActivity extends AppCompatActivity implements View.On
             }
         });
 
-        mInputOldPasswordEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        mOldPwEditText.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus){
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                }else{
-                    //失去焦点
-                    String oldPass = mInputOldPasswordEdit.getText().toString().trim();
-                    validatePassword(oldPass);
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (TextUtils.isEmpty(s)) {
+                    mCleanOldPw.setVisibility(View.INVISIBLE);
+                } else {
+                    mCleanOldPw.setVisibility(View.VISIBLE);
                 }
             }
-        });
 
-        mInputOldPasswordEdit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+        mNewPwEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -102,16 +110,19 @@ public class ModifyPasswordActivity extends AppCompatActivity implements View.On
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (TextUtils.isEmpty(s)) {
+                    mCleanNewPw.setVisibility(View.INVISIBLE);
+                } else {
+                    mCleanNewPw.setVisibility(View.VISIBLE);
+                }
 
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                judgeModifyBtnClick();
             }
         });
-
-        mInputNewPasswordEdit.addTextChangedListener(new TextWatcher() {
+        mNewConfirmPwEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -119,29 +130,15 @@ public class ModifyPasswordActivity extends AppCompatActivity implements View.On
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                if (TextUtils.isEmpty(s)) {
+                    mCleanNewConfirmPw.setVisibility(View.INVISIBLE);
+                } else {
+                    mCleanNewConfirmPw.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                judgeModifyBtnClick();
-            }
-        });
-
-        mInputConfirmPasswordEdit.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                judgeModifyBtnClick();
             }
         });
     }
@@ -149,156 +146,129 @@ public class ModifyPasswordActivity extends AppCompatActivity implements View.On
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        switch (id){
-            case R.id.see_old_password:
-                setEditTextVisableOrnot(mInputOldPasswordEdit,mSeeOldPasswordImage);
+        switch (id) {
+            case R.id.iv_modify_pw_clean_old_pw:
+                mOldPwEditText.setText("");
                 break;
-            case R.id.clear_old_password:
-                mInputOldPasswordEdit.setText("");
+            case R.id.iv_modify_pw_clean_new_pw:
+                mNewPwEditText.setText("");
+            case R.id.iv_modify_pw_clean_new_confirm_pw:
+                mNewConfirmPwEditText.setText("");
                 break;
-            case R.id.see_input_new_password:
-                setEditTextVisableOrnot(mInputNewPasswordEdit,mSeeNewPasswordImage);
+            case R.id.bt_modify_pw:
+                checkNewPassword();
+                checkOldPassword(mOldPwEditText.getText().toString());
                 break;
-            case R.id.clear_input_new_password:
-                mInputNewPasswordEdit.setText("");
-                break;
-            case R.id.see_confirm_password:
-                setEditTextVisableOrnot(mInputConfirmPasswordEdit,mSeeConfirmPasswordImage);
-                break;
-            case R.id.clear_confirm_password:
-                mInputConfirmPasswordEdit.setText("");
+            default:
                 break;
 
-            case R.id.modify_password_btn:
-                String oldPasStr = mInputOldPasswordEdit.getText().toString().trim();
-                String newPassStr = mInputNewPasswordEdit.getText().toString().trim();
-                String newPassConfirmStr = mInputConfirmPasswordEdit.getText().toString().trim();
-                if(!newPassStr.equals(newPassConfirmStr)){
-                    Toast.makeText(ModifyPasswordActivity.this,"两次输入密码不一致",Toast.LENGTH_LONG).show();
-                }else{
-                    modifyPassword(oldPasStr,newPassStr);
-                }
-                break;
         }
 
     }
 
-    public void judgeModifyBtnClick(){
-        String oldPasStr = mInputOldPasswordEdit.getText().toString().trim();
-        String newPassStr = mInputNewPasswordEdit.getText().toString().trim();
-        String newPassConfirmStr = mInputConfirmPasswordEdit.getText().toString().trim();
-        if(oldPasStr.length() > 0 && newPassStr.length() > 0 && newPassConfirmStr.length() > 0){
+    //**********************************************************************************************
+    private void checkNewPassword() {
+        String newPw = mNewPwEditText.getText().toString();
+        String confirmPw = mNewConfirmPwEditText.getText().toString();
+        if (TextUtils.isEmpty(newPw) || TextUtils.isEmpty(confirmPw)) {
+            return;
+        }
+        if (!newPw.equals(confirmPw)) {
+            mErrorTip.setVisibility(View.VISIBLE);
+            return;
+        } else {
+            mErrorTip.setVisibility(View.GONE);
+        }
+    }
+
+    public void judgeModifyBtnClick() {
+        String oldPasStr = mOldPwEditText.getText().toString().trim();
+        String newPassStr = mNewPwEditText.getText().toString().trim();
+        String newPassConfirmStr = mNewConfirmPwEditText.getText().toString().trim();
+        if (oldPasStr.length() > 0 && newPassStr.length() > 0 && newPassConfirmStr.length() > 0) {
             mModifyPasswordBtn.setClickable(true);
-        }else{
+        } else {
             mModifyPasswordBtn.setClickable(false);
         }
     }
 
-    public void setEditTextVisableOrnot(EditText editText,ImageView visImage){
-        int isVisible = editText.getInputType();
-        int cursorPosition = editText.length();
-        Log.d("setEditTextVisableOrnot", "isVisible: " + isVisible);
-        Log.d("setEditTextVisableOrnot", "TYPE_TEXT_VARIATION_PASSWORD: "+InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        Log.d("setEditTextVisableOrnot", "TYPE_TEXT_VARIATION_VISIBLE_PASSWORD: "+InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-        if (isVisible == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
-            visImage.setImageResource(R.drawable.icon_loading);
-            editText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-            editText.setSelection(cursorPosition);
-        }else{
-            visImage.setImageResource(R.drawable.icon_warn);
-            editText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-            editText.setSelection(cursorPosition);
-        }
-    }
-
-    /**
-     * 验证旧密码
-     * @param oldPassword
-     */
-    public void validatePassword(String oldPassword){
-
-        String url = ConstantUrl.headerUrl + ConstantUrl.validatePassword;
-        Log.d(TAG, "validatePassword: 验证旧密码 url  " + url);
+    public void checkOldPassword(String oldPassword) {
+        String url = ConstantUrl.HOST + ConstantUrl.CHECK_PASSWORD;
+        ZLog.d(TAG, "checkOldPassword. url:" + url);
+        Map header = new HashMap();
+        header.put("token", ZyHomeActivity.sUserBean.getToken());
 
         JSONObject object = new JSONObject();
         try {
-            object.put("password",oldPassword);
+            object.put("password", Utils.removeInvalidChar(Utils.encryptionByAES(oldPassword)));
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        String  objectStr = object.toString();
-
-        Log.d(TAG, "validatePassword:   请求参数是  " + objectStr);
-        OkhttpUtil.okHttpPostJson(url,objectStr, new CallBackUtil.CallBackString() {
+        String objectStr = object.toString();
+        OkhttpUtil.okHttpPostJson(url, objectStr, header, new CallBackUtil.CallBackString() {
             @Override
             public void onFailure(Call call, Exception e) {
                 Call mcall = call;
-                Log.d(TAG, "onFailure:  "+ e.toString());
-
+                ZLog.d(TAG, "onFailure:  " + e.toString());
+                DialogPresenter dialog = new DialogPresenterImpl();
+                dialog.confirm(ModifyPasswordActivity.this, null, "原密码有误", "确定");
             }
 
             @Override
             public void onResponse(String response) {
-                Log.d(TAG, "onResponse:  "+ response);
-                if(response == null){
+                ZLog.d(TAG, "onResponse. response:" + response);
+                if (response == null) {
                     return;
                 }
                 Gson json = new Gson();
-                LoginOutResData dataBean = json.fromJson(response,LoginOutResData.class);
-                if("0".equals(dataBean.getReturnCode())){
+                LoginOutResData dataBean = json.fromJson(response, LoginOutResData.class);
+                if ("0".equals(dataBean.getReturnCode())) {
+                    modifyPassword(mOldPwEditText.getText().toString(), mNewPwEditText.getText().toString());
 
-                }else{
+                } else {
                     String errorMess = dataBean.getReturnMessage();
-                    if(!TextUtils.isEmpty(errorMess)){
-                        Toast.makeText( ModifyPasswordActivity.this,errorMess,Toast.LENGTH_SHORT).show();
+                    if (!TextUtils.isEmpty(errorMess)) {
+                        Toast.makeText(ModifyPasswordActivity.this, errorMess, Toast.LENGTH_SHORT).show();
                     }
                 }
             }
         });
     }
 
-
-    /**
-     * 修改密码
-     * @param oldPassword
-     */
-    public void modifyPassword(String oldPassword,String newPassword){
-
-        String url = ConstantUrl.headerUrl + ConstantUrl.modifyPassword;
-        Log.d(TAG, "modifyPassword: 修改密码 url  " + url);
+    private void modifyPassword(String oldPassword, String newPassword) {
+        String url = ConstantUrl.HOST + ConstantUrl.MODIFY_PASSWORD;
+        ZLog.d(TAG, "modifyPassword. url:" + url);
+        Map header = new HashMap();
+        header.put("token", ZyHomeActivity.sUserBean.getToken());
 
         JSONObject object = new JSONObject();
         try {
-            object.put("oldPassword",oldPassword);
-            object.put("newPassword",oldPassword);
+            object.put("oldPassword", Utils.removeInvalidChar(Utils.encryptionByAES(oldPassword)));
+            object.put("newPassword", Utils.removeInvalidChar(Utils.encryptionByAES(newPassword)));
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        String  objectStr = object.toString();
-
-        Log.d(TAG, "validatePassword:   请求参数是  " + objectStr);
-        OkhttpUtil.okHttpPostJson(url,objectStr, new CallBackUtil.CallBackString() {
+        String objectStr = object.toString();
+        OkhttpUtil.okHttpPostJson(url, objectStr, header, new CallBackUtil.CallBackString() {
             @Override
             public void onFailure(Call call, Exception e) {
-                Call mcall = call;
-                Log.d(TAG, "onFailure:  "+ e.toString());
-
+                ZLog.e(TAG, "onFailure. e:" + e.toString());
             }
 
             @Override
             public void onResponse(String response) {
-                Log.d(TAG, "onResponse:  "+ response);
-                if(response == null){
+                Log.d(TAG, "onResponse. response:" + response);
+                if (response == null) {
                     return;
                 }
                 Gson json = new Gson();
-                LoginOutResData dataBean = json.fromJson(response,LoginOutResData.class);
-                if("0".equals(dataBean.getReturnCode())){
-                    Toast.makeText( ModifyPasswordActivity.this,"密码修改成功",Toast.LENGTH_SHORT).show();
-                }else{
+                LoginOutResData dataBean = json.fromJson(response, LoginOutResData.class);
+                if ("0".equals(dataBean.getReturnCode())) {
+                    Toast.makeText(ModifyPasswordActivity.this, "密码修改成功", Toast.LENGTH_SHORT).show();
+                } else {
                     String errorMess = dataBean.getReturnMessage();
-                    if(!TextUtils.isEmpty(errorMess)){
-                        Toast.makeText( ModifyPasswordActivity.this,errorMess,Toast.LENGTH_SHORT).show();
+                    if (!TextUtils.isEmpty(errorMess)) {
+                        Toast.makeText(ModifyPasswordActivity.this, errorMess, Toast.LENGTH_SHORT).show();
                     }
                 }
             }

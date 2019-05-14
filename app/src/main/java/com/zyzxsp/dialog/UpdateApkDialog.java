@@ -6,12 +6,10 @@ import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.zyzxsp.R;
-import com.zyzxsp.bean.UpdateApkData;
+import com.zyzxsp.bean.UpdateBean;
 import com.zyzxsp.download.DownLoadManagerSingleton;
 
 public class UpdateApkDialog {
@@ -24,7 +22,8 @@ public class UpdateApkDialog {
 
     }
 
-    public void showUpdataApkDialog(final Context context, final DownLoadManagerSingleton mDownLoadManagerSingleton, final UpdateApkData dataBean){
+    public void showUpdataApkDialog(final Context context, final DownLoadManagerSingleton mDownLoadManagerSingleton,
+                                    final UpdateBean.Version versionInfo){
         if(context == null){
             return;
         }
@@ -40,11 +39,11 @@ public class UpdateApkDialog {
         final AlertDialog dialog = builder.create();
         dialog.setCanceledOnTouchOutside(false);
         dialog.getWindow().setBackgroundDrawableResource(R.color.colorTransparent);
-        if(dataBean != null){
-            if(!TextUtils.isEmpty(dataBean.getMessage())){
+        if(versionInfo != null){
+            if(!TextUtils.isEmpty(versionInfo.getMessage())){
 //                messageText.setText(dataBean.getMessage());
             }
-            if(dataBean.isUpgradeFlag()){
+            if(versionInfo.isUpgradeFlag()){
                 //强制升级
                 cancleBtn.setVisibility(View.GONE);
             } else {
@@ -65,8 +64,8 @@ public class UpdateApkDialog {
         confirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mDownLoadManagerSingleton.downLoadPackage(context,dataBean);
-                if(dataBean.isUpgradeFlag()){
+                mDownLoadManagerSingleton.downLoadPackage(context,versionInfo);
+                if(versionInfo.isUpgradeFlag()){
                     //强制升级
 
                 } else {

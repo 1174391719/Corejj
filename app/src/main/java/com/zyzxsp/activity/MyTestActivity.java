@@ -25,6 +25,7 @@ import com.zyzxsp.R;
 import com.zyzxsp.dialog.LoadingDialog;
 import com.zyzxsp.download.ApkUpdateRequest;
 import com.zyzxsp.download.PackageInfoUtil;
+import com.zyzxsp.utils.ZLog;
 import com.zyzxsp.view.HeaderTitleView;
 
 import okhttp3.Call;

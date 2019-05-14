@@ -201,7 +201,7 @@
     <string name="user_info_loginout_str">退出登录</string>
 
     <string name="modify_old_password">请输入原密码</string>
-    <string name="modify_input_new_password">请输入新密码</string>
+    <string name="modify_input_new_password">新密码</string>
     <string name="modify_input_hint_new_password">请输入6至18位密码</string>
 
     <string name="modify_password_btn">修改密码</string>

@@ -11,8 +11,7 @@ import android.os.Environment;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
-
-import com.zyzxsp.bean.UpdateApkData;
+import com.zyzxsp.bean.UpdateBean;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -42,16 +41,16 @@ public class DownLoadManagerSingleton {
         return mSingleton;
     }
 
-    public void downLoadPackage(Context context,UpdateApkData mUpdateApkData) {
-        if (context == null || mUpdateApkData == null) {
+    public void downLoadPackage(Context context,UpdateBean.Version versionInfo) {
+        if (context == null || versionInfo == null) {
             return;
         }
         this.mContext = context;
         APP_NAME = context.getPackageName();
         Log.d(TAG, "downLoadPackage: APP_NAME  " + APP_NAME);
-        this.mMd5FromServer = mUpdateApkData.getMd5();
-        this.mSingFromServer = mUpdateApkData.getSignature();
-        String downLoadUrl = mUpdateApkData.getAddress();
+        this.mMd5FromServer = versionInfo.getMd5();
+        this.mSingFromServer = versionInfo.getSignature();
+        String downLoadUrl = versionInfo.getAddress();
 
         Log.i("downLoad", "downLoadPackage");
         mDownloadManager = (DownloadManager) context.getSystemService(context.DOWNLOAD_SERVICE);

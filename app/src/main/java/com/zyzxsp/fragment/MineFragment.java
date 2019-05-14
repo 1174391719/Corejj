@@ -110,6 +110,9 @@ public class MineFragment extends Fragment implements View.OnClickListener {
      * 获取用户信息请求
      */
     public void requestGetUserInfo() {
+        if (ZyHomeActivity.sUserBean == null || ZyHomeActivity.sUserBean.getToken() == null) {
+            return;
+        }
         String url = ConstantUrl.HOST + ConstantUrl.GET_USER_INFO;
         ZLog.d(TAG, "requestGetUserInfo .  url:" + url);
         Map map = new HashMap();

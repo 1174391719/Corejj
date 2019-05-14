@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="@dimen/mine_update_dialog_width"
         android:layout_height="@dimen/mine_update_dialog_height"
-        android:background="@drawable/dialog">
+        android:background="@drawable/shape_dialog_container">
 
         <TextView
             android:id="@+id/dialog_confirm_title"
@@ -26,7 +26,7 @@
             android:layout_height="@dimen/mine_update_dialog_bottom_height"
             android:layout_alignParentBottom="true"
             android:layout_weight="1"
-            android:background="@drawable/dialog_bottom"
+            android:background="@drawable/shape_dialog_bottom"
             android:gravity="center">
 
             <TextView

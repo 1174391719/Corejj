@@ -357,35 +357,35 @@
             android:layout_height="50dp"
             android:background="@color/xylink_top_bottom_color"
             android:orientation="horizontal">
-            <!--更多-->
-            <RelativeLayout
-                android:id="@+id/more"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:paddingTop="5dp">
+            <!--&lt;!&ndash;更多&ndash;&gt;-->
+            <!--<RelativeLayout-->
+                <!--android:id="@+id/more"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:paddingTop="5dp">-->
 
 
-                <ImageButton
-                    android:id="@+id/hold_meeting_more"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_centerHorizontal="true"
-                    android:background="@drawable/toolbar_button_bg_style"
-                    android:scaleType="center"
-                    android:src="@drawable/more" />
+                <!--<ImageButton-->
+                    <!--android:id="@+id/hold_meeting_more"-->
+                    <!--android:layout_width="30dp"-->
+                    <!--android:layout_height="30dp"-->
+                    <!--android:layout_centerHorizontal="true"-->
+                    <!--android:background="@drawable/toolbar_button_bg_style"-->
+                    <!--android:scaleType="center"-->
+                    <!--android:src="@drawable/more" />-->
 
-                <TextView
-                    android:id="@+id/rmore_img_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/hold_meeting_more"
-                    android:layout_centerHorizontal="true"
-                    android:text="更多"
-                    android:textColor="@color/ainemo_white"
-                    android:textSize="10sp" />
-            </RelativeLayout>
+                <!--<TextView-->
+                    <!--android:id="@+id/rmore_img_text"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@id/hold_meeting_more"-->
+                    <!--android:layout_centerHorizontal="true"-->
+                    <!--android:text="更多"-->
+                    <!--android:textColor="@color/ainemo_white"-->
+                    <!--android:textSize="10sp" />-->
+            <!--</RelativeLayout>-->
             <!--录制-->
             <RelativeLayout
                 android:id="@+id/rl_record"

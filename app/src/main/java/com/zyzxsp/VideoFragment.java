@@ -39,6 +39,7 @@ import com.zyzxsp.myInterface.CallListener;
 import com.zyzxsp.utils.AlertUtil;
 import com.zyzxsp.utils.CommonTime;
 import com.zyzxsp.utils.VolumeManager;
+import com.zyzxsp.utils.ZLog;
 import com.zyzxsp.view.CallStatisticsView;
 import com.zyzxsp.view.Dtmf;
 import com.zyzxsp.view.StatisticsRender;
@@ -124,7 +125,7 @@ public class VideoFragment extends Fragment implements CallListener,
     //统计信息
     private CallStatisticsView callStatisticsView;
     //更多控件
-    private ImageButton mMeetingMore;
+   // private ImageButton mMeetingMore;
     //会议键盘对话框
     private LinearLayout moreDialog;
     //键盘
@@ -260,25 +261,25 @@ public class VideoFragment extends Fragment implements CallListener,
         initialization(view);
         refreshMuteMicBtn();
         Bundle mGetBundle = getArguments();
-        if(mGetBundle != null){
-            mCloseCameraFromActivity = mGetBundle.getBoolean(CLOSE_CAMERA,false);
+        if (mGetBundle != null) {
+            mCloseCameraFromActivity = mGetBundle.getBoolean(CLOSE_CAMERA, false);
             videoMute = mCloseCameraFromActivity;
             closeVideo();
-            mCloseVoiceFromActivity = mGetBundle.getBoolean(CLOSE_VOICE,false);
-            Log.d(TAG, "11111 mGetBundle != null onViewCreated: mCloseCameraFromActivity  " + mCloseCameraFromActivity +"   mCloseVoiceFromActivity   " +mCloseVoiceFromActivity);
+            mCloseVoiceFromActivity = mGetBundle.getBoolean(CLOSE_VOICE, false);
+            Log.d(TAG, "11111 mGetBundle != null onViewCreated: mCloseCameraFromActivity  " + mCloseCameraFromActivity + "   mCloseVoiceFromActivity   " + mCloseVoiceFromActivity);
             isMicphoneMuted = mCloseVoiceFromActivity;
             closeVoice(isMicphoneMuted);
-            Log.d(TAG, "11111 mGetBundle != null onViewCreated: videoMute  " + videoMute +"   isMicphoneMuted  " +isMicphoneMuted);
+            Log.d(TAG, "11111 mGetBundle != null onViewCreated: videoMute  " + videoMute + "   isMicphoneMuted  " + isMicphoneMuted);
         }
         super.onViewCreated(view, savedInstanceState);
 
     }
 
-    public static VideoFragment newInstance(boolean closeCamera,boolean closeVoice){
+    public static VideoFragment newInstance(boolean closeCamera, boolean closeVoice) {
         Bundle bundle = new Bundle();
-        bundle.putBoolean(CLOSE_CAMERA,closeCamera);
-        bundle.putBoolean(CLOSE_VOICE,closeVoice);
-        Log.d(TAG, "11111 newInstance closeCamera  " + closeCamera +"   closeVoice  " +closeVoice);
+        bundle.putBoolean(CLOSE_CAMERA, closeCamera);
+        bundle.putBoolean(CLOSE_VOICE, closeVoice);
+        Log.d(TAG, "11111 newInstance closeCamera  " + closeCamera + "   closeVoice  " + closeVoice);
         VideoFragment fragment = new VideoFragment();
         fragment.setArguments(bundle);
         return fragment;
@@ -287,30 +288,30 @@ public class VideoFragment extends Fragment implements CallListener,
     //初始化控件
     private void initialization(View view) {
         //外置取消当前通话
-        mButtonCancel = (ImageButton) (view.findViewById(R.id.conn_mt_cancelcall_btn));
+        mButtonCancel = (view.findViewById(R.id.conn_mt_cancelcall_btn));
         //音视频源
-        mVideoView = (VideoGroupView) view.findViewById(R.id.remote_video_view);
+        mVideoView = view.findViewById(R.id.remote_video_view);
         //挂断当前通话
-        mDropCall = (RelativeLayout) view.findViewById(R.id.ll_drop_call);
+        mDropCall = view.findViewById(R.id.ll_drop_call);
         //录制相关
-        mRecordingVideoBtn = (ImageButton) view.findViewById(R.id.start_record_video);
-        mRecordingTimer = (TextView) view.findViewById(R.id.video_recording_timer);
-        mFlashView = (ImageView) view.findViewById(R.id.video_recording_icon);
-        mRecordingVideoLabel = (TextView) view.findViewById(R.id.record_video_text);
-        mRecordingTimerHideShow = (LinearLayout) view.findViewById(R.id.conversation_recording_layout);
+        mRecordingVideoBtn = view.findViewById(R.id.start_record_video);
+        mRecordingTimer = view.findViewById(R.id.video_recording_timer);
+        mFlashView = view.findViewById(R.id.video_recording_icon);
+        mRecordingVideoLabel = view.findViewById(R.id.record_video_text);
+        mRecordingTimerHideShow = view.findViewById(R.id.conversation_recording_layout);
         //语音模式
-        mAudioOnlyBtn = (ImageButton) view.findViewById(R.id.audio_only_btn);
-        mAudioOnlyLabel = (TextView) view.findViewById(R.id.audio_only_text);
+        mAudioOnlyBtn = view.findViewById(R.id.audio_only_btn);
+        mAudioOnlyLabel = view.findViewById(R.id.audio_only_text);
         //关闭视频
-        mCloseVideo = (ImageButton) view.findViewById(R.id.close_video);
-        mCloseVideoLabel = (TextView) view.findViewById(R.id.video_mute_text);
+        mCloseVideo = view.findViewById(R.id.close_video);
+        mCloseVideoLabel = view.findViewById(R.id.video_mute_text);
         //听筒模式
-        mSwitchSpeakerMode = (ImageButton) view.findViewById(R.id.switch_speaker_mode);
-        mSwitchSpeakerLabel = (TextView) view.findViewById(R.id.switch_speaker_text);
+        mSwitchSpeakerMode = (view.findViewById(R.id.switch_speaker_mode));
+        mSwitchSpeakerLabel = view.findViewById(R.id.switch_speaker_text);
         //麦克风
-        mMuteMicBtn = (ImageButton) view.findViewById(R.id.mute_mic_btn);
-        mMicContainer = (RelativeLayout) view.findViewById(R.id.mic_mute_container);
-        mMuteMicLabel = (TextView) view.findViewById(R.id.mute_mic_btn_label);
+        mMuteMicBtn = view.findViewById(R.id.mute_mic_btn);
+        mMicContainer = view.findViewById(R.id.mic_mute_container);
+        mMuteMicLabel = view.findViewById(R.id.mute_mic_btn_label);
         if (mMuteMicBtn != null) {
             mMuteMicBtn.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -422,15 +423,15 @@ public class VideoFragment extends Fragment implements CallListener,
         initFeccEventListeners();
         //更多相关
         moreDialog = (LinearLayout) view.findViewById(R.id.more_layout_dialog);
-        mMeetingMore = (ImageButton) view.findViewById(R.id.hold_meeting_more);
-        mMeetingMore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (moreDialog.getVisibility() == INVISIBLE) {
-                    moreDialog.setVisibility(VISIBLE);
-                } else hideMoreDialog(moreDialog);
-            }
-        });
+//        mMeetingMore = (ImageButton) view.findViewById(R.id.hold_meeting_more);
+//        mMeetingMore.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (moreDialog.getVisibility() == INVISIBLE) {
+//                    moreDialog.setVisibility(VISIBLE);
+//                } else hideMoreDialog(moreDialog);
+//            }
+//        });
 
         //虚拟键盘
         keyboard = (TextView) view.findViewById(R.id.keyboard);
@@ -804,9 +805,9 @@ public class VideoFragment extends Fragment implements CallListener,
             mMicContainer.setVisibility(GONE);
             mHandupContainer.setVisibility(VISIBLE);
 
-            if(mCloseVoiceFromActivity){
+            if (mCloseVoiceFromActivity) {
                 isMicphoneMuted = mCloseVoiceFromActivity;
-            }else{
+            } else {
                 isMicphoneMuted = NemoSDK.getInstance().isMicMuted();
             }
 //            isMicphoneMuted = NemoSDK.getInstance().isMicMuted();
@@ -873,7 +874,7 @@ public class VideoFragment extends Fragment implements CallListener,
      */
     public void onRecordingStateChanged(final String controlUri, final RecordingState state, final String reason) {
         Log.i(TAG, "print onRecordingStateChanged-->controlUri=" + controlUri + ",state=" + state + ",reason=" + reason);
-         mState = state;
+        mState = state;
         if (state.equals(RecordingState.RECORDING_STATE_ACTING) && state.equals(RecordingState.RECORDING_STATE_ACTING)) {
             Log.i(TAG, "print onRecordingStateChanged show record");
             //显示录制
@@ -1132,7 +1133,7 @@ public class VideoFragment extends Fragment implements CallListener,
                 break;
             case R.id.conn_mt_cancelcall_btn:
                 NemoSDK.getInstance().hangup();
-                if(mHangupListener != null){
+                if (mHangupListener != null) {
                     mHangupListener.hangup();
                 }
                 break;
@@ -1179,7 +1180,7 @@ public class VideoFragment extends Fragment implements CallListener,
                 break;
             case R.id.ll_drop_call:
                 NemoSDK.getInstance().hangup();
-                if(mHangupListener != null){
+                if (mHangupListener != null) {
                     mHangupListener.hangup();
                 }
                 mStats.setVisibility(GONE);
@@ -1207,7 +1208,6 @@ public class VideoFragment extends Fragment implements CallListener,
 //                    NemoSDK.getInstance().stopRecord();
 //                    isControlEnable = true;
 //                }
-
 
 
                 Log.i(TAG, "zhengdan  print onClick if record," + isControlEnable);
@@ -1248,18 +1248,18 @@ public class VideoFragment extends Fragment implements CallListener,
         }
     }
 
-    public void closeVideo(){
+    public void closeVideo() {
         setVideoState(videoMute);
         Log.i(TAG, "print onClick-->videoMute" + videoMute);
         NemoSDK.getInstance().setVideoMute(videoMute);
         mRecordingTimerHideShow.setVisibility(GONE);
     }
 
-    public void closeVoice(boolean enableMic){
+    public void closeVoice(boolean enableMic) {
         Log.i(TAG, "closeVoice  =" + !NemoSDK.getInstance().isMicMuted());
-        if(enableMic){
+        if (enableMic) {
             NemoSDK.getInstance().enableMic(true, false);
-        }else{
+        } else {
             NemoSDK.getInstance().enableMic(false, false);
         }
         mMicContainer.setVisibility(VISIBLE);
@@ -1269,11 +1269,12 @@ public class VideoFragment extends Fragment implements CallListener,
     }
 
     private HangupListener mHangupListener;
+
     public interface HangupListener {
         void hangup();
     }
 
-    public void setHangupListener(HangupListener listener){
+    public void setHangupListener(HangupListener listener) {
         this.mHangupListener = listener;
     }
 

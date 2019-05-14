@@ -24,7 +24,7 @@ public class StartupActivity extends BaseActivity {
                     @Override
                     public void run() {
                         try {
-                            Thread.sleep(1500);
+                            Thread.sleep(1000);
                         } catch (Exception e) {
                         }
                         Intent intent = new Intent(StartupActivity.this, ZyLoginActivity.class);

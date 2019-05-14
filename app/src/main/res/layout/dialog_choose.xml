@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="@dimen/mine_update_dialog_width"
         android:layout_height="@dimen/mine_update_dialog_height"
-        android:background="@color/ainemo_white">
+        android:background="@drawable/shape_dialog_container">
 
         <TextView
             android:id="@+id/dialog_choose_title"
@@ -30,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="#B1C0C0"
+                android:background="@drawable/shape_dialog_bottom_left"
                 android:gravity="center">
 
                 <TextView
@@ -47,7 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="#05CBD8"
+                android:background="@drawable/shape_dialog_bottom_right"
                 android:gravity="center">
 
                 <TextView

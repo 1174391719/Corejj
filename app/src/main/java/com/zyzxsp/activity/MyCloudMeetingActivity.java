@@ -83,7 +83,7 @@ public class MyCloudMeetingActivity extends AppCompatActivity {
                     return;
                 }
                 mMeetNameText.setText(data.getObject().getYunConferenceInfo().getConferenceName());
-                mMeetCapacityText.setText(data.getObject().getYunConferenceInfo().getConferenceLimt());
+                mMeetCapacityText.setText(data.getObject().getYunConferenceInfo().getConferenceLimt() + "方");
                 mMeetNumberText.setText(data.getObject().getYunConferenceInfo().getConferenceAccount());
                 mMeetPasswordText.setText(data.getObject().getYunConferenceInfo().getPassword());
             }
