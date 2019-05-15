@@ -19,6 +19,7 @@ import com.zyzxsp.constant.ConstantUrl;
 import com.zyzxsp.bean.LoginOutResData;
 import com.zyzxsp.dialog.DialogPresenter;
 import com.zyzxsp.dialog.DialogPresenterImpl;
+import com.zyzxsp.utils.StatusBarUtils;
 import com.zyzxsp.utils.Utils;
 import com.zyzxsp.utils.ZLog;
 import com.zyzxsp.view.HeaderTitleView;
@@ -51,6 +52,7 @@ public class ModifyPasswordActivity extends AppCompatActivity implements View.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        StatusBarUtils.setTransparent(this);
         setContentView(R.layout.activity_modify_password);
         mHeaderTitleView = findViewById(R.id.modify_password_header_view);
         mErrorTip = findViewById(R.id.ll_modify_pw_error_tip);
@@ -66,6 +68,7 @@ public class ModifyPasswordActivity extends AppCompatActivity implements View.On
         mCleanNewPw = findViewById(R.id.iv_modify_pw_clean_new_pw);
         mCleanNewConfirmPw = findViewById(R.id.iv_modify_pw_clean_new_confirm_pw);
 
+        mHeaderTitleView.setPadding(0, StatusBarUtils.getStateBarHeight(this), 0, 0);
         mModifyPasswordBtn.setOnClickListener(this);
         mCleanOldPw.setOnClickListener(this);
         mCleanNewPw.setOnClickListener(this);
@@ -194,7 +197,7 @@ public class ModifyPasswordActivity extends AppCompatActivity implements View.On
 
     public void checkOldPassword(String oldPassword) {
         String url = ConstantUrl.HOST + ConstantUrl.CHECK_PASSWORD;
-        ZLog.d(TAG, "checkOldPassword. url:" + url);
+        ZLog.d(url);
         Map header = new HashMap();
         header.put("token", ZyHomeActivity.sUserBean.getToken());
 
@@ -209,14 +212,14 @@ public class ModifyPasswordActivity extends AppCompatActivity implements View.On
             @Override
             public void onFailure(Call call, Exception e) {
                 Call mcall = call;
-                ZLog.d(TAG, "onFailure:  " + e.toString());
+                ZLog.d(e.toString());
                 DialogPresenter dialog = new DialogPresenterImpl();
                 dialog.confirm(ModifyPasswordActivity.this, null, "原密码有误", "确定");
             }
 
             @Override
             public void onResponse(String response) {
-                ZLog.d(TAG, "onResponse. response:" + response);
+                ZLog.d(" response:" + response);
                 if (response == null) {
                     return;
                 }
@@ -237,7 +240,7 @@ public class ModifyPasswordActivity extends AppCompatActivity implements View.On
 
     private void modifyPassword(String oldPassword, String newPassword) {
         String url = ConstantUrl.HOST + ConstantUrl.MODIFY_PASSWORD;
-        ZLog.d(TAG, "modifyPassword. url:" + url);
+        ZLog.d(" url:" + url);
         Map header = new HashMap();
         header.put("token", ZyHomeActivity.sUserBean.getToken());
 
@@ -252,7 +255,7 @@ public class ModifyPasswordActivity extends AppCompatActivity implements View.On
         OkhttpUtil.okHttpPostJson(url, objectStr, header, new CallBackUtil.CallBackString() {
             @Override
             public void onFailure(Call call, Exception e) {
-                ZLog.e(TAG, "onFailure. e:" + e.toString());
+                ZLog.e("e:" + e.toString());
             }
 
             @Override

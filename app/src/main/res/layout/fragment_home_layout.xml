@@ -9,8 +9,8 @@
     <com.zyzxsp.view.HeaderTitleView
         android:id="@+id/meet_header_view"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/nemo_green"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/icon_bg_title"
         app:headerCenterTitle="@string/title_str_meet"
         app:headerLeftDrawbleVisibility="gone"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -54,13 +54,13 @@
         android:textColor="@android:color/white" />
 
     <LinearLayout
-        android:background="@android:color/white"
-        android:padding="20dp"
         android:id="@+id/meet_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:orientation="horizontal">
+        android:background="@android:color/white"
+        android:orientation="horizontal"
+        android:padding="20dp">
 
         <LinearLayout
 

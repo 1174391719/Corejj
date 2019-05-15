@@ -114,7 +114,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             return;
         }
         String url = ConstantUrl.HOST + ConstantUrl.GET_USER_INFO;
-        ZLog.d(TAG, "requestGetUserInfo .  url:" + url);
+        ZLog.d("url:" + url);
         Map map = new HashMap();
         map.put("token", ZyHomeActivity.sUserBean.getToken());
 
@@ -122,7 +122,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onFailure(Call call, Exception e) {
                 Call mcall = call;
-                ZLog.e(TAG, "onFailure:  " + e.toString());
+                ZLog.e(e.toString());
                 DialogPresenter dialog = new DialogPresenterImpl();
                 if (e instanceof ConnectException || e instanceof SocketTimeoutException) {
                     dialog.confirm(getContext(), null, "网络连接异常，请重试", "确定");
@@ -133,7 +133,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void onResponse(String response) {
-                ZLog.d(TAG, "onResponse:  " + response);
+                ZLog.d(response);
                 if (response == null) {
                     return;
                 }
@@ -143,7 +143,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                     mUserinfo = dataBean.getObject().getUser();
                     if (mUserinfo != null) {
                         String mName = mUserinfo.getName();
-                        ZLog.d(TAG, "onResponse. mName:" + mName);
+                        ZLog.d("mName:" + mName);
                         mUserNameText.setText(TextUtils.isEmpty(mName) ? "" : mName);
                         String mPhone = mUserinfo.getPhone();
                         mPhoneText.setText(TextUtils.isEmpty(mPhone) ? "" : mPhone);

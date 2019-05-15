@@ -25,6 +25,8 @@ import com.zyzxsp.constant.ConstantUrl;
 import com.zyzxsp.bean.LoginResData;
 import com.zyzxsp.dialog.DialogPresenter;
 import com.zyzxsp.dialog.DialogPresenterImpl;
+import com.zyzxsp.utils.StatusBarUtils;
+import com.zyzxsp.utils.StringUtils;
 import com.zyzxsp.utils.Utils;
 import com.zyzxsp.utils.ZLog;
 
@@ -52,6 +54,7 @@ public class ZyLoginActivity extends BaseActivity implements View.OnClickListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        StatusBarUtils.setTransparent(this);
         setContentView(R.layout.activity_zy_login);
         mLoginName = findViewById(R.id.login_name);
         mLoginPassword = findViewById(R.id.login_password);
@@ -70,15 +73,23 @@ public class ZyLoginActivity extends BaseActivity implements View.OnClickListene
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                updateLoginButton();
                 boolean nullStr = TextUtils.isEmpty(mLoginName.getText());
                 if (nullStr) {
                     if (mCleanAccount.getVisibility() == View.VISIBLE) {
                         mCleanAccount.setVisibility(View.INVISIBLE);
                     }
+                    return;
                 } else {
                     if (mCleanAccount.getVisibility() == View.INVISIBLE) {
                         mCleanAccount.setVisibility(View.VISIBLE);
                     }
+                }
+                String str = s.toString();
+                String result = StringUtils.addSpace(str, 3, 7);
+                if (!str.equals(result)) {
+                    mLoginName.setText(result);
+                    mLoginName.setSelection(result.length());
                 }
             }
 
@@ -95,6 +106,7 @@ public class ZyLoginActivity extends BaseActivity implements View.OnClickListene
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                updateLoginButton();
                 boolean nullStr = TextUtils.isEmpty(mLoginPassword.getText());
                 if (nullStr) {
                     if (mCleanPassword.getVisibility() == View.VISIBLE) {
@@ -135,13 +147,13 @@ public class ZyLoginActivity extends BaseActivity implements View.OnClickListene
         switch (id) {
             case R.id.login_button:
                 String loginNameStr = ZLog.use_config_data ? "13678888889" : mLoginName.getText().toString();
-                String loginPasswordStr = ZLog.use_config_data ? "686460zs" : mLoginPassword.getText().toString();
+                String loginPasswordStr = ZLog.use_config_data ? "zyzx2019" : mLoginPassword.getText().toString();
                 mLoginPassword.getText().toString();
                 if (loginNameStr.length() == 0 || loginPasswordStr.length() == 0) {
                     Toast.makeText(getApplicationContext(), "账号或密码为空，请输入账号或密码", Toast.LENGTH_SHORT).show();
                     break;
                 }
-                requestLogin(loginNameStr, loginPasswordStr);
+                requestLogin(loginNameStr.replace(" ", ""), loginPasswordStr.replace(" ", ""));
                 break;
             case R.id.login_account_clean:
                 mLoginName.setText("");
@@ -163,7 +175,7 @@ public class ZyLoginActivity extends BaseActivity implements View.OnClickListene
 
     private void requestLogin(String name, String password) {
         String url = ConstantUrl.HOST + ConstantUrl.LOGIN;
-        ZLog.d(TAG, "requestLogin: 登录 url  " + url);
+        ZLog.d("登录 url  " + url);
 
         JSONObject object = new JSONObject();
         String objectStr = "";
@@ -175,12 +187,12 @@ public class ZyLoginActivity extends BaseActivity implements View.OnClickListene
             e.printStackTrace();
         }
 
-        ZLog.i(TAG, "requestLogin:   请求参数是  " + objectStr);
+        ZLog.i(" 请求参数是  " + objectStr);
         OkhttpUtil.okHttpPostJson(url, objectStr, new CallBackUtil.CallBackString() {
             @Override
             public void onFailure(Call call, Exception e) {
                 Call mcall = call;
-                ZLog.e(TAG, "onFailure. e:" + e.toString());
+                ZLog.e(e.toString());
                 DialogPresenter dialog = new DialogPresenterImpl();
                 if (e instanceof ConnectException) {
                     dialog.confirm(ZyLoginActivity.this, null, "网络连接已断开，请检查网络设置", "确定");
@@ -193,8 +205,7 @@ public class ZyLoginActivity extends BaseActivity implements View.OnClickListene
 
             @Override
             public void onResponse(String response) {
-                goHomeActivity();
-                ZLog.i(TAG, "onResponse:  " + response);
+                ZLog.i(response);
                 if (response == null) {
                     return;
                 }
@@ -204,7 +215,7 @@ public class ZyLoginActivity extends BaseActivity implements View.OnClickListene
                         LoginResData.LoginData mLoginData = dataBean.getObject();
                         String token = mLoginData.getToken();
                         ZyHomeActivity.sUserBean.setToken(token);
-                        ZLog.d(TAG, "onResponse. token:" + token);
+                        ZLog.d("token:" + token);
                         goHomeActivity();
                         finish();
                     } else {
@@ -212,7 +223,7 @@ public class ZyLoginActivity extends BaseActivity implements View.OnClickListene
                         dialog.confirm(ZyLoginActivity.this, null, "账号或者密码错误", "确定");
                     }
                 } catch (Exception e) {
-                    ZLog.d(TAG, "onResponse. e:" + e);
+                    ZLog.d("e:" + e);
                 }
             }
         });
@@ -221,5 +232,15 @@ public class ZyLoginActivity extends BaseActivity implements View.OnClickListene
     private void goHomeActivity() {
         Intent intent = new Intent(ZyLoginActivity.this, ZyHomeActivity.class);
         startActivity(intent);
+    }
+
+    private void updateLoginButton() {
+        if (TextUtils.isEmpty(mLoginName.getText()) || TextUtils.isEmpty(mLoginPassword.getText())) {
+            mLoginBtn.setBackgroundResource(R.drawable.round_corner_clicked_unavailable);
+            mLoginBtn.setClickable(false);
+        } else {
+            mLoginBtn.setBackgroundResource(R.drawable.round_corner_clicked);
+            mLoginBtn.setClickable(true);
+        }
     }
 }

@@ -1,4 +1,5 @@
 package com.zyzxsp.fragment;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -18,6 +19,8 @@ import com.ainemo.sdk.otf.NemoSDK;
 import com.zyzxsp.R;
 import com.zyzxsp.activity.ZyCallActivity;
 import com.zyzxsp.utils.PermissionUtils;
+import com.zyzxsp.utils.StatusBarUtils;
+import com.zyzxsp.utils.ZLog;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
     public static final String TAG = "HomeFragment";
@@ -28,6 +31,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private Button mJionMeetBtn;
     private CheckBox mClcoseCameraCheckBox;
     private CheckBox mCloseVoiceCheckBox;
+    private View mHeadView = null;
 
     private CallNumberInterface callBack;
 
@@ -43,10 +47,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         if (mView == null) {
             mView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_home_layout, container, false);
         }
+        mHeadView = mView.findViewById(R.id.meet_header_view);
         mMeetNumberEdit = mView.findViewById(R.id.input_meet_number);
         mJionMeetBtn = mView.findViewById(R.id.join_meet);
         mClcoseCameraCheckBox = mView.findViewById(R.id.close_camera);
         mCloseVoiceCheckBox = mView.findViewById(R.id.close_voice);
+
+        mHeadView.setPadding(0, StatusBarUtils.getStateBarHeight(getContext()), 0, 0);
 
         mJionMeetBtn.setOnClickListener(this);
         mClcoseCameraCheckBox.setOnCheckedChangeListener(listener);
@@ -106,7 +113,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 intent.putExtra(CLOSE_VOICE, mCloseVoice);
                 intent.putExtra("MY_NUMBER", mMeetNumberEdit.getText().toString());
                 intent.putExtra("displayName", "ww");
-                Log.d(TAG, "11111 跳转时  mClcoseCamera   " + mClcoseCamera + "   mCloseVoice  " + mCloseVoice);
+                ZLog.d("跳转时  mCloseCamera   " + mClcoseCamera + "   mCloseVoice  " + mCloseVoice);
                 startActivity(intent);
                 break;
         }

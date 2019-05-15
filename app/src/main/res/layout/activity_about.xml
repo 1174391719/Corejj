@@ -12,8 +12,8 @@
     <com.zyzxsp.view.HeaderTitleView
         android:id="@+id/about_header_view"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/nemo_green"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/icon_bg_title"
         app:headerCenterTitle="@string/title_str_about"
         app:headerLeftDrawbleVisibility="visiable"
         app:layout_constraintLeft_toLeftOf="parent"

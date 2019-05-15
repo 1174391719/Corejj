@@ -1,7 +1,6 @@
 package com.zyzxsp.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -17,6 +16,7 @@ import com.zyzxsp.bean.LoginOutResData;
 import com.zyzxsp.bean.UserInfoResData;
 import com.zyzxsp.dialog.DialogPresenter;
 import com.zyzxsp.dialog.DialogPresenterImpl;
+import com.zyzxsp.utils.StatusBarUtils;
 import com.zyzxsp.utils.ZLog;
 import com.zyzxsp.view.HeaderTitleView;
 
@@ -43,6 +43,7 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        StatusBarUtils.setTransparent(this);
         setContentView(R.layout.activity_userinfo);
         mHeaderTitleView = findViewById(R.id.userinfo_header_view);
         mUserNameTextView = findViewById(R.id.user_name_text);
@@ -51,6 +52,7 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
         mModifyPasswordLayout = findViewById(R.id.modify_password_layout);
         mLoginoutTextView = findViewById(R.id.login_out);
 
+        mHeaderTitleView.setPadding(0, StatusBarUtils.getStateBarHeight(this), 0, 0);
         mModifyPasswordLayout.setOnClickListener(this);
         mLoginoutTextView.setOnClickListener(this);
 
@@ -122,12 +124,12 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
         OkhttpUtil.okHttpPostJson(url, null, map, new CallBackUtil.CallBackString() {
             @Override
             public void onFailure(Call call, Exception e) {
-                ZLog.e(TAG, "onFailure. e:" + e.toString());
+                ZLog.e(e.toString());
             }
 
             @Override
             public void onResponse(String response) {
-                ZLog.d(TAG, "onResponse. response:" + response);
+                ZLog.d(" response:" + response);
                 if (response == null) {
                     return;
                 }

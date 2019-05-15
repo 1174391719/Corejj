@@ -12,6 +12,7 @@ import com.zyzxsp.R;
 import com.zyzxsp.bean.MeetingRoomBean;
 import com.zyzxsp.constant.ConstantUrl;
 import com.zyzxsp.bean.UserInfoResData;
+import com.zyzxsp.utils.StatusBarUtils;
 import com.zyzxsp.utils.ZLog;
 import com.zyzxsp.view.HeaderTitleView;
 
@@ -34,6 +35,7 @@ public class MyCloudMeetingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        StatusBarUtils.setTransparent(this);
         setContentView(R.layout.activity_my_cloud_meetting);
         mHeaderTitleView = findViewById(R.id.my_cloud_meet_header_view);
         mMeetNameText = findViewById(R.id.meet_name_text);
@@ -41,6 +43,7 @@ public class MyCloudMeetingActivity extends AppCompatActivity {
         mMeetCapacityText = findViewById(R.id.meet_capacity_text);
         mMeetPasswordText = findViewById(R.id.meet_password_text);
 
+        mHeaderTitleView.setPadding(0, StatusBarUtils.getStateBarHeight(this), 0, 0);
         mHeaderTitleView.setmOnHeaderTitleViewClick(new HeaderTitleView.onHeaderTitleViewClick() {
             @Override
             public void leftClick(View view) {
@@ -57,7 +60,7 @@ public class MyCloudMeetingActivity extends AppCompatActivity {
 
     public void updateInfo() {
         String url = ConstantUrl.HOST + ConstantUrl.GET_MEETING_INFO;
-        ZLog.d(TAG, "requestGetUserInfo .  url:" + url);
+        ZLog.d("url:" + url);
         Map map = new HashMap();
         map.put("token", ZyHomeActivity.sUserBean.getToken());
 
@@ -65,12 +68,12 @@ public class MyCloudMeetingActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call call, Exception e) {
                 Call mcall = call;
-                ZLog.d(TAG, "onFailure:  " + e.toString());
+                ZLog.d(e.toString());
             }
 
             @Override
             public void onResponse(String response) {
-                ZLog.d(TAG, "onResponse:  " + response);
+                ZLog.d(response);
                 if (response == null) {
                     return;
                 }

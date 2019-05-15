@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F0F2F2"
+    android:background="@android:color/white"
     android:orientation="vertical"
     tools:context=".activity.ZyLoginActivity">
 
@@ -40,7 +40,7 @@
                 android:background="@null"
                 android:hint="@string/input_login_name"
                 android:inputType="number"
-                android:maxLength="11"
+                android:maxLength="13"
                 android:paddingBottom="20dp"
                 android:paddingLeft="15dp"
                 android:paddingTop="20dp"
@@ -122,11 +122,9 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="25dp"
-        android:background="@drawable/round_corner_clicked"
+        android:background="@drawable/round_corner_clicked_unavailable"
+        android:clickable="false"
         android:text="@string/login_str"
         android:textColor="#ffffff"
         android:textSize="15sp" />
-
-    <!--<Button--><!--android:id="@+id/xylogin_button"--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--app:layout_constraintTop_toBottomOf="@+id/login_button"--><!--app:layout_constraintRight_toLeftOf="parent"--><!--app:layout_constraintRight_toRightOf="parent"--><!--android:layout_marginTop="25dp"--><!--android:layout_marginLeft="15dp"--><!--android:layout_marginRight="15dp"--><!--android:background="@drawable/round_corner_clicked"--><!--android:text="@string/xylogin_str"/>-->
-
 </LinearLayout>

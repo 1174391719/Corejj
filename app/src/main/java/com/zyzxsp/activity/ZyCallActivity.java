@@ -26,6 +26,7 @@ import com.zyzxsp.R;
 import com.zyzxsp.VideoFragment;
 import com.zyzxsp.utils.BackHandledFragment;
 import com.zyzxsp.utils.BackHandledInterface;
+import com.zyzxsp.utils.ZLog;
 
 import java.util.List;
 
@@ -101,22 +102,31 @@ public class ZyCallActivity extends FragmentActivity implements BackHandledInter
                         .subscribe(new Consumer<Integer>() {
                             @Override
                             public void accept(Integer integer) throws Exception {
-                                L.e(TAG, "error code is " + integer);
+                                ZLog.e("error code is " + integer);
                                 if (NemoSDKErrorCode.WRONG_PASSWORD == integer) {
+                                    ZLog.e("WRONG_PASSWORD");
                                     Toast.makeText(ZyCallActivity.this, "密码错误", Toast.LENGTH_SHORT).show();
                                     //  Toast.makeText(CallActivity.this, "wrong password", Toast.LENGTH_SHORT).show();
                                 } else if (NemoSDKErrorCode.INVALID_PARAM == integer) {
+                                    ZLog.e("INVALID_PARAM");
                                     Toast.makeText(ZyCallActivity.this, "无效终端号", Toast.LENGTH_SHORT).show();
+                                    ZyCallActivity.this.finish();
                                     // Toast.makeText(CallActivity.this, "wrong param", Toast.LENGTH_SHORT).show();
                                 } else if (NemoSDKErrorCode.NETWORK_UNAVAILABLE == integer) {
+                                    ZLog.e("NETWORK_UNAVAILABLE");
                                     Toast.makeText(ZyCallActivity.this, "网络不可达", Toast.LENGTH_SHORT).show();
+                                    mVideoFragment.onDestroy();
+                                    ZyCallActivity.this.finish();
                                     // Toast.makeText(CallActivity.this, "network_unavailable", Toast.LENGTH_SHORT).show();
                                 } else if (NemoSDKErrorCode.HOST_ERROR == integer) {
+                                    ZLog.e("HOST_ERROR");
                                     Toast.makeText(ZyCallActivity.this, "私有云host设置错误", Toast.LENGTH_SHORT).show();
                                     //Toast.makeText(CallActivity.this, "host error", Toast.LENGTH_SHORT).show();
                                 } else if (NemoSDKErrorCode.RECORD_PERMISSION == integer) {
+                                    ZLog.e("RECORD_PERMISSION");
                                     Toast.makeText(ZyCallActivity.this, "云会议号没有录制权限", Toast.LENGTH_SHORT).show();
                                 } else if (NemoSDKErrorCode.RECORD_STORAGE == integer) {
+                                    ZLog.e("RECORD_STORAGE");
                                     Toast.makeText(ZyCallActivity.this, "云会议号空间不足，请联系管理员", Toast.LENGTH_SHORT).show();
                                 }
                             }

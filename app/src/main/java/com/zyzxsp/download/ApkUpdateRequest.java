@@ -36,16 +36,16 @@ public class ApkUpdateRequest {
             e.printStackTrace();
         }
 
-        ZLog.d(TAG, "requestUpdateApk. url:" + url + " versioncode:" + versioncode + " json:" + objectStr);
+        ZLog.d("url:" + url + " versioncode:" + versioncode + " json:" + objectStr);
         OkhttpUtil.okHttpPostJson(url, objectStr, new CallBackUtil.CallBackString() {
             @Override
             public void onFailure(Call call, Exception e) {
-                ZLog.e(TAG, "onFailure:  " + e.toString());
+                ZLog.e(e.toString());
             }
 
             @Override
             public void onResponse(String response) {
-                ZLog.d(TAG, "onResponse:  " + response);
+                ZLog.d(response);
                 if (response == null) {
                     return;
                 }
@@ -57,7 +57,7 @@ public class ApkUpdateRequest {
                         UpdateApkDialog mUpdateApkDialogUtils = UpdateApkDialog.getInstance();
                         mUpdateApkDialogUtils.showUpdataApkDialog(context, mDownLoadManagerSingleton, dataBean.getObject().getVersion());
                     } else {
-                        ZLog.d(TAG, "onResponse. It's latest version. ");
+                        ZLog.d("It's latest version. ");
                         DialogPresenter presenter = new DialogPresenterImpl();
                         presenter.confirm(context, null, "当前已是最新版本", "确定");
                     }

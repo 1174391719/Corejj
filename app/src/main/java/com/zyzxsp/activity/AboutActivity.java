@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.zyzxsp.BuildConfig;
 import com.zyzxsp.R;
 import com.zyzxsp.download.ApkUpdateRequest;
+import com.zyzxsp.utils.StatusBarUtils;
 import com.zyzxsp.view.HeaderTitleView;
 
 public class AboutActivity extends AppCompatActivity {
@@ -20,11 +21,13 @@ public class AboutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        StatusBarUtils.setTransparent(this);
         setContentView(R.layout.activity_about);
         mHeaderTitleView = findViewById(R.id.about_header_view);
         mCheckUpdateLayout = findViewById(R.id.check_update_layout);
         mVersion = findViewById(R.id.app_version_text);
 
+        mHeaderTitleView.setPadding(0, StatusBarUtils.getStateBarHeight(this), 0, 0);
         mVersion.setText(BuildConfig.VERSION_NAME);
         mHeaderTitleView.setmOnHeaderTitleViewClick(new HeaderTitleView.onHeaderTitleViewClick() {
             @Override

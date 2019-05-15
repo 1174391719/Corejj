@@ -27,6 +27,7 @@ import com.zyzxsp.fragment.FileFragment;
 import com.zyzxsp.fragment.HomeFragment;
 import com.zyzxsp.fragment.MineFragment;
 import com.zyzxsp.utils.PermissionUtils;
+import com.zyzxsp.utils.StatusBarUtils;
 import com.zyzxsp.utils.Utils;
 import com.zyzxsp.utils.ZLog;
 
@@ -59,8 +60,9 @@ public class ZyHomeActivity extends BaseActivity implements RadioGroup.OnChecked
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        StatusBarUtils.setTransparent(this);
         setContentView(R.layout.activity_home_layout);
-        ZLog.i(TAG, "onCreate. ");
+        ZLog.i("onCreate. ");
         PermissionUtils.checkBasePermission(this);
         mFrameLayout = findViewById(R.id.framelayout_container);
         mRadioGroup = findViewById(R.id.radio_group_button);
@@ -83,17 +85,17 @@ public class ZyHomeActivity extends BaseActivity implements RadioGroup.OnChecked
         nemoSDK.loginExternalAccount("方中信", "6666666", new ConnectNemoCallback() {
             @Override
             public void onFailed(int i) {
-                ZLog.e(TAG, "onFailed. i:" + i);
+                ZLog.e("i:" + i);
             }
 
             @Override
             public void onSuccess(LoginResponseData loginResponseData, boolean b) {
-                ZLog.e(TAG, "LoginResponseData. loginResponseData:" + loginResponseData);
+                ZLog.d("loginResponseData:" + loginResponseData);
             }
 
             @Override
             public void onNetworkTopologyDetectionFinished(LoginResponseData loginResponseData) {
-                ZLog.e(TAG, "onNetworkTopologyDetectionFinished. loginResponseData:" + loginResponseData);
+                ZLog.e("loginResponseData:" + loginResponseData);
             }
         });
 
