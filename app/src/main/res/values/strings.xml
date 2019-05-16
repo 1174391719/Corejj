@@ -2,8 +2,8 @@
     <string name="app_name">在线视频</string>
     <string name="hang_up">挂断</string>
     <string name="switch_camera">切摄像头</string>
-    <string name="mute_mic"> 静音</string>
-    <string name="unmute_mic">取消静音</string>
+    <string name="mute_mic"> 关闭麦克风</string>
+    <string name="unmute_mic">打开麦克风</string>
     <string name="switch_speaker_mode">打开听筒模式</string>
     <string name="close_switch_speaker_mode">关闭听筒模式</string>
     <string name="switch_call_module">语音模式</string>
@@ -16,8 +16,8 @@
     <string name="hand_up">举手</string>
     <string name="hand_down">取消举手</string>
     <string name="end_speech">结束发言</string>
-    <string name="close_video">关闭视频</string>
-    <string name="open_video">打开视频</string>
+    <string name="close_video">关闭摄像头</string>
+    <string name="open_video">打开摄像头</string>
     <string name="call_to">视频通话邀请中&#8230;</string>
     <string name="conf_control_text">会控</string>
     <string name="pstn_app_cell_text">电话语音</string>

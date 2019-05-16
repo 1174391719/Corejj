@@ -125,7 +125,7 @@ public class VideoFragment extends Fragment implements CallListener,
     //统计信息
     private CallStatisticsView callStatisticsView;
     //更多控件
-   // private ImageButton mMeetingMore;
+    // private ImageButton mMeetingMore;
     //会议键盘对话框
     private LinearLayout moreDialog;
     //键盘
@@ -687,17 +687,14 @@ public class VideoFragment extends Fragment implements CallListener,
         mVideoView.setAudioOnlyMode(audioMode);
         if (this.audioMode) {
             mCloseVideo.setEnabled(false);
-            mAudioOnlyBtn.setImageResource(R.mipmap.ic_toolbar_audio_only_pressed);
+            mAudioOnlyBtn.setImageResource(R.mipmap.ic_call_open_camera);
             mAudioOnlyLabel.setText(R.string.close_switch_call_module);
 
         } else {
             mCloseVideo.setEnabled(true);
             mAudioOnlyLabel.setText(R.string.switch_call_module);
-            mAudioOnlyBtn.setImageResource(R.mipmap.ic_toolbar_audio_only);
-
+            mAudioOnlyBtn.setImageResource(R.mipmap.ic_call_close_camera);
         }
-
-
     }
 
     //开启、关闭视频标签、图标切换
@@ -706,11 +703,11 @@ public class VideoFragment extends Fragment implements CallListener,
         mVideoView.setMuteLocalVideo(videoMute, getActivity().getString(R.string.call_video_mute));
         if (this.videoMute) {
             mAudioOnlyBtn.setEnabled(false);
-            mCloseVideo.setImageResource(R.mipmap.ic_toolbar_camera);
+            mCloseVideo.setImageResource(R.mipmap.ic_call_open_camera);
             mCloseVideoLabel.setText(getResources().getString(R.string.open_video));
         } else {
             mAudioOnlyBtn.setEnabled(true);
-            mCloseVideo.setImageResource(R.mipmap.ic_toolbar_camera_muted);
+            mCloseVideo.setImageResource(R.mipmap.ic_call_close_camera);
             mCloseVideoLabel.setText(getResources().getString(R.string.close_video));
         }
     }
@@ -723,10 +720,10 @@ public class VideoFragment extends Fragment implements CallListener,
             //改变远端mute icon
             mVideoView.setMuteLocalAudio(isMicPhoneMuted);
             if (this.isMicphoneMuted) {
-                mMuteMicBtn.setImageResource(R.mipmap.ic_toolbar_mic_muted);
-                mMuteMicLabel.setText(R.string.mute_mic);
+                mMuteMicBtn.setImageResource(R.mipmap.ic_call_open_voice_tube_clicked);
+                mMuteMicLabel.setText(R.string.unmute_mic);
             } else {
-                mMuteMicBtn.setImageResource(R.mipmap.ic_toolbar_mic);
+                mMuteMicBtn.setImageResource(R.mipmap.ic_call_open_voice_tube);
                 mMuteMicLabel.setText(R.string.mute_mic);
             }
 

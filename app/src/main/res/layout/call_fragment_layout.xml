@@ -105,10 +105,10 @@
                 android:id="@+id/switch_camera"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:onClick="switchCamera"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/toolbar_button_bg_style"
                 android:longClickable="true"
+                android:onClick="switchCamera"
                 android:scaleType="center"
                 android:src="@mipmap/ic_svc_toolbar_switch_camera" />
 
@@ -205,7 +205,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/hangup_new" />
+                        android:background="@mipmap/ic_call_handup"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -359,34 +359,92 @@
             android:orientation="horizontal">
             <!--&lt;!&ndash;更多&ndash;&gt;-->
             <!--<RelativeLayout-->
-                <!--android:id="@+id/more"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginLeft="10dp"-->
-                <!--android:layout_weight="1"-->
-                <!--android:paddingTop="5dp">-->
+            <!--android:id="@+id/more"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:paddingTop="5dp">-->
 
 
-                <!--<ImageButton-->
-                    <!--android:id="@+id/hold_meeting_more"-->
-                    <!--android:layout_width="30dp"-->
-                    <!--android:layout_height="30dp"-->
-                    <!--android:layout_centerHorizontal="true"-->
-                    <!--android:background="@drawable/toolbar_button_bg_style"-->
-                    <!--android:scaleType="center"-->
-                    <!--android:src="@drawable/more" />-->
+            <!--<ImageButton-->
+            <!--android:id="@+id/hold_meeting_more"-->
+            <!--android:layout_width="30dp"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:background="@drawable/toolbar_button_bg_style"-->
+            <!--android:scaleType="center"-->
+            <!--android:src="@drawable/more" />-->
 
-                <!--<TextView-->
-                    <!--android:id="@+id/rmore_img_text"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_below="@id/hold_meeting_more"-->
-                    <!--android:layout_centerHorizontal="true"-->
-                    <!--android:text="更多"-->
-                    <!--android:textColor="@color/ainemo_white"-->
-                    <!--android:textSize="10sp" />-->
+            <!--<TextView-->
+            <!--android:id="@+id/rmore_img_text"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@id/hold_meeting_more"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:text="更多"-->
+            <!--android:textColor="@color/ainemo_white"-->
+            <!--android:textSize="10sp" />-->
             <!--</RelativeLayout>-->
             <!--录制-->
+
+            <RelativeLayout
+                android:id="@+id/mic_mute_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:paddingTop="5dp">
+
+                <ImageButton
+                    android:id="@+id/mute_mic_btn"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/toolbar_button_bg_style"
+                    android:longClickable="true"
+                    android:scaleType="center"
+                    android:src="@mipmap/ic_call_open_voice_tube" />
+
+                <TextView
+                    android:id="@+id/mute_mic_btn_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/mute_mic_btn"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/mute_mic"
+                    android:textColor="@color/ainemo_white"
+                    android:textSize="10sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:paddingTop="5dp">
+
+                <ImageButton
+                    android:id="@+id/close_video"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/toolbar_button_bg_style"
+                    android:onClick="closeVideo"
+                    android:scaleType="center"
+                    android:src="@mipmap/ic_call_close_camera" />
+
+                <TextView
+                    android:id="@+id/video_mute_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/close_video"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/close_video"
+                    android:textColor="@color/ainemo_white"
+                    android:textSize="10sp" />
+            </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/rl_record"
                 android:layout_width="wrap_content"
@@ -402,7 +460,7 @@
                     android:layout_centerHorizontal="true"
                     android:background="@drawable/toolbar_button_bg_style"
                     android:scaleType="center"
-                    android:src="@drawable/ic_toolbar_recording" />
+                    android:src="@mipmap/ic_call_recording_start" />
 
                 <TextView
                     android:id="@+id/record_video_text"
@@ -429,7 +487,7 @@
                     android:layout_centerHorizontal="true"
                     android:background="@drawable/toolbar_button_bg_style"
                     android:scaleType="center"
-                    android:src="@mipmap/ic_toolbar_audio_only" />
+                    android:src="@mipmap/ic_call_voice_mode" />
 
                 <TextView
                     android:id="@+id/audio_only_text"
@@ -441,64 +499,6 @@
                     android:textColor="@color/ainemo_white"
                     android:textSize="10sp" />
             </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/mic_mute_container"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:paddingTop="5dp">
-
-                <ImageButton
-                    android:id="@+id/mute_mic_btn"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_centerHorizontal="true"
-                    android:background="@drawable/toolbar_button_bg_style"
-                    android:longClickable="true"
-                    android:scaleType="center"
-                    android:src="@mipmap/ic_toolbar_mic" />
-
-                <TextView
-                    android:id="@+id/mute_mic_btn_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/mute_mic_btn"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/mute_mic"
-                    android:textColor="@color/ainemo_white"
-                    android:textSize="10sp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:paddingTop="5dp">
-
-                <ImageButton
-                    android:id="@+id/close_video"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:onClick="closeVideo"
-                    android:layout_centerHorizontal="true"
-                    android:background="@drawable/toolbar_button_bg_style"
-                    android:scaleType="center"
-                    android:src="@mipmap/ic_toolbar_camera_muted" />
-
-                <TextView
-                    android:id="@+id/video_mute_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/close_video"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/close_video"
-                    android:textColor="@color/ainemo_white"
-                    android:textSize="10sp" />
-            </RelativeLayout>
-
 
         </LinearLayout>
     </LinearLayout>
