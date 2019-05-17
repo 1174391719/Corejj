@@ -72,6 +72,7 @@ public class ZyCallActivity extends FragmentActivity implements BackHandledInter
 //
 //        if(displayName!=null)
 //            mDialFragment.setDisplayName(displayName);
+        mVideoFragment.setDisplayName(ZyHomeActivity.sUserBean.getName());
         mVideoFragment.setCallNumber(myNumber);
 
         boolean isIncomingCall = intent.getBooleanExtra("isIncomingCall", false);
@@ -307,12 +308,12 @@ public class ZyCallActivity extends FragmentActivity implements BackHandledInter
             @Override
             public void onNetworkIndicatorLevel(final int level) {
                 L.i(TAG, "onNetworkIndicatorLevel called. level=" + level);
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mVideoFragment.onNetworkIndicatorLevel(level);
-                    }
-                });
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        mVideoFragment.onNetworkIndicatorLevel(level);
+//                    }
+//                });
             }
 
             @Override

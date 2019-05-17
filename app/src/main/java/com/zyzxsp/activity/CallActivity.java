@@ -301,12 +301,12 @@ public class CallActivity extends FragmentActivity implements BackHandledInterfa
             @Override
             public void onNetworkIndicatorLevel(final int level) {
                 L.i(TAG, "onNetworkIndicatorLevel called. level="+level);
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mVideoFragment.onNetworkIndicatorLevel(level);
-                    }
-                });
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        mVideoFragment.onNetworkIndicatorLevel(level);
+//                    }
+//                });
             }
 
             @Override

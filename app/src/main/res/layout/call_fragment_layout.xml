@@ -29,39 +29,39 @@
             android:orientation="vertical">
 
             <!--录制计时-->
-            <LinearLayout
-                android:id="@+id/conversation_recording_layout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:background="@drawable/shape_label_orange"
-                android:gravity="center_vertical"
-                android:padding="3dp"
-                android:visibility="gone">
+            <!--<LinearLayout-->
+                <!--android:id="@+id/conversation_recording_layout"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="5dp"-->
+                <!--android:background="@drawable/shape_label_orange"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:padding="3dp"-->
+                <!--android:visibility="visible">-->
 
-                <ImageView
-                    android:id="@+id/video_recording_icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="@dimen/notification_top_size"
-                    android:paddingLeft="6dp"
-                    android:paddingRight="6dp"
-                    android:paddingTop="@dimen/notification_top_size"
-                    android:src="@drawable/ic_toolbar_state_recording" />
+                <!--<ImageView-->
+                    <!--android:id="@+id/video_recording_icon"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:paddingBottom="@dimen/notification_top_size"-->
+                    <!--android:paddingLeft="6dp"-->
+                    <!--android:paddingRight="6dp"-->
+                    <!--android:paddingTop="@dimen/notification_top_size"-->
+                    <!--android:src="@drawable/ic_toolbar_state_recording" />-->
 
-                <TextView
-                    android:id="@+id/video_recording_timer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dp"
-                    android:paddingLeft="2.5dp"
-                    android:paddingRight="5dp"
-                    android:paddingTop="1dp"
-                    android:text="@string/recording_text_preparing"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/ainemo_white"
-                    android:textSize="13sp" />
-            </LinearLayout>
+                <!--<TextView-->
+                    <!--android:id="@+id/video_recording_timer"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="4dp"-->
+                    <!--android:paddingLeft="2.5dp"-->
+                    <!--android:paddingRight="5dp"-->
+                    <!--android:paddingTop="1dp"-->
+                    <!--android:text="@string/recording_text_preparing"-->
+                    <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                    <!--android:textColor="@color/ainemo_white"-->
+                    <!--android:textSize="13sp" />-->
+            <!--</LinearLayout>-->
 
             <LinearLayout
                 android:id="@+id/layout_lock_people"
@@ -144,374 +144,8 @@
             android:textColor="@android:color/white" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/ll_top_hide_show"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    <include layout="@layout/call_fragment_layout_main_menu" />
 
-        <RelativeLayout
-            android:id="@+id/video_container"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:background="@color/xylink_top_bottom_color"
-            android:visibility="visible">
-
-            <LinearLayout
-                android:id="@+id/toolbar_layout"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="horizontal">
-                <!--网络提示-->
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="20dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/network_state"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="5dp"
-                        android:src="@drawable/network_state_four" />
-
-                    <TextView
-                        android:id="@+id/network_state_timer"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:paddingLeft="2.5dp"
-                        android:paddingRight="5dp"
-                        android:paddingTop="1dp"
-                        android:text="00:00:00"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:textColor="@color/ainemo_white"
-                        android:textSize="13sp" />
-
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/tv_call_number"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:paddingLeft="25dp"
-                    android:text="913552224984"
-                    android:textColor="@color/ainemo_white" />
-
-
-                <RelativeLayout
-                    android:id="@+id/ll_drop_call"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <ImageButton
-                        android:id="@+id/drop_call"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="10dp"
-                        android:background="@mipmap/ic_call_handup" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/drop_call"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="2.5dp"
-                        android:text="@string/hang_up"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="12sp" />
-
-                </RelativeLayout>
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/shared_content"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:visibility="gone" />
-
-            <LinearLayout
-                android:id="@+id/conf_webview_container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/transparent"
-                android:visibility="gone"
-                android:weightSum="2">
-
-                <WebView
-                    android:id="@+id/conf_control_webview"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentRight="true"
-                    android:layout_weight="1" />
-
-            </LinearLayout>
-        </RelativeLayout>
-
-
-        <!--会控-->
-        <LinearLayout
-            android:id="@+id/ll_conf"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <ImageButton
-                android:id="@+id/contol_conf"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@drawable/toolbar_button_bg_style"
-                android:scaleType="center"
-                android:src="@mipmap/ic_toolbar_camera_muted"
-                android:visibility="visible" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center_horizontal"
-                android:text="@string/conf_control_text"
-                android:textColor="@color/ainemo_white"
-                android:textSize="12sp" />
-
-        </LinearLayout>
-
-        <!--听筒-->
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <ImageButton
-                android:id="@+id/switch_speaker_mode"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@drawable/toolbar_button_bg_style"
-                android:padding="30dp"
-                android:scaleType="center"
-                android:src="@mipmap/ic_svc_toolbar_switch_speaker" />
-
-            <TextView
-                android:id="@+id/switch_speaker_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/switch_speaker_mode"
-                android:layout_centerHorizontal="true"
-                android:text="@string/switch_call_module"
-                android:textColor="@color/ainemo_white"
-                android:textSize="12sp" />
-        </RelativeLayout>
-
-        <!--举手-->
-        <RelativeLayout
-            android:id="@+id/handup_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <ImageButton
-                android:id="@+id/handup_btn"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@drawable/toolbar_button_bg_style"
-                android:longClickable="true"
-                android:padding="20dp"
-                android:scaleType="center"
-                android:src="@mipmap/ic_toolbar_hand_up" />
-
-            <TextView
-                android:id="@+id/handup_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/handup_btn"
-                android:layout_centerHorizontal="true"
-                android:text="@string/hand_up"
-                android:textColor="@color/ainemo_white"
-                android:textSize="12sp" />
-        </RelativeLayout>
-        <!--底部布局-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-
-        <LinearLayout
-            android:id="@+id/ll_bottom"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/xylink_top_bottom_color"
-            android:orientation="horizontal">
-            <!--&lt;!&ndash;更多&ndash;&gt;-->
-            <!--<RelativeLayout-->
-            <!--android:id="@+id/more"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginLeft="10dp"-->
-            <!--android:layout_weight="1"-->
-            <!--android:paddingTop="5dp">-->
-
-
-            <!--<ImageButton-->
-            <!--android:id="@+id/hold_meeting_more"-->
-            <!--android:layout_width="30dp"-->
-            <!--android:layout_height="30dp"-->
-            <!--android:layout_centerHorizontal="true"-->
-            <!--android:background="@drawable/toolbar_button_bg_style"-->
-            <!--android:scaleType="center"-->
-            <!--android:src="@drawable/more" />-->
-
-            <!--<TextView-->
-            <!--android:id="@+id/rmore_img_text"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_below="@id/hold_meeting_more"-->
-            <!--android:layout_centerHorizontal="true"-->
-            <!--android:text="更多"-->
-            <!--android:textColor="@color/ainemo_white"-->
-            <!--android:textSize="10sp" />-->
-            <!--</RelativeLayout>-->
-            <!--录制-->
-
-            <RelativeLayout
-                android:id="@+id/mic_mute_container"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:paddingTop="5dp">
-
-                <ImageButton
-                    android:id="@+id/mute_mic_btn"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_centerHorizontal="true"
-                    android:background="@drawable/toolbar_button_bg_style"
-                    android:longClickable="true"
-                    android:scaleType="center"
-                    android:src="@mipmap/ic_call_open_voice_tube" />
-
-                <TextView
-                    android:id="@+id/mute_mic_btn_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/mute_mic_btn"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/mute_mic"
-                    android:textColor="@color/ainemo_white"
-                    android:textSize="10sp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:paddingTop="5dp">
-
-                <ImageButton
-                    android:id="@+id/close_video"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_centerHorizontal="true"
-                    android:background="@drawable/toolbar_button_bg_style"
-                    android:onClick="closeVideo"
-                    android:scaleType="center"
-                    android:src="@mipmap/ic_call_close_camera" />
-
-                <TextView
-                    android:id="@+id/video_mute_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/close_video"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/close_video"
-                    android:textColor="@color/ainemo_white"
-                    android:textSize="10sp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/rl_record"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:paddingTop="5dp">
-
-                <ImageButton
-                    android:id="@+id/start_record_video"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_centerHorizontal="true"
-                    android:background="@drawable/toolbar_button_bg_style"
-                    android:scaleType="center"
-                    android:src="@mipmap/ic_call_recording_start" />
-
-                <TextView
-                    android:id="@+id/record_video_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/start_record_video"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/button_text_record"
-                    android:textColor="@color/ainemo_white"
-                    android:textSize="10sp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:paddingTop="5dp">
-
-                <ImageButton
-                    android:id="@+id/audio_only_btn"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_centerHorizontal="true"
-                    android:background="@drawable/toolbar_button_bg_style"
-                    android:scaleType="center"
-                    android:src="@mipmap/ic_call_voice_mode" />
-
-                <TextView
-                    android:id="@+id/audio_only_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/audio_only_btn"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/switch_call_module"
-                    android:textColor="@color/ainemo_white"
-                    android:textSize="10sp" />
-            </RelativeLayout>
-
-        </LinearLayout>
-    </LinearLayout>
     <!--弹出对话框-->
     <LinearLayout
         android:id="@+id/more_layout_dialog"

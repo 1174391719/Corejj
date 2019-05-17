@@ -98,7 +98,7 @@ public class VideoFragment extends Fragment implements CallListener,
     //听筒模式模标签
     private TextView mSwitchSpeakerLabel;
     //挂断当前通话
-    private RelativeLayout mDropCall;
+    private LinearLayout mDropCall;
     //麦克风容器
     private RelativeLayout mMicContainer;
     //麦克风控件
@@ -109,18 +109,18 @@ public class VideoFragment extends Fragment implements CallListener,
     private ImageButton mRecordingVideoBtn;
     //录制标签
     private TextView mRecordingVideoLabel;
-    //录制计时
-    private TextView mRecordingTimer;
-    //录制隐藏\显示控制
-    private LinearLayout mRecordingTimerHideShow;
-    //录制icon闪烁
-    private ImageView mFlashView;
+    //    //录制计时
+//    private TextView mRecordingTimer;
+//    //录制隐藏\显示控制
+//    private LinearLayout mRecordingTimerHideShow;
+//    //录制icon闪烁
+//    private ImageView mFlashView;
     //语音模式控件
     private ImageButton mAudioOnlyBtn;
     //语音模式标签
     private TextView mAudioOnlyLabel;
-    //网络质量显示控件
-    private ImageView mNetworkState;
+    //    //网络质量显示控件
+//    private ImageView mNetworkState;
     //会议计时
     private TextView mMeetingTimer;
     //呼叫会议号
@@ -298,10 +298,10 @@ public class VideoFragment extends Fragment implements CallListener,
         mDropCall = view.findViewById(R.id.ll_drop_call);
         //录制相关
         mRecordingVideoBtn = view.findViewById(R.id.start_record_video);
-        mRecordingTimer = view.findViewById(R.id.video_recording_timer);
-        mFlashView = view.findViewById(R.id.video_recording_icon);
+        //    mRecordingTimer = view.findViewById(R.id.video_recording_timer);
+        // mFlashView = view.findViewById(R.id.video_recording_icon);
         mRecordingVideoLabel = view.findViewById(R.id.record_video_text);
-        mRecordingTimerHideShow = view.findViewById(R.id.conversation_recording_layout);
+        //  mRecordingTimerHideShow = view.findViewById(R.id.conversation_recording_layout);
         //语音模式
         mAudioOnlyBtn = view.findViewById(R.id.audio_only_btn);
         mAudioOnlyLabel = view.findViewById(R.id.audio_only_text);
@@ -342,14 +342,14 @@ public class VideoFragment extends Fragment implements CallListener,
         outgoingContainer = (RelativeLayout) view.findViewById(R.id.outgoing_container);
         //视频容器
         videoContainer = (RelativeLayout) view.findViewById(R.id.video_container);
-        //网络状态
-        mNetworkState = (ImageView) view.findViewById(R.id.network_state);
-        mNetworkState.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startRefreshStatisticsInfo();
-            }
-        });
+//        //网络状态
+//        mNetworkState = (ImageView) view.findViewById(R.id.network_state);
+//        mNetworkState.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startRefreshStatisticsInfo();
+//            }
+//        });
         //共享content
         mContent = (ImageView) view.findViewById(R.id.shared_content);
         //头部、底部导航
@@ -518,20 +518,20 @@ public class VideoFragment extends Fragment implements CallListener,
         @Override
         public void run() {
             recordingDuration += 1000;
-            mRecordingTimer.setText(getResources().getString(R.string.recording_text) + " " + CommonTime.formatDuration(recordingDuration));
-            mRecordingTimer.postDelayed(timerRunnable, TIMER_DELAYED);
-
-
+//            mRecordingTimer.setText(getResources().getString(R.string.recording_text) + " " + CommonTime.formatDuration(recordingDuration));
+//            mRecordingTimer.postDelayed(timerRunnable, TIMER_DELAYED);
+            mRecordingVideoLabel.setText(CommonTime.formatDuration(recordingDuration));
+            mRecordingVideoLabel.postDelayed(timerRunnable, TIMER_DELAYED);
         }
     };
-    //图标闪烁延迟
-    private Runnable flashingViewRunnable = new Runnable() {
-        @Override
-        public void run() {
-            mFlashView.setVisibility(mFlashView.getVisibility() == VISIBLE ? INVISIBLE : VISIBLE);
-            mFlashView.postDelayed(flashingViewRunnable, FLASH_ICON_DELAYED);
-        }
-    };
+    //    //图标闪烁延迟
+//    private Runnable flashingViewRunnable = new Runnable() {
+//        @Override
+//        public void run() {
+//            mFlashView.setVisibility(mFlashView.getVisibility() == VISIBLE ? INVISIBLE : VISIBLE);
+//            mFlashView.postDelayed(flashingViewRunnable, FLASH_ICON_DELAYED);
+//        }
+//    };
     //会议计时
     private Runnable TimerRunnable = new Runnable() {
 
@@ -678,9 +678,8 @@ public class VideoFragment extends Fragment implements CallListener,
 
     //获取用户名
     public void setDisplayName(String displayName) {
-        Log.i(TAG, "setDisplayName=" + displayName);
+        ZLog.d("displayName:" + displayName);
         this.mDisplayName = displayName;
-
     }
 
 
@@ -847,29 +846,29 @@ public class VideoFragment extends Fragment implements CallListener,
      *
      * @param level 1、2、3、4个等级,差-中-良-优
      */
-    public void onNetworkIndicatorLevel(final int level) {
-        L.i(TAG, "onNetworkIndicatorLevel" + level);
-        if (mNetworkState != null) {
-            switch (level) {
-                case 4:
-                    L.i(TAG, "onNetworkIndicatorLevel=" + level);
-                    mNetworkState.setImageResource(R.drawable.network_state_four);
-                    break;
-                case 3:
-                    L.i(TAG, "onNetworkIndicatorLevel=" + level);
-                    mNetworkState.setImageResource(R.drawable.network_state_three);
-                    break;
-                case 2:
-                    L.i(TAG, "onNetworkIndicatorLevel=" + level);
-                    mNetworkState.setImageResource(R.drawable.network_state_two);
-                    break;
-                case 1:
-                    L.i(TAG, "onNetworkIndicatorLevel=" + level);
-                    mNetworkState.setImageResource(R.drawable.network_state_one);
-                    break;
-            }
-        }
-    }
+//    public void onNetworkIndicatorLevel(final int level) {
+//        L.i(TAG, "onNetworkIndicatorLevel" + level);
+//        if (mNetworkState != null) {
+//            switch (level) {
+//                case 4:
+//                    L.i(TAG, "onNetworkIndicatorLevel=" + level);
+//                    mNetworkState.setImageResource(R.drawable.network_state_four);
+//                    break;
+//                case 3:
+//                    L.i(TAG, "onNetworkIndicatorLevel=" + level);
+//                    mNetworkState.setImageResource(R.drawable.network_state_three);
+//                    break;
+//                case 2:
+//                    L.i(TAG, "onNetworkIndicatorLevel=" + level);
+//                    mNetworkState.setImageResource(R.drawable.network_state_two);
+//                    break;
+//                case 1:
+//                    L.i(TAG, "onNetworkIndicatorLevel=" + level);
+//                    mNetworkState.setImageResource(R.drawable.network_state_one);
+//                    break;
+//            }
+//        }
+//    }
 
     /**
      * 处理本地消息
@@ -884,20 +883,24 @@ public class VideoFragment extends Fragment implements CallListener,
         if (state.equals(RecordingState.RECORDING_STATE_ACTING) && state.equals(RecordingState.RECORDING_STATE_ACTING)) {
             Log.i(TAG, "print onRecordingStateChanged show record");
             //显示录制
-            mRecordingTimerHideShow.setVisibility(View.VISIBLE);
+            // mRecordingTimerHideShow.setVisibility(View.VISIBLE);
             mRecordingVideoBtn.setImageResource(R.mipmap.ic_toolbar_recording_ing);
             mRecordingVideoLabel.setText(R.string.button_text_stop);
-            mFlashView.postDelayed(flashingViewRunnable, FLASH_ICON_DELAYED);
-            mRecordingTimer.postDelayed(timerRunnable, FLASH_ICON_DELAYED);
-            mRecordingTimer.setText(R.string.recording_text_preparing);
+            //   mFlashView.postDelayed(flashingViewRunnable, FLASH_ICON_DELAYED);
+//            mRecordingTimer.postDelayed(timerRunnable, FLASH_ICON_DELAYED);
+//            mRecordingTimer.setText(R.string.recording_text_preparing);
+
+            mRecordingVideoLabel.postDelayed(timerRunnable, FLASH_ICON_DELAYED);
+            mRecordingVideoLabel.setText(R.string.recording_text_preparing);
+
         } else if (state.equals(RecordingState.RECORDING_STATE_STOPING)) {
             Log.i(TAG, "print onRecordingStateChanged hide record");
             //隐藏录制
-            mRecordingTimerHideShow.setVisibility(GONE);
+            //mRecordingTimerHideShow.setVisibility(GONE);
             mRecordingVideoLabel.setText(R.string.button_text_record);
             mRecordingVideoBtn.setImageResource(R.drawable.ic_toolbar_recording);
-            mFlashView.removeCallbacks(flashingViewRunnable);
-            mRecordingTimer.removeCallbacks(timerRunnable);
+            //   mFlashView.removeCallbacks(flashingViewRunnable);
+            mRecordingVideoLabel.removeCallbacks(timerRunnable);
             String content = getString(R.string.third_conf_record_notice);
             AlertUtil.toastText(content);
         }
@@ -916,15 +919,16 @@ public class VideoFragment extends Fragment implements CallListener,
         Log.i(TAG, " csl onRecordStatusNotification" + isStart);
         if (isStart) {
             mRecordingVideoBtn.setEnabled(false);
-            mRecordingTimer.setText(displayName + "正在录制");
-            mRecordingTimerHideShow.setVisibility(View.VISIBLE);
-            mFlashView.postDelayed(flashingViewRunnable, FLASH_ICON_DELAYED);
+            //  mRecordingVideoLabel.setText(displayName + " 正在录制中...");
+            // mRecordingTimerHideShow.setVisibility(View.VISIBLE);
+            // mFlashView.postDelayed(flashingViewRunnable, FLASH_ICON_DELAYED);
             mRecordingVideoBtn.setImageResource(R.mipmap.ic_toolbar_recording_ing);
-            mRecordingVideoLabel.setText(R.string.button_text_stop);
+            // mRecordingVideoLabel.setText(R.string.button_text_stop);
+            mRecordingVideoLabel.setText(displayName + " 正在录制中...");
         } else {
             mRecordingVideoBtn.setEnabled(true);
-            mFlashView.removeCallbacks(flashingViewRunnable);
-            mRecordingTimerHideShow.setVisibility(GONE);
+            // mFlashView.removeCallbacks(flashingViewRunnable);
+            //mRecordingTimerHideShow.setVisibility(GONE);
             mRecordingVideoLabel.setText(R.string.button_text_record);
             mRecordingVideoBtn.setImageResource(R.drawable.ic_toolbar_recording);
         }
@@ -1041,10 +1045,11 @@ public class VideoFragment extends Fragment implements CallListener,
     public void RecordVideoResource() {
         Log.i(TAG, "zhengdan    RecordVideoResource    开始录制  ");
         isControlEnable = false;
-        mRecordingTimer.removeCallbacks(timerRunnable);
-        mFlashView.removeCallbacks(flashingViewRunnable);
+        // mRecordingTimer.removeCallbacks(timerRunnable);
+        mRecordingVideoLabel.removeCallbacks(timerRunnable);
+        //  mFlashView.removeCallbacks(flashingViewRunnable);
         isControlEnable = !isControlEnable;
-        mRecordingTimerHideShow.setVisibility(GONE);
+        // mRecordingTimerHideShow.setVisibility(GONE);
         mRecordingVideoLabel.setText(R.string.button_text_record);
         mRecordingVideoBtn.setImageResource(R.drawable.ic_toolbar_recording);
         NemoSDK.getInstance().stopRecord();
@@ -1258,7 +1263,7 @@ public class VideoFragment extends Fragment implements CallListener,
         setVideoState(videoMute);
         Log.i(TAG, "print onClick-->videoMute" + videoMute);
         NemoSDK.getInstance().setVideoMute(videoMute);
-        mRecordingTimerHideShow.setVisibility(GONE);
+        // mRecordingTimerHideShow.setVisibility(GONE);
     }
 
     public void closeVoice(boolean enableMic) {

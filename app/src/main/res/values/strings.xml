@@ -45,7 +45,7 @@
     <string name="recording_text_stopped_expired">本次录制已达最大时长30分钟，录制自动停止</string>
     <string name="recording_text_stopped_account_no_space">您的帐户空间不足，无法录制新的视频</string>
     <string name="third_conf_record_notice">录制完成，录制视频已保存到云会议室管理员的文件夹</string>
-    <string name="recording_text_preparing">录制中 00:00:00</string>
+    <string name="recording_text_preparing">00:00:00</string>
     <string name="who_is_recording" formatted="false">%s正在录制</string>
     <string name="recording_non_enetrprise_meeting">云会议室不属于任何，无法录制</string>
     <string name="recording_storage_not_enough">录制的存储空间已满，您无法开始录制。\n请删除已有的录制视频，\n或联系管理员购买更多存储空间。</string>
