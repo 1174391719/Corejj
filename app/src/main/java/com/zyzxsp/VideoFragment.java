@@ -35,6 +35,8 @@ import com.ainemo.sdk.otf.RecordingState;
 import com.ainemo.sdk.otf.VideoInfo;
 import com.ainemo.shared.MediaSourceID;
 import com.ainemo.shared.UserActionListener;
+import com.zyzxsp.activity.HomeActivity;
+import com.zyzxsp.activity.ZyHomeActivity;
 import com.zyzxsp.myInterface.CallListener;
 import com.zyzxsp.utils.AlertUtil;
 import com.zyzxsp.utils.CommonTime;
@@ -84,6 +86,7 @@ public class VideoFragment extends Fragment implements CallListener,
     private LinearLayout switchCameraHideShow;
     //切换摄像头控件
     private ImageButton mSwitchCamera;
+    private TextView mName = null;
     //取消当前通话
     private ImageButton mButtonCancel;
     //关闭视频控件
@@ -332,6 +335,8 @@ public class VideoFragment extends Fragment implements CallListener,
         mHandupLabel = (TextView) view.findViewById(R.id.handup_label);
         //切换摄像头
         mSwitchCamera = (ImageButton) view.findViewById(R.id.switch_camera);
+
+        mName = view.findViewById(R.id.tv_call_name);
         switchCameraHideShow = (LinearLayout) view.findViewById(R.id.switch_camera_layout);
         //外部容器
         outgoingContainer = (RelativeLayout) view.findViewById(R.id.outgoing_container);
@@ -486,6 +491,7 @@ public class VideoFragment extends Fragment implements CallListener,
         mVolumeManager = new VolumeManager(getActivity(), view.findViewById(R.id.operation_volume_brightness), AudioManager.STREAM_VOICE_CALL);
         mVolumeManager.setMuteCallback(this);
         currentVolume = mVolumeManager.getVolume();
+        mName.setText(ZyHomeActivity.sUserBean.getName());
 
         TimeHide();
     }
@@ -567,6 +573,7 @@ public class VideoFragment extends Fragment implements CallListener,
             topNavigation.setVisibility(INVISIBLE);
             bottomNavigation.setVisibility(INVISIBLE);
             switchCameraHideShow.setVisibility(INVISIBLE);
+            mName.setVisibility(INVISIBLE);
         }
     };
 
@@ -593,6 +600,7 @@ public class VideoFragment extends Fragment implements CallListener,
             topNavigation.setVisibility(VISIBLE);
             bottomNavigation.setVisibility(VISIBLE);
             switchCameraHideShow.setVisibility(VISIBLE);
+            mName.setVisibility(VISIBLE);
             StopToolbarVisibleTimer();
             setFECCButtonVisible(videoInfo != null
                     && isAudioOnly()
@@ -624,6 +632,7 @@ public class VideoFragment extends Fragment implements CallListener,
                 topNavigation.setVisibility(INVISIBLE);
                 bottomNavigation.setVisibility(INVISIBLE);
                 switchCameraHideShow.setVisibility(INVISIBLE);
+                mName.setVisibility(INVISIBLE);
                 mVisible = false;
                 setFECCButtonVisible(false);
             } else {
@@ -687,13 +696,13 @@ public class VideoFragment extends Fragment implements CallListener,
         mVideoView.setAudioOnlyMode(audioMode);
         if (this.audioMode) {
             mCloseVideo.setEnabled(false);
-            mAudioOnlyBtn.setImageResource(R.mipmap.ic_call_open_camera);
+            mAudioOnlyBtn.setImageResource(R.mipmap.ic_call_voice_mode_clicked);
             mAudioOnlyLabel.setText(R.string.close_switch_call_module);
 
         } else {
             mCloseVideo.setEnabled(true);
             mAudioOnlyLabel.setText(R.string.switch_call_module);
-            mAudioOnlyBtn.setImageResource(R.mipmap.ic_call_close_camera);
+            mAudioOnlyBtn.setImageResource(R.mipmap.ic_call_voice_mode);
         }
     }
 

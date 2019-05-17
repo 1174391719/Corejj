@@ -173,7 +173,8 @@ public class ZyLoginActivity extends BaseActivity implements View.OnClickListene
      * 登录请求
      */
 
-    private void requestLogin(String name, String password) {
+    private void requestLogin(final String name, String password) {
+        //    goHomeActivity();
         String url = ConstantUrl.HOST + ConstantUrl.LOGIN;
         ZLog.d("登录 url  " + url);
 
@@ -215,6 +216,7 @@ public class ZyLoginActivity extends BaseActivity implements View.OnClickListene
                         LoginResData.LoginData mLoginData = dataBean.getObject();
                         String token = mLoginData.getToken();
                         ZyHomeActivity.sUserBean.setToken(token);
+                        ZyHomeActivity.sUserBean.setAccount(name);
                         ZLog.d("token:" + token);
                         goHomeActivity();
                         finish();

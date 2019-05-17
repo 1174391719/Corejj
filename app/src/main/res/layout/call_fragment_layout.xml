@@ -20,110 +20,129 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="40dp"
-        android:orientation="vertical">
-
-        <!--录制计时-->
-        <LinearLayout
-            android:id="@+id/conversation_recording_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:background="@drawable/shape_label_orange"
-            android:gravity="center_vertical"
-            android:padding="3dp"
-            android:visibility="gone">
-
-            <ImageView
-                android:id="@+id/video_recording_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/notification_top_size"
-                android:paddingLeft="6dp"
-                android:paddingRight="6dp"
-                android:paddingTop="@dimen/notification_top_size"
-                android:src="@drawable/ic_toolbar_state_recording" />
-
-            <TextView
-                android:id="@+id/video_recording_timer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:paddingLeft="2.5dp"
-                android:paddingRight="5dp"
-                android:paddingTop="1dp"
-                android:text="@string/recording_text_preparing"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/ainemo_white"
-                android:textSize="13sp" />
-        </LinearLayout>
+        android:orientation="horizontal">
 
         <LinearLayout
-            android:id="@+id/layout_lock_people"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/call_live_bg"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="3dp"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/notification_padding_size"
-                android:layout_marginRight="@dimen/notification_padding_size"
-                android:paddingBottom="@dimen/notification_top_size"
-                android:paddingTop="@dimen/notification_top_size"
-                android:text="@string/locked_people"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/white_90"
-                android:textSize="@dimen/notification_text_size" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/notification_padding_size"
-                android:background="@drawable/lock_people_bg"
-                android:gravity="center"
-                android:text="@string/unlock_people"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="#393946"
-                android:textSize="@dimen/notification_text_size" />
-
-        </LinearLayout>
-        <!--切换摄像头-->
-        <LinearLayout
-            android:id="@+id/switch_camera_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/switch_camera"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_centerHorizontal="true"
-                android:background="@drawable/toolbar_button_bg_style"
-                android:longClickable="true"
-                android:onClick="switchCamera"
-                android:scaleType="center"
-                android:src="@mipmap/ic_svc_toolbar_switch_camera" />
-
-            <TextView
+            <!--录制计时-->
+            <LinearLayout
+                android:id="@+id/conversation_recording_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/switch_camera"
-                android:layout_centerHorizontal="true"
-                android:text="@string/switch_camera"
-                android:textColor="@color/ainemo_white"
-                android:textSize="12sp" />
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/shape_label_orange"
+                android:gravity="center_vertical"
+                android:padding="3dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/video_recording_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/notification_top_size"
+                    android:paddingLeft="6dp"
+                    android:paddingRight="6dp"
+                    android:paddingTop="@dimen/notification_top_size"
+                    android:src="@drawable/ic_toolbar_state_recording" />
+
+                <TextView
+                    android:id="@+id/video_recording_timer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:paddingLeft="2.5dp"
+                    android:paddingRight="5dp"
+                    android:paddingTop="1dp"
+                    android:text="@string/recording_text_preparing"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/ainemo_white"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_lock_people"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/call_live_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="3dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/notification_padding_size"
+                    android:layout_marginRight="@dimen/notification_padding_size"
+                    android:paddingBottom="@dimen/notification_top_size"
+                    android:paddingTop="@dimen/notification_top_size"
+                    android:text="@string/locked_people"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/white_90"
+                    android:textSize="@dimen/notification_text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/notification_padding_size"
+                    android:background="@drawable/lock_people_bg"
+                    android:gravity="center"
+                    android:text="@string/unlock_people"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="#393946"
+                    android:textSize="@dimen/notification_text_size" />
+
+            </LinearLayout>
+            <!--切换摄像头-->
+            <LinearLayout
+                android:id="@+id/switch_camera_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/switch_camera"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/toolbar_button_bg_style"
+                    android:longClickable="true"
+                    android:onClick="switchCamera"
+                    android:scaleType="center"
+                    android:src="@mipmap/ic_svc_toolbar_switch_camera" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/switch_camera"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/switch_camera"
+                    android:textColor="@color/ainemo_white"
+                    android:textSize="12sp" />
+            </LinearLayout>
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/tv_call_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shape_call_name"
+            android:paddingBottom="4dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="4dp"
+            android:text="xxx"
+            android:textColor="@android:color/white" />
     </LinearLayout>
-
 
     <LinearLayout
         android:id="@+id/ll_top_hide_show"
@@ -205,7 +224,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
-                        android:background="@mipmap/ic_call_handup"/>
+                        android:background="@mipmap/ic_call_handup" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -218,8 +237,6 @@
                         android:textSize="12sp" />
 
                 </RelativeLayout>
-
-
             </LinearLayout>
 
             <ImageView
@@ -237,13 +254,6 @@
                 android:background="@android:color/transparent"
                 android:visibility="gone"
                 android:weightSum="2">
-
-                <View
-                    android:id="@+id/view_container"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@android:color/transparent" />
 
                 <WebView
                     android:id="@+id/conf_control_webview"
@@ -800,7 +810,18 @@
         android:id="@+id/conversation_roster"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:visibility="invisible" />
+        android:visibility="invisible">
+
+        <View
+            android:id="@+id/view_container"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_weight="1"
+            android:background="@android:color/transparent" />
+    </com.zyzxsp.view.CallRosterView>
 
     <include
         android:id="@+id/operation_volume_brightness"

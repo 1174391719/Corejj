@@ -22,7 +22,9 @@ public class MyApplication extends Application {
 //        settings.setDebug(true);
 
         // 注意：Settings中的企业ID: 请到管理后台申请, 并配置package对应的SHA1
-        Settings settings = new Settings("c27efa2adc3c2998bf8f517a1155559803b6c4e9");   // 小鱼生产环境extID
+        Settings settings = new Settings("12e53a6df2e91e6177e627c8e336a6888ff98104");   // 小鱼生产环境extID
+
+       // Settings settings = new Settings("40260e9046bae2da238ac0b0c572326b91726a83");   // 小鱼生产环境extID
         //Settings settings = new Settings("3e816492058911e7a31d000c29971af5");
 
 //        settings.setPrivateCloudAddress("private.xylink.com");

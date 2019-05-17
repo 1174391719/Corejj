@@ -62,7 +62,7 @@ public class ZyHomeActivity extends BaseActivity implements RadioGroup.OnChecked
         super.onCreate(savedInstanceState);
         StatusBarUtils.setTransparent(this);
         setContentView(R.layout.activity_home_layout);
-        ZLog.i("onCreate. ");
+        ZLog.i("onCreate.");
         PermissionUtils.checkBasePermission(this);
         mFrameLayout = findViewById(R.id.framelayout_container);
         mRadioGroup = findViewById(R.id.radio_group_button);
@@ -82,22 +82,22 @@ public class ZyHomeActivity extends BaseActivity implements RadioGroup.OnChecked
         L.i(TAG, "displayNameCallActivity11=" + displayName);
 
 
-        nemoSDK.loginExternalAccount("方中信", "6666666", new ConnectNemoCallback() {
-            @Override
-            public void onFailed(int i) {
-                ZLog.e("i:" + i);
-            }
-
-            @Override
-            public void onSuccess(LoginResponseData loginResponseData, boolean b) {
-                ZLog.d("loginResponseData:" + loginResponseData);
-            }
-
-            @Override
-            public void onNetworkTopologyDetectionFinished(LoginResponseData loginResponseData) {
-                ZLog.e("loginResponseData:" + loginResponseData);
-            }
-        });
+//        nemoSDK.loginExternalAccount("方中信", sAccount, new ConnectNemoCallback() {
+//            @Override
+//            public void onFailed(int i) {
+//                ZLog.e("i:" + i);
+//            }
+//
+//            @Override
+//            public void onSuccess(LoginResponseData loginResponseData, boolean b) {
+//                ZLog.d("loginResponseData:" + loginResponseData);
+//            }
+//
+//            @Override
+//            public void onNetworkTopologyDetectionFinished(LoginResponseData loginResponseData) {
+//                ZLog.e("loginResponseData:" + loginResponseData);
+//            }
+//        });
 
         if (myNumber != null)
             mHomeFragment.setMyNumber(myNumber);

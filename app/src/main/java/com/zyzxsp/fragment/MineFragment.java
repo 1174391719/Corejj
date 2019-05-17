@@ -15,6 +15,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ainemo.sdk.otf.ConnectNemoCallback;
+import com.ainemo.sdk.otf.LoginResponseData;
+import com.ainemo.sdk.otf.NemoSDK;
 import com.bumptech.glide.Glide;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
@@ -152,6 +155,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                                 .setAutoPlayAnimations(true)
                                 .build();
                         mSimpleDraweeView.setController(controller);
+                        ZyHomeActivity.sUserBean.setName(mUserinfo.getName());
+                        loginXiaoyu();
                     }
 
                 } else {
@@ -162,5 +167,27 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 }
             }
         });
+    }
+
+    //**********************************************************************************************
+    private void loginXiaoyu() {
+        ZLog.i("Name:" + ZyHomeActivity.sUserBean.getName() + " account:" + ZyHomeActivity.sUserBean.getAccount());
+        NemoSDK.getInstance().loginExternalAccount(ZyHomeActivity.sUserBean.getName(),
+                ZyHomeActivity.sUserBean.getAccount(), new ConnectNemoCallback() {
+                    @Override
+                    public void onFailed(int i) {
+                        ZLog.e("i:" + i);
+                    }
+
+                    @Override
+                    public void onSuccess(LoginResponseData loginResponseData, boolean b) {
+                        ZLog.d("loginResponseData:" + loginResponseData);
+                    }
+
+                    @Override
+                    public void onNetworkTopologyDetectionFinished(LoginResponseData loginResponseData) {
+                        ZLog.e("loginResponseData:" + loginResponseData);
+                    }
+                });
     }
 }
