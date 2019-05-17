@@ -667,7 +667,8 @@ public class CellStateView extends ViewGroup {
             smallDisplayName.setVisibility(VISIBLE);
             fullDisplayName.setVisibility(GONE);
             smallDisplayName.setText(nameText);
-            smallDisplayName.layout(gap, b - smallDisplayName.getMeasuredHeight() - gap, smallDisplayName.getMeasuredWidth() + gap, b - gap);
+            smallDisplayName.layout(r - smallDisplayName.getMeasuredWidth(), gap,
+                    r - gap, smallDisplayName.getMeasuredHeight() + gap);
             mVideoMuteText.measure(0, 0);
             mNoVideoText.measure(0, 0);
             mAudioOnlyText.measure(0, 0);

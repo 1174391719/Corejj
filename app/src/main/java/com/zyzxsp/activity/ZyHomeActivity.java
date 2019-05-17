@@ -62,7 +62,7 @@ public class ZyHomeActivity extends BaseActivity implements RadioGroup.OnChecked
         super.onCreate(savedInstanceState);
         StatusBarUtils.setTransparent(this);
         setContentView(R.layout.activity_home_layout);
-        ZLog.i("onCreate.");
+        ZLog.i("Init...");
         PermissionUtils.checkBasePermission(this);
         mFrameLayout = findViewById(R.id.framelayout_container);
         mRadioGroup = findViewById(R.id.radio_group_button);

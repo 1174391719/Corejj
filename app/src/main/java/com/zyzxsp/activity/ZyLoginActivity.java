@@ -56,6 +56,7 @@ public class ZyLoginActivity extends BaseActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         StatusBarUtils.setTransparent(this);
         setContentView(R.layout.activity_zy_login);
+        ZLog.i("Init...");
         mLoginName = findViewById(R.id.login_name);
         mLoginPassword = findViewById(R.id.login_password);
         mLoginBtn = findViewById(R.id.login_button);

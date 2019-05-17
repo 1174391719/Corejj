@@ -6,24 +6,28 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.zyzxsp.R;
+import com.zyzxsp.utils.StatusBarUtils;
 import com.zyzxsp.utils.ZLog;
 
 public class StartupActivity extends BaseActivity {
     public static final String TAG = "StartupActivity";
+    private boolean mStart = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        ZLog.i("Init...");
+        StatusBarUtils.setTransparent(this);
         setContentView(R.layout.activity_startup);
     }
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
+        if (!mStart) {
+            return;
+        }
+        mStart = false;
         new Thread() {
             public void run() {
                 runOnUiThread(new Runnable() {
