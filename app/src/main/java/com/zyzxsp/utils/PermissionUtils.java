@@ -34,4 +34,10 @@ public class PermissionUtils {
         return ContextCompat.checkSelfPermission(activity, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED ||
                 ContextCompat.checkSelfPermission(activity, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED;
     }
+
+    public static void checkPermission(Activity activity, String permission) {
+        if (!(ContextCompat.checkSelfPermission(activity, permission) == PackageManager.PERMISSION_GRANTED)) {
+            ActivityCompat.requestPermissions(activity, new String[]{permission}, 0);
+        }
+    }
 }

@@ -9,7 +9,7 @@ import android.util.Log;
  */
 
 public class ZLog {
-    public static final boolean use_config_data = false;
+    public static final boolean use_config_data = true;
     private static final String TAG_D = "ZyMeeting/D";
     private static final String TAG_I = "ZyMeeting/I";
     private static final String TAG_E = "ZyMeeting/E";

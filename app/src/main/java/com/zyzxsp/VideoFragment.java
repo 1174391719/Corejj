@@ -1,9 +1,11 @@
 package com.zyzxsp;
 
+import android.Manifest;
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.Fragment;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.log.L;
 import android.media.AudioManager;
@@ -11,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.RequiresApi;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
@@ -40,6 +43,7 @@ import com.zyzxsp.activity.ZyHomeActivity;
 import com.zyzxsp.myInterface.CallListener;
 import com.zyzxsp.utils.AlertUtil;
 import com.zyzxsp.utils.CommonTime;
+import com.zyzxsp.utils.PermissionUtils;
 import com.zyzxsp.utils.VolumeManager;
 import com.zyzxsp.utils.ZLog;
 import com.zyzxsp.view.CallStatisticsView;
@@ -266,11 +270,13 @@ public class VideoFragment extends Fragment implements CallListener,
         Bundle mGetBundle = getArguments();
         if (mGetBundle != null) {
             mCloseCameraFromActivity = mGetBundle.getBoolean(CLOSE_CAMERA, false);
-            videoMute = mCloseCameraFromActivity;
+            videoMute = mCloseCameraFromActivity ? true :
+                    ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED;
             closeVideo();
             mCloseVoiceFromActivity = mGetBundle.getBoolean(CLOSE_VOICE, false);
             Log.d(TAG, "11111 mGetBundle != null onViewCreated: mCloseCameraFromActivity  " + mCloseCameraFromActivity + "   mCloseVoiceFromActivity   " + mCloseVoiceFromActivity);
-            isMicphoneMuted = mCloseVoiceFromActivity;
+            isMicphoneMuted = mCloseVoiceFromActivity ? true :
+                    ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED;
             closeVoice(isMicphoneMuted);
             Log.d(TAG, "11111 mGetBundle != null onViewCreated: videoMute  " + videoMute + "   isMicphoneMuted  " + isMicphoneMuted);
         }
@@ -1138,6 +1144,10 @@ public class VideoFragment extends Fragment implements CallListener,
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.switch_camera:
+                if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    PermissionUtils.checkPermission(getActivity(), Manifest.permission.CAMERA);
+                    return;
+                }
                 foregroundCamera = !foregroundCamera;
                 cameraId = foregroundCamera ? 1 : 0;
                 NemoSDK.getInstance().switchCamera(cameraId);  // 0：后置 1：前置
@@ -1150,6 +1160,10 @@ public class VideoFragment extends Fragment implements CallListener,
                 break;
             case R.id.mute_mic_btn:
                 mMuteBtnLongPress = 0;
+                if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+                    PermissionUtils.checkPermission(getActivity(), Manifest.permission.RECORD_AUDIO);
+                    return;
+                }
                 Log.i(TAG, "print onClick-->isMicMuted=" + !NemoSDK.getInstance().isMicMuted());
                 NemoSDK.getInstance().enableMic(!NemoSDK.getInstance().isMicMuted(), true);
                 refreshMuteMicBtn();
@@ -1182,6 +1196,10 @@ public class VideoFragment extends Fragment implements CallListener,
                 NemoSDK.getInstance().switchSpeakerOnModle(speakerMode);
                 break;
             case R.id.close_video:
+                if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    PermissionUtils.checkPermission(getActivity(), Manifest.permission.CAMERA);
+                    return;
+                }
                 videoMute = !videoMute;
 //                setVideoState(videoMute);
 //                Log.i(TAG, "print onClick-->videoMute" + videoMute);

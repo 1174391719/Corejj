@@ -1,8 +1,6 @@
 package com.zyzxsp.activity;
 
 import android.content.Intent;
-import android.log.L;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
@@ -13,12 +11,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.ainemo.sdk.otf.ConnectNemoCallback;
-import com.ainemo.sdk.otf.LoginResponseData;
-import com.ainemo.sdk.otf.NemoSDK;
 import com.google.gson.Gson;
 import com.zyzxsp.R;
 import com.zyzxsp.constant.ConstantUrl;
@@ -26,7 +20,6 @@ import com.zyzxsp.bean.LoginResData;
 import com.zyzxsp.dialog.DialogPresenter;
 import com.zyzxsp.dialog.DialogPresenterImpl;
 import com.zyzxsp.utils.StatusBarUtils;
-import com.zyzxsp.utils.StringUtils;
 import com.zyzxsp.utils.Utils;
 import com.zyzxsp.utils.ZLog;
 
@@ -86,11 +79,33 @@ public class ZyLoginActivity extends BaseActivity implements View.OnClickListene
                         mCleanAccount.setVisibility(View.VISIBLE);
                     }
                 }
-                String str = s.toString();
-                String result = StringUtils.addSpace(str, 3, 7);
-                if (!str.equals(result)) {
-                    mLoginName.setText(result);
-                    mLoginName.setSelection(result.length());
+                if (s == null || s.length() == 0) return;
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < s.length(); i++) {
+                    if (i != 3 && i != 8 && s.charAt(i) == ' ') {
+                        continue;
+                    } else {
+                        sb.append(s.charAt(i));
+                        if ((sb.length() == 4 || sb.length() == 9) && sb.charAt(sb.length() - 1) != ' ') {
+                            sb.insert(sb.length() - 1, ' ');
+                        }
+                    }
+                }
+                if (!sb.toString().equals(s.toString())) {
+                    int index = start + 1;
+                    if (sb.charAt(start) == ' ') {
+                        if (before == 0) {
+                            index++;
+                        } else {
+                            index--;
+                        }
+                    } else {
+                        if (before == 1) {
+                            index--;
+                        }
+                    }
+                    mLoginName.setText(sb.toString());
+                    mLoginName.setSelection(index);
                 }
             }
 

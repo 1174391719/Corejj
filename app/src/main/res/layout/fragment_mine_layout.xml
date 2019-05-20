@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/zysp_gray_bg_color">
+    android:background="@color/zysp_gray_bg_color"
+    android:orientation="vertical">
 
     <com.zyzxsp.view.HeaderTitleView
         android:id="@+id/mine_header_view"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/nemo_green"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/icon_bg_title"
         app:headerCenterTitle="@string/title_str_mine"
         app:headerLeftDrawbleVisibility="gone"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -28,8 +29,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="130dp"
             android:layout_marginBottom="20dp"
+            android:layout_marginTop="80dp"
             android:orientation="horizontal">
 
             <com.facebook.drawee.view.SimpleDraweeView
@@ -43,9 +44,9 @@
                 fresco:roundedCornerRadius="20dp" />
 
             <LinearLayout
-                android:layout_marginLeft="10dp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
@@ -183,4 +184,4 @@
     </RelativeLayout>
 
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

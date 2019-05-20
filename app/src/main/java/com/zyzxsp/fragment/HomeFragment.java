@@ -112,7 +112,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 intent.putExtra(CLOSE_CAMERA, mClcoseCamera);
                 intent.putExtra(CLOSE_VOICE, mCloseVoice);
                 intent.putExtra("MY_NUMBER", mMeetNumberEdit.getText().toString());
-                intent.putExtra("displayName", "ww");
                 ZLog.d("跳转时  mCloseCamera   " + mClcoseCamera + "   mCloseVoice  " + mCloseVoice);
                 startActivity(intent);
                 break;

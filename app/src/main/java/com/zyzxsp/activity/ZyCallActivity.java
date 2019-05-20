@@ -53,7 +53,6 @@ public class ZyCallActivity extends FragmentActivity implements BackHandledInter
 
         Intent intent = getIntent();
         String myNumber = intent.getStringExtra("MY_NUMBER");
-        String displayName = intent.getStringExtra("displayName");
         boolean closeCamera = intent.getBooleanExtra(CLOSE_CAMERA, false);
         boolean closeVoice = intent.getBooleanExtra(CLOSE_VOICE, false);
 
@@ -65,13 +64,6 @@ public class ZyCallActivity extends FragmentActivity implements BackHandledInter
         manager = getFragmentManager();
         manager.beginTransaction().add(R.id.content_frame_zy, mVideoFragment).commitAllowingStateLoss();
 
-
-        L.i(TAG, "displayNameCallActivity11=" + displayName);
-//        if (myNumber != null)
-//            mDialFragment.setMyNumber(myNumber);
-//
-//        if(displayName!=null)
-//            mDialFragment.setDisplayName(displayName);
         mVideoFragment.setDisplayName(ZyHomeActivity.sUserBean.getName());
         mVideoFragment.setCallNumber(myNumber);
 

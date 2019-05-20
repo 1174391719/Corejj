@@ -33,6 +33,7 @@ import com.zyzxsp.constant.ConstantUrl;
 import com.zyzxsp.bean.UserInfoResData;
 import com.zyzxsp.dialog.DialogPresenter;
 import com.zyzxsp.dialog.DialogPresenterImpl;
+import com.zyzxsp.utils.StatusBarUtils;
 import com.zyzxsp.utils.ZLog;
 
 import java.net.ConnectException;
@@ -55,6 +56,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private View mView;
 
     private UserInfoResData.UserInfo mUserinfo;
+    private View mHeadView = null;
 
     @Nullable
     @Override
@@ -63,12 +65,14 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             mView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_mine_layout, container, false);
         }
         mUserInfoLayout = mView.findViewById(R.id.uesr_info_constraintLayout);
+        mHeadView = mView.findViewById(R.id.mine_header_view);
         mSimpleDraweeView = mView.findViewById(R.id.user_img);
         mUserNameText = mView.findViewById(R.id.user_name_textview);
         mPhoneText = mView.findViewById(R.id.user_phone_textView);
         mMyMeetLayout = mView.findViewById(R.id.my_meet_layout);
         mAboutLayout = mView.findViewById(R.id.about_layout);
 
+        mHeadView.setPadding(0, StatusBarUtils.getStateBarHeight(getContext()), 0, 0);
         mUserInfoLayout.setOnClickListener(this);
         mMyMeetLayout.setOnClickListener(this);
         mAboutLayout.setOnClickListener(this);
