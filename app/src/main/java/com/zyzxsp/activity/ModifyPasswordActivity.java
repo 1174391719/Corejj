@@ -1,9 +1,6 @@
 package com.zyzxsp.activity;
-
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -19,6 +16,7 @@ import com.zyzxsp.constant.ConstantUrl;
 import com.zyzxsp.bean.LoginOutResData;
 import com.zyzxsp.dialog.DialogPresenter;
 import com.zyzxsp.dialog.DialogPresenterImpl;
+import com.zyzxsp.presenter.MainPresenterImpl;
 import com.zyzxsp.utils.StatusBarUtils;
 import com.zyzxsp.utils.Utils;
 import com.zyzxsp.utils.ZLog;
@@ -34,7 +32,7 @@ import okhttp3.Call;
 import zxsp.com.netlibrary.CallBackUtil;
 import zxsp.com.netlibrary.OkhttpUtil;
 
-public class ModifyPasswordActivity extends AppCompatActivity implements View.OnClickListener {
+public class ModifyPasswordActivity extends BaseActivity implements View.OnClickListener {
     public static final String TAG = "ModifyPasswordActivity";
     private HeaderTitleView mHeaderTitleView;
 
@@ -233,6 +231,9 @@ public class ModifyPasswordActivity extends AppCompatActivity implements View.On
                     if (!TextUtils.isEmpty(errorMess)) {
                         Toast.makeText(ModifyPasswordActivity.this, errorMess, Toast.LENGTH_SHORT).show();
                     }
+                    if ("521001".equals(dataBean.getReturnCode())) {
+                        MainPresenterImpl.getInstants().logout(ModifyPasswordActivity.this);
+                    }
                 }
             }
         });
@@ -272,6 +273,9 @@ public class ModifyPasswordActivity extends AppCompatActivity implements View.On
                     String errorMess = dataBean.getReturnMessage();
                     if (!TextUtils.isEmpty(errorMess)) {
                         Toast.makeText(ModifyPasswordActivity.this, errorMess, Toast.LENGTH_SHORT).show();
+                    }
+                    if ("521001".equals(dataBean.getReturnCode())) {
+                        MainPresenterImpl.getInstants().logout(ModifyPasswordActivity.this);
                     }
                 }
             }

@@ -38,7 +38,6 @@ import com.ainemo.sdk.otf.RecordingState;
 import com.ainemo.sdk.otf.VideoInfo;
 import com.ainemo.shared.MediaSourceID;
 import com.ainemo.shared.UserActionListener;
-import com.zyzxsp.activity.HomeActivity;
 import com.zyzxsp.activity.ZyHomeActivity;
 import com.zyzxsp.myInterface.CallListener;
 import com.zyzxsp.utils.AlertUtil;
@@ -59,8 +58,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import static android.view.View.GONE;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
-import static com.zyzxsp.fragment.HomeFragment.CLOSE_CAMERA;
-import static com.zyzxsp.fragment.HomeFragment.CLOSE_VOICE;
+import static com.zyzxsp.fragment.MeetingFragment.CLOSE_CAMERA;
+import static com.zyzxsp.fragment.MeetingFragment.CLOSE_VOICE;
 
 
 /**

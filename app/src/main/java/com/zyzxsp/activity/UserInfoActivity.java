@@ -16,6 +16,7 @@ import com.zyzxsp.bean.LoginOutResData;
 import com.zyzxsp.bean.UserInfoResData;
 import com.zyzxsp.dialog.DialogPresenter;
 import com.zyzxsp.dialog.DialogPresenterImpl;
+import com.zyzxsp.presenter.MainPresenterImpl;
 import com.zyzxsp.utils.StatusBarUtils;
 import com.zyzxsp.utils.ZLog;
 import com.zyzxsp.view.HeaderTitleView;
@@ -136,13 +137,8 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
                 Gson json = new Gson();
                 LoginOutResData dataBean = json.fromJson(response, LoginOutResData.class);
                 if ("0".equals(dataBean.getReturnCode())) {
-
-
                     Toast.makeText(UserInfoActivity.this, "退出成功", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent();
-                    intent.setAction(BaseActivity.ACTION_CHECKOUT);
-                    UserInfoActivity.this.sendBroadcast(intent);
-                    goLoginActivity();
+                    MainPresenterImpl.getInstants().logout(UserInfoActivity.this);
                 } else {
                     String errorMess = dataBean.getReturnMessage();
                     if (!TextUtils.isEmpty(errorMess)) {
@@ -151,12 +147,5 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
                 }
             }
         });
-    }
-
-    private void goLoginActivity() {
-        Intent intent = new Intent(UserInfoActivity.this, ZyLoginActivity.class);
-        intent.putExtra("MY_NUMBER", "");
-        intent.putExtra("displayName", "");
-        startActivity(intent);
     }
 }

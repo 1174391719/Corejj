@@ -1,34 +1,24 @@
 package com.zyzxsp.activity;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.log.L;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import com.ainemo.sdk.otf.ConnectNemoCallback;
-import com.ainemo.sdk.otf.LoginResponseData;
 import com.ainemo.sdk.otf.NemoSDK;
 import com.zyzxsp.R;
 import com.zyzxsp.UserBean;
-import com.zyzxsp.fragment.AddressListFragment;
-import com.zyzxsp.fragment.FileFragment;
-import com.zyzxsp.fragment.HomeFragment;
+import com.zyzxsp.fragment.MeetingFragment;
 import com.zyzxsp.fragment.MineFragment;
 import com.zyzxsp.utils.PermissionUtils;
 import com.zyzxsp.utils.StatusBarUtils;
-import com.zyzxsp.utils.Utils;
 import com.zyzxsp.utils.ZLog;
 
 import java.util.ArrayList;
@@ -49,7 +39,7 @@ public class ZyHomeActivity extends BaseActivity implements RadioGroup.OnChecked
     private RadioButton mFileRadioButton;
     private RadioButton mMineRadioButton;
     private List<Fragment> mFragmentList;
-    private HomeFragment mHomeFragment;
+    private MeetingFragment mHomeFragment;
     // private AddressListFragment mAddressListFragment;
     //  private FileFragment mFileFragment;
     private MineFragment mMineFragment;
@@ -110,7 +100,7 @@ public class ZyHomeActivity extends BaseActivity implements RadioGroup.OnChecked
         mFragmentManager = getSupportFragmentManager();
 
         mFragmentList = new ArrayList<>();
-        mHomeFragment = new HomeFragment();
+        mHomeFragment = new MeetingFragment();
 //        mAddressListFragment = new AddressListFragment();
 //        mFileFragment = new FileFragment();
         mMineFragment = new MineFragment();
@@ -149,7 +139,7 @@ public class ZyHomeActivity extends BaseActivity implements RadioGroup.OnChecked
                 mFragmentTransaction.show(mFragmentList.get(index));
             } else {
                 if (index == 0) {
-                    mHomeFragment = new HomeFragment();
+                    mHomeFragment = new MeetingFragment();
                     mFragmentTransaction.add(R.id.framelayout_container, mHomeFragment, HOME_FRAGMENT_TAG);
                 }
 //                else if (index == 1) {

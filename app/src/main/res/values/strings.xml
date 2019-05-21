@@ -197,7 +197,7 @@
     <string name="user_info_name_str">姓名</string>
     <string name="user_info_account_str">账号</string>
     <string name="user_info_mailbox_str">邮箱</string>
-    <string name="user_info_modify_password_str">修改密码</string>
+    <string name="user_info_modify_password_str">修改登录密码</string>
     <string name="user_info_loginout_str">退出登录</string>
 
     <string name="modify_old_password">请输入原密码</string>

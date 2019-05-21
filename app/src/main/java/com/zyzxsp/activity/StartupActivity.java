@@ -6,6 +6,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.zyzxsp.R;
+import com.zyzxsp.presenter.MainPresenterImpl;
 import com.zyzxsp.utils.StatusBarUtils;
 import com.zyzxsp.utils.ZLog;
 
@@ -19,6 +20,7 @@ public class StartupActivity extends BaseActivity {
         ZLog.i("Init...");
         StatusBarUtils.setTransparent(this);
         setContentView(R.layout.activity_startup);
+        MainPresenterImpl.getInstants();
     }
 
     @Override

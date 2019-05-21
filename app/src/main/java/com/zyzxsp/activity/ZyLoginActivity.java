@@ -163,7 +163,7 @@ public class ZyLoginActivity extends BaseActivity implements View.OnClickListene
         switch (id) {
             case R.id.login_button:
                 String loginNameStr = ZLog.use_config_data ? "13678888889" : mLoginName.getText().toString();
-                String loginPasswordStr = ZLog.use_config_data ? "zyzx2019" : mLoginPassword.getText().toString();
+                String loginPasswordStr = ZLog.use_config_data ? "123456a" : mLoginPassword.getText().toString();
                 mLoginPassword.getText().toString();
                 if (loginNameStr.length() == 0 || loginPasswordStr.length() == 0) {
                     Toast.makeText(getApplicationContext(), "账号或密码为空，请输入账号或密码", Toast.LENGTH_SHORT).show();

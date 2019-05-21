@@ -8,7 +8,6 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.log.L;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.WindowManager;
@@ -35,8 +34,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
-import static com.zyzxsp.fragment.HomeFragment.CLOSE_CAMERA;
-import static com.zyzxsp.fragment.HomeFragment.CLOSE_VOICE;
+import static com.zyzxsp.fragment.MeetingFragment.CLOSE_CAMERA;
+import static com.zyzxsp.fragment.MeetingFragment.CLOSE_VOICE;
 
 public class ZyCallActivity extends FragmentActivity implements BackHandledInterface, VideoFragment.HangupListener {
     public static final String TAG = "ZyCallActivity";

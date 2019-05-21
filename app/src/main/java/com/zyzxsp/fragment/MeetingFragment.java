@@ -18,12 +18,15 @@ import android.widget.Toast;
 import com.ainemo.sdk.otf.NemoSDK;
 import com.zyzxsp.R;
 import com.zyzxsp.activity.ZyCallActivity;
+import com.zyzxsp.dialog.DialogPresenter;
+import com.zyzxsp.dialog.DialogPresenterImpl;
 import com.zyzxsp.utils.PermissionUtils;
 import com.zyzxsp.utils.StatusBarUtils;
+import com.zyzxsp.utils.Utils;
 import com.zyzxsp.utils.ZLog;
 
-public class HomeFragment extends Fragment implements View.OnClickListener {
-    public static final String TAG = "HomeFragment";
+public class MeetingFragment extends Fragment implements View.OnClickListener {
+    public static final String TAG = "MeetingFragment";
     public static final String CLOSE_CAMERA = "close_camera";
     public static final String CLOSE_VOICE = "close_voice";
     private View mView;
@@ -45,7 +48,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (mView == null) {
-            mView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_home_layout, container, false);
+            mView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_meeting_layout, container, false);
         }
         mHeadView = mView.findViewById(R.id.meet_header_view);
         mMeetNumberEdit = mView.findViewById(R.id.input_meet_number);
@@ -99,6 +102,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             case R.id.join_meet:
                 if (mMeetNumberEdit.getText().toString().trim().length() == 0) {
                     Toast.makeText(getActivity(), "请输入呼叫号码", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (!Utils.isNetworkConnected(getContext())) {
+                    DialogPresenter dialogPresenter = new DialogPresenterImpl();
+                    dialogPresenter.confirm(getContext(), null, "网络连接异常，请重试", "确定");
                     return;
                 }
                 if (!PermissionUtils.allowJoinMeeting(getActivity())) {
