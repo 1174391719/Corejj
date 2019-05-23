@@ -6,8 +6,8 @@ android {
         applicationId "com.zyzxsp"
         minSdkVersion 15
         targetSdkVersion 28
-        versionCode 200
-        versionName "2.0.1_test_0516"
+        versionCode 1001
+        versionName "1.0.01"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {

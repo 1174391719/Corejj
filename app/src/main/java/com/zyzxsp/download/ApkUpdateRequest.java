@@ -59,7 +59,7 @@ public class ApkUpdateRequest {
                     } else {
                         ZLog.d("It's latest version. ");
                         DialogPresenter presenter = new DialogPresenterImpl();
-                        presenter.confirm(context, null, "当前已是最新版本", "确定");
+                        presenter.confirm(context, null, "此版本为最新版本", "确定");
                     }
                 }
             }

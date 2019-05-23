@@ -1,4 +1,5 @@
 package com.zyzxsp.activity;
+
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -37,6 +39,7 @@ public class ModifyPasswordActivity extends BaseActivity implements View.OnClick
     private HeaderTitleView mHeaderTitleView;
 
     private View mErrorTip = null;
+    private TextView mTips = null;
     private EditText mOldPwEditText;
     private ImageView mCleanOldPw;
     private EditText mNewPwEditText;
@@ -54,6 +57,7 @@ public class ModifyPasswordActivity extends BaseActivity implements View.OnClick
         setContentView(R.layout.activity_modify_password);
         mHeaderTitleView = findViewById(R.id.modify_password_header_view);
         mErrorTip = findViewById(R.id.ll_modify_pw_error_tip);
+        mTips = findViewById(R.id.tv_modify_pw_tip);
         mOldPwEditText = findViewById(R.id.et_modify_pw_old_pw);
         mCleanOldPw = findViewById(R.id.iv_modify_pw_clean_old_pw);
         mNewPwEditText = findViewById(R.id.et_modify_pw_new_pw);
@@ -157,8 +161,9 @@ public class ModifyPasswordActivity extends BaseActivity implements View.OnClick
                 mNewConfirmPwEditText.setText("");
                 break;
             case R.id.bt_modify_pw:
-                checkNewPassword();
-                checkOldPassword(mOldPwEditText.getText().toString());
+                if (checkNewPassword()) {
+                    checkOldPassword(mOldPwEditText.getText().toString());
+                }
                 break;
             default:
                 break;
@@ -168,17 +173,25 @@ public class ModifyPasswordActivity extends BaseActivity implements View.OnClick
     }
 
     //**********************************************************************************************
-    private void checkNewPassword() {
+    private boolean checkNewPassword() {
+        String oldPw = mOldPwEditText.getText().toString();
         String newPw = mNewPwEditText.getText().toString();
         String confirmPw = mNewConfirmPwEditText.getText().toString();
         if (TextUtils.isEmpty(newPw) || TextUtils.isEmpty(confirmPw)) {
-            return;
+            return false;
         }
+        if (oldPw.equals(newPw) || oldPw.equals(confirmPw)) {
+            mTips.setText(R.string.modify_pw_old);
+            mErrorTip.setVisibility(View.VISIBLE);
+            return false;
+        }
+        mTips.setText(R.string.modify_pw_new);
         if (!newPw.equals(confirmPw)) {
             mErrorTip.setVisibility(View.VISIBLE);
-            return;
+            return false;
         } else {
             mErrorTip.setVisibility(View.GONE);
+            return true;
         }
     }
 
@@ -269,6 +282,7 @@ public class ModifyPasswordActivity extends BaseActivity implements View.OnClick
                 LoginOutResData dataBean = json.fromJson(response, LoginOutResData.class);
                 if ("0".equals(dataBean.getReturnCode())) {
                     Toast.makeText(ModifyPasswordActivity.this, "密码修改成功", Toast.LENGTH_SHORT).show();
+                    MainPresenterImpl.getInstants().logout(ModifyPasswordActivity.this);
                 } else {
                     String errorMess = dataBean.getReturnMessage();
                     if (!TextUtils.isEmpty(errorMess)) {

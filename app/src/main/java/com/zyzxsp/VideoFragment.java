@@ -40,12 +40,15 @@ import com.ainemo.shared.MediaSourceID;
 import com.ainemo.shared.UserActionListener;
 import com.zyzxsp.activity.ZyHomeActivity;
 import com.zyzxsp.myInterface.CallListener;
+import com.zyzxsp.presenter.CallPresenter;
+import com.zyzxsp.presenter.CallPresenterImpl;
 import com.zyzxsp.utils.AlertUtil;
 import com.zyzxsp.utils.CommonTime;
 import com.zyzxsp.utils.PermissionUtils;
 import com.zyzxsp.utils.VolumeManager;
 import com.zyzxsp.utils.ZLog;
 import com.zyzxsp.view.CallStatisticsView;
+import com.zyzxsp.view.CallView;
 import com.zyzxsp.view.Dtmf;
 import com.zyzxsp.view.StatisticsRender;
 import com.zyzxsp.view.VideoGroupView;
@@ -67,7 +70,8 @@ import static com.zyzxsp.fragment.MeetingFragment.CLOSE_VOICE;
  */
 @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
 public class VideoFragment extends Fragment implements CallListener,
-        View.OnClickListener, VideoGroupView.ForceLayoutListener, VideoGroupView.BGCellLayoutInfoListener, VolumeManager.MuteCallback {
+        View.OnClickListener, VideoGroupView.ForceLayoutListener, VideoGroupView.BGCellLayoutInfoListener,
+        VolumeManager.MuteCallback, CallView {
     private static final String TAG = "VideoFragment";
     //更新统计信息延迟
     private final static int REFRESH_STATISTICS_INFO_DELAYED = 2000;
@@ -217,7 +221,7 @@ public class VideoFragment extends Fragment implements CallListener,
     //初始默认时间
     private long recordingDuration = 0;
     //true 已静音，fasle 未静音
-    private boolean isMicphoneMuted = true;
+    private boolean isMicrophoneMuted = true;
     //true继续，false暂停
     private boolean isStopCount = false;
     //是否是大屏
@@ -254,15 +258,17 @@ public class VideoFragment extends Fragment implements CallListener,
     private boolean mCloseCameraFromActivity = false;
 
     private boolean mCloseVoiceFromActivity = false;
+    private CallPresenter mCallPresenter = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.call_fragment_layout, container, false);
-
     }
 
     @Override
     public void onViewCreated(View view, final Bundle savedInstanceState) {
+        mCallPresenter = new CallPresenterImpl();
+        mCallPresenter.setView(this);
         countTimer();
         initialization(view);
         refreshMuteMicBtn();
@@ -273,11 +279,17 @@ public class VideoFragment extends Fragment implements CallListener,
                     ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED;
             closeVideo();
             mCloseVoiceFromActivity = mGetBundle.getBoolean(CLOSE_VOICE, false);
-            Log.d(TAG, "11111 mGetBundle != null onViewCreated: mCloseCameraFromActivity  " + mCloseCameraFromActivity + "   mCloseVoiceFromActivity   " + mCloseVoiceFromActivity);
-            isMicphoneMuted = mCloseVoiceFromActivity ? true :
+            ZLog.d("mCloseCameraFromActivity:" + mCloseCameraFromActivity + "   mCloseVoiceFromActivity   " + mCloseVoiceFromActivity);
+
+            isMicrophoneMuted = mCloseVoiceFromActivity ||
                     ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED;
-            closeVoice(isMicphoneMuted);
-            Log.d(TAG, "11111 mGetBundle != null onViewCreated: videoMute  " + videoMute + "   isMicphoneMuted  " + isMicphoneMuted);
+            mMuteMicBtn.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mCallPresenter.closeMicrophone(isMicrophoneMuted);
+                }
+            }, 1000);
+
         }
         super.onViewCreated(view, savedInstanceState);
 
@@ -287,7 +299,7 @@ public class VideoFragment extends Fragment implements CallListener,
         Bundle bundle = new Bundle();
         bundle.putBoolean(CLOSE_CAMERA, closeCamera);
         bundle.putBoolean(CLOSE_VOICE, closeVoice);
-        Log.d(TAG, "11111 newInstance closeCamera  " + closeCamera + "   closeVoice  " + closeVoice);
+        ZLog.d("closeCamera:" + closeCamera + "closeVoice:" + closeVoice);
         VideoFragment fragment = new VideoFragment();
         fragment.setArguments(bundle);
         return fragment;
@@ -732,7 +744,7 @@ public class VideoFragment extends Fragment implements CallListener,
             audioMuteStatus.set(isMicPhoneMuted);
             //改变远端mute icon
             mVideoView.setMuteLocalAudio(isMicPhoneMuted);
-            if (this.isMicphoneMuted) {
+            if (this.isMicrophoneMuted) {
                 mMuteMicBtn.setImageResource(R.mipmap.ic_call_open_voice_tube_clicked);
                 mMuteMicLabel.setText(R.string.unmute_mic);
             } else {
@@ -816,12 +828,12 @@ public class VideoFragment extends Fragment implements CallListener,
             mHandupContainer.setVisibility(VISIBLE);
 
             if (mCloseVoiceFromActivity) {
-                isMicphoneMuted = mCloseVoiceFromActivity;
+                isMicrophoneMuted = mCloseVoiceFromActivity;
             } else {
-                isMicphoneMuted = NemoSDK.getInstance().isMicMuted();
+                isMicrophoneMuted = NemoSDK.getInstance().isMicMuted();
             }
 //            isMicphoneMuted = NemoSDK.getInstance().isMicMuted();
-            if (isMicphoneMuted) {
+            if (isMicrophoneMuted) {
                 if (isHandupNow) {
                     //取消举手
                     mHandupBtn.setImageResource(R.mipmap.ic_toolbar_handdown);
@@ -840,8 +852,8 @@ public class VideoFragment extends Fragment implements CallListener,
             mMicContainer.setVisibility(VISIBLE);
             mHandupContainer.setVisibility(GONE);
 
-            isMicphoneMuted = !isMicphoneMuted;
-            setMicPhoneMuted(isMicphoneMuted);
+            isMicrophoneMuted = !isMicrophoneMuted;
+            setMicPhoneMuted(isMicrophoneMuted);
         }
     }
 
@@ -1063,9 +1075,9 @@ public class VideoFragment extends Fragment implements CallListener,
     //静音初始状态
     public void MicPhoneResource() {
         mVideoView.destroy();
-        if (isMicphoneMuted) {
-            isMicphoneMuted = false;
-            setMicPhoneMuted(isMicphoneMuted);
+        if (isMicrophoneMuted) {
+            isMicrophoneMuted = false;
+            setMicPhoneMuted(isMicrophoneMuted);
         }
     }
 
@@ -1163,7 +1175,7 @@ public class VideoFragment extends Fragment implements CallListener,
                     PermissionUtils.checkPermission(getActivity(), Manifest.permission.RECORD_AUDIO);
                     return;
                 }
-                Log.i(TAG, "print onClick-->isMicMuted=" + !NemoSDK.getInstance().isMicMuted());
+                ZLog.i("mute_mic_btn:" + !NemoSDK.getInstance().isMicMuted());
                 NemoSDK.getInstance().enableMic(!NemoSDK.getInstance().isMicMuted(), true);
                 refreshMuteMicBtn();
                 break;
@@ -1281,19 +1293,6 @@ public class VideoFragment extends Fragment implements CallListener,
         Log.i(TAG, "print onClick-->videoMute" + videoMute);
         NemoSDK.getInstance().setVideoMute(videoMute);
         // mRecordingTimerHideShow.setVisibility(GONE);
-    }
-
-    public void closeVoice(boolean enableMic) {
-        Log.i(TAG, "closeVoice  =" + !NemoSDK.getInstance().isMicMuted());
-        if (enableMic) {
-            NemoSDK.getInstance().enableMic(true, false);
-        } else {
-            NemoSDK.getInstance().enableMic(false, false);
-        }
-        mMicContainer.setVisibility(VISIBLE);
-        mHandupContainer.setVisibility(GONE);
-        setMicPhoneMuted(isMicphoneMuted);
-
     }
 
     private HangupListener mHangupListener;
@@ -1906,6 +1905,14 @@ public class VideoFragment extends Fragment implements CallListener,
             }
         });
     }
+
+    @Override
+    public void onCloseMicrophone(boolean close) {
+        mMicContainer.setVisibility(VISIBLE);
+        mHandupContainer.setVisibility(GONE);
+        setMicPhoneMuted(isMicrophoneMuted);
+    }
+    //**********************************************************************************************
 
     private boolean isSupportHorizontalFECC(int capability) {
         return (capability & 1 << 1) != 0;

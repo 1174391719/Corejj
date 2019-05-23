@@ -217,4 +217,7 @@
     <string name="join_meet_will_close_camera_str">入会时将关闭摄像头</string>
     <string name="join_meet_will_close_voice_str">入会时将关闭麦克风</string>
     <string name="user_info_title">个人信息</string>
+
+    <string name="modify_pw_new">密码输入不一致，请重新输入</string>
+    <string name="modify_pw_old">新旧密码不能一致</string>
 </resources>

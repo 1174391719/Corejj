@@ -56,7 +56,7 @@ public class ZyCallActivity extends FragmentActivity implements BackHandledInter
         boolean closeVoice = intent.getBooleanExtra(CLOSE_VOICE, false);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        Log.d(TAG, "11111 跳转到 ZyCallActivity  closeCamera   " + closeCamera + "   closeVoice  " + closeVoice);
+        ZLog.d("Init... closeCamera:" + closeCamera + "closeVoice:" + closeVoice);
         mVideoFragment = VideoFragment.newInstance(closeCamera, closeVoice);
         mVideoFragment.setHangupListener(this);
 
