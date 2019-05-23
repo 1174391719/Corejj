@@ -38,7 +38,7 @@ import com.ainemo.sdk.otf.RecordingState;
 import com.ainemo.sdk.otf.VideoInfo;
 import com.ainemo.shared.MediaSourceID;
 import com.ainemo.shared.UserActionListener;
-import com.zyzxsp.activity.ZyHomeActivity;
+import com.zyzxsp.activity.ZyMainActivity;
 import com.zyzxsp.myInterface.CallListener;
 import com.zyzxsp.presenter.CallPresenter;
 import com.zyzxsp.presenter.CallPresenterImpl;
@@ -508,7 +508,7 @@ public class VideoFragment extends Fragment implements CallListener,
         mVolumeManager = new VolumeManager(getActivity(), view.findViewById(R.id.operation_volume_brightness), AudioManager.STREAM_VOICE_CALL);
         mVolumeManager.setMuteCallback(this);
         currentVolume = mVolumeManager.getVolume();
-        mName.setText(ZyHomeActivity.sUserBean.getName());
+        mName.setText(ZyMainActivity.sUserBean.getName());
 
         TimeHide();
     }

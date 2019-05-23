@@ -17,11 +17,13 @@ public class MainPresenterImpl implements MainPresenter {
     private static MainPresenter sMainPresenter = null;
     private UserBean mUser = null;
     private RecentCallPresenter mRecentCallPresenter = null;
+    private MainActivityPresenter mMainActivityPresenter = null;
 
     private MainPresenterImpl() {
         ZLog.i("Init...");
         mUser = new UserBean();
         mRecentCallPresenter = new RecentCallPresenterImpl();
+        mMainActivityPresenter = new MainActivityPresenterImpl();
     }
 
     public static MainPresenter getInstants() {
@@ -48,5 +50,10 @@ public class MainPresenterImpl implements MainPresenter {
         context.sendBroadcast(intent);
         Intent i = new Intent(context, ZyLoginActivity.class);
         context.startActivity(i);
+    }
+
+    @Override
+    public MainActivityPresenter getMainActivityPresenter() {
+        return mMainActivityPresenter;
     }
 }

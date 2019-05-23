@@ -13,5 +13,7 @@ public interface MainPresenter {
 
     RecentCallPresenter getRecentCallPresenter();
 
+    MainActivityPresenter getMainActivityPresenter();
+
     void logout(Context context);
 }

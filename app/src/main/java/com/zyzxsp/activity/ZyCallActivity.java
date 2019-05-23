@@ -23,6 +23,7 @@ import com.ainemo.sdk.otf.RosterWrapper;
 import com.ainemo.sdk.otf.VideoInfo;
 import com.zyzxsp.R;
 import com.zyzxsp.VideoFragment;
+import com.zyzxsp.presenter.MainPresenterImpl;
 import com.zyzxsp.utils.BackHandledFragment;
 import com.zyzxsp.utils.BackHandledInterface;
 import com.zyzxsp.utils.ZLog;
@@ -63,7 +64,7 @@ public class ZyCallActivity extends FragmentActivity implements BackHandledInter
         manager = getFragmentManager();
         manager.beginTransaction().add(R.id.content_frame_zy, mVideoFragment).commitAllowingStateLoss();
 
-        mVideoFragment.setDisplayName(ZyHomeActivity.sUserBean.getName());
+        mVideoFragment.setDisplayName(ZyMainActivity.sUserBean.getName());
         mVideoFragment.setCallNumber(myNumber);
 
         boolean isIncomingCall = intent.getBooleanExtra("isIncomingCall", false);
@@ -278,9 +279,10 @@ public class ZyCallActivity extends FragmentActivity implements BackHandledInter
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        L.i(TAG, "code:" + code + ":reason:" + reason);
+                        ZLog.d("onKickOut. code:" + code + " reason:" + reason);
                         Toast.makeText(ZyCallActivity.this, "被踢了", Toast.LENGTH_LONG).show();
                         finish();
+                        MainPresenterImpl.getInstants().getMainActivityPresenter().showLogoutDialog();
                     }
                 });
 

@@ -1,6 +1,7 @@
 package com.zyzxsp.dialog;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,6 +38,12 @@ public class DialogPresenterImpl implements DialogPresenter {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+
+            }
+        });
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
                 if (callback != null) {
                     callback.onPositiveClick();
                 }

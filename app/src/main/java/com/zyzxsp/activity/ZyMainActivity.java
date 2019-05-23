@@ -17,6 +17,9 @@ import com.zyzxsp.R;
 import com.zyzxsp.UserBean;
 import com.zyzxsp.fragment.MeetingFragment;
 import com.zyzxsp.fragment.MineFragment;
+import com.zyzxsp.presenter.MainActivityPresenter;
+import com.zyzxsp.presenter.MainPresenter;
+import com.zyzxsp.presenter.MainPresenterImpl;
 import com.zyzxsp.utils.PermissionUtils;
 import com.zyzxsp.utils.StatusBarUtils;
 import com.zyzxsp.utils.ZLog;
@@ -24,8 +27,8 @@ import com.zyzxsp.utils.ZLog;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ZyHomeActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
-    public static final String TAG = "ZyHomeActivity";
+public class ZyMainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener, MainActivityPresenter.MainActivityView {
+    public static final String TAG = "ZyMainActivity";
     public static final String HOME_FRAGMENT_TAG = "home_fragment_tag";
     public static final String ADDRESSLIST_FRAGMENT_TAG = "addresslist_fragment_tag";
     public static final String FILE_FRAGMENT_TAG = "file_fragment_tag";
@@ -46,6 +49,7 @@ public class ZyHomeActivity extends BaseActivity implements RadioGroup.OnChecked
     private FragmentManager mFragmentManager;
     private FragmentTransaction mFragmentTransaction;
     private NemoSDK nemoSDK = NemoSDK.getInstance();
+    private MainActivityPresenter mPresenter = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,6 +57,9 @@ public class ZyHomeActivity extends BaseActivity implements RadioGroup.OnChecked
         StatusBarUtils.setTransparent(this);
         setContentView(R.layout.activity_home_layout);
         ZLog.i("Init...");
+        mPresenter = MainPresenterImpl.getInstants().getMainActivityPresenter();
+        mPresenter.setContext(this);
+        mPresenter.setView(this);
         PermissionUtils.checkBasePermission(this);
         mFrameLayout = findViewById(R.id.framelayout_container);
         mRadioGroup = findViewById(R.id.radio_group_button);

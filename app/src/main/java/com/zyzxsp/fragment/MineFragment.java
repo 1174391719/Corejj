@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -18,7 +17,6 @@ import android.widget.Toast;
 import com.ainemo.sdk.otf.ConnectNemoCallback;
 import com.ainemo.sdk.otf.LoginResponseData;
 import com.ainemo.sdk.otf.NemoSDK;
-import com.bumptech.glide.Glide;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -27,8 +25,7 @@ import com.zyzxsp.R;
 import com.zyzxsp.activity.AboutActivity;
 import com.zyzxsp.activity.MyCloudMeetingActivity;
 import com.zyzxsp.activity.UserInfoActivity;
-import com.zyzxsp.activity.ZyHomeActivity;
-import com.zyzxsp.activity.ZyLoginActivity;
+import com.zyzxsp.activity.ZyMainActivity;
 import com.zyzxsp.constant.ConstantUrl;
 import com.zyzxsp.bean.UserInfoResData;
 import com.zyzxsp.dialog.DialogPresenter;
@@ -117,13 +114,13 @@ public class MineFragment extends Fragment implements View.OnClickListener {
      * 获取用户信息请求
      */
     public void requestGetUserInfo() {
-        if (ZyHomeActivity.sUserBean == null || ZyHomeActivity.sUserBean.getToken() == null) {
+        if (ZyMainActivity.sUserBean == null || ZyMainActivity.sUserBean.getToken() == null) {
             return;
         }
         String url = ConstantUrl.HOST + ConstantUrl.GET_USER_INFO;
         ZLog.d("url:" + url);
         Map map = new HashMap();
-        map.put("token", ZyHomeActivity.sUserBean.getToken());
+        map.put("token", ZyMainActivity.sUserBean.getToken());
 
         OkhttpUtil.okHttpPostJson(url, null, map, new CallBackUtil.CallBackString() {
             @Override
@@ -159,7 +156,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                                 .setAutoPlayAnimations(true)
                                 .build();
                         mSimpleDraweeView.setController(controller);
-                        ZyHomeActivity.sUserBean.setName(mUserinfo.getName());
+                        ZyMainActivity.sUserBean.setName(mUserinfo.getName());
                         loginXiaoyu();
                     }
 
@@ -175,9 +172,9 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
     //**********************************************************************************************
     private void loginXiaoyu() {
-        ZLog.i("Name:" + ZyHomeActivity.sUserBean.getName() + " account:" + ZyHomeActivity.sUserBean.getAccount());
-        NemoSDK.getInstance().loginExternalAccount(ZyHomeActivity.sUserBean.getName(),
-                ZyHomeActivity.sUserBean.getAccount(), new ConnectNemoCallback() {
+        ZLog.i("Name:" + ZyMainActivity.sUserBean.getName() + " account:" + ZyMainActivity.sUserBean.getAccount());
+        NemoSDK.getInstance().loginExternalAccount(ZyMainActivity.sUserBean.getName(),
+                ZyMainActivity.sUserBean.getAccount(), new ConnectNemoCallback() {
                     @Override
                     public void onFailed(int i) {
                         ZLog.e("i:" + i);

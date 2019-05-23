@@ -2,7 +2,6 @@ package com.zyzxsp.activity;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.log.L;
@@ -25,7 +24,6 @@ import com.zyzxsp.R;
 import com.zyzxsp.dialog.LoadingDialog;
 import com.zyzxsp.download.ApkUpdateRequest;
 import com.zyzxsp.download.PackageInfoUtil;
-import com.zyzxsp.utils.ZLog;
 import com.zyzxsp.view.HeaderTitleView;
 
 import okhttp3.Call;
@@ -201,7 +199,7 @@ public class MyTestActivity extends Activity implements View.OnClickListener {
                 mTimer.start();
                 break;
             case R.id.go_zyhome:
-                Intent intent = new Intent(MyTestActivity.this,ZyHomeActivity.class);
+                Intent intent = new Intent(MyTestActivity.this,ZyMainActivity.class);
                 startActivity(intent);
             default:
                 break;

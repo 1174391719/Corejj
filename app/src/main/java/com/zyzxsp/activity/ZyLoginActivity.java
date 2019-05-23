@@ -231,8 +231,8 @@ public class ZyLoginActivity extends BaseActivity implements View.OnClickListene
                     if ("0".equals(dataBean.getReturnCode())) {
                         LoginResData.LoginData mLoginData = dataBean.getObject();
                         String token = mLoginData.getToken();
-                        ZyHomeActivity.sUserBean.setToken(token);
-                        ZyHomeActivity.sUserBean.setAccount(name);
+                        ZyMainActivity.sUserBean.setToken(token);
+                        ZyMainActivity.sUserBean.setAccount(name);
                         ZLog.d("token:" + token);
                         goHomeActivity();
                         finish();
@@ -248,7 +248,7 @@ public class ZyLoginActivity extends BaseActivity implements View.OnClickListene
     }
 
     private void goHomeActivity() {
-        Intent intent = new Intent(ZyLoginActivity.this, ZyHomeActivity.class);
+        Intent intent = new Intent(ZyLoginActivity.this, ZyMainActivity.class);
         startActivity(intent);
     }
 

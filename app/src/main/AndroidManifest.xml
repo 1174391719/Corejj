@@ -67,7 +67,7 @@
             android:configChanges="screenSize|orientation"
             android:launchMode="singleTask"
             android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />
-        <activity android:name=".activity.ZyHomeActivity" />
+        <activity android:name=".activity.ZyMainActivity" />
 
         <!-- 被叫功能 -->
         <service android:name=".IncomingCallService" />
