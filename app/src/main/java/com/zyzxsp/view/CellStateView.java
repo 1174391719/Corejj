@@ -243,21 +243,21 @@ public class CellStateView extends ViewGroup {
     }
 
     public void setAudioOnly(boolean flag) {
-        Log.i("TAG","CommitInfo  setAudioOnly66=="+flag);
+        Log.i("TAG", "CommitInfo  setAudioOnly66==" + flag);
         if (audioOnlyState == flag) {
-            Log.i("TAG","CommitInfo  setAudioOnly77=="+flag+"==audioOnlyState=="+audioOnlyState);
+            Log.i("TAG", "CommitInfo  setAudioOnly77==" + flag + "==audioOnlyState==" + audioOnlyState);
             return;
         }
         this.audioOnlyState = flag;
-        Log.i("TAG","CommitInfo observerMode88=="+observerMode+"==audioOnlyState=="+audioOnlyState);
+        Log.i("TAG", "CommitInfo observerMode88==" + observerMode + "==audioOnlyState==" + audioOnlyState);
         if (audioOnlyState && (observerMode)) {
-            Log.i("TAG","CommitInfo observerMode99=="+observerMode+"==audioOnlyState=="+audioOnlyState);
+            Log.i("TAG", "CommitInfo observerMode99==" + observerMode + "==audioOnlyState==" + audioOnlyState);
             return;
         }
 
         mProfileName.setVisibility(audioOnlyState ? VISIBLE : GONE);
         mAudioOnlyText.setVisibility(audioOnlyState ? VISIBLE : GONE);
-        Log.i(TAG,"CommitInfo mCellStateBg100=="+audioOnlyState);
+        Log.i(TAG, "CommitInfo mCellStateBg100==" + audioOnlyState);
         mCellStateBg.setVisibility(audioOnlyState ? VISIBLE : GONE);
 
         if (audioOnlyState) {
@@ -266,12 +266,12 @@ public class CellStateView extends ViewGroup {
             mMutedAudioBg.setVisibility(GONE);
             mVideoMuteText.setVisibility(GONE);
             mBlack40Bg.setVisibility(GONE);
-           // mProfileImage.setVisibility(GONE);
-            Log.i("TAG","CommitInfo observerMode101====audioOnlyState=="+audioOnlyState);
+            // mProfileImage.setVisibility(GONE);
+            Log.i("TAG", "CommitInfo observerMode101====audioOnlyState==" + audioOnlyState);
         } else {
-            Log.i("TAG","CommitInfo setAudioOnly102=="+flag);
-            mAudioMuteImageSmall.setVisibility(audioMute && !isFullScreen? VISIBLE : GONE);
-           // mCellStateBg.setVisibility(VISIBLE);
+            Log.i("TAG", "CommitInfo setAudioOnly102==" + flag);
+            mAudioMuteImageSmall.setVisibility(audioMute && !isFullScreen ? VISIBLE : GONE);
+            // mCellStateBg.setVisibility(VISIBLE);
         }
         layoutSelf();
     }
@@ -630,7 +630,7 @@ public class CellStateView extends ViewGroup {
                 mPSTNText.layout(left, top + 60 * density, left + twidth, (top + mPSTNText.getMeasuredHeight()) + 60 * density);
 
             } else if (audioOnlyState) {
-                Log.i(TAG,"audioOnlyStateCSL=="+audioOnlyState);
+                Log.i(TAG, "audioOnlyStateCSL==" + audioOnlyState);
                 mProfileName.layout((width - mProfileName.getMeasuredWidth()) / 2, (height - mProfileName.getMeasuredHeight()) / 2 + 30 * density, (width + mProfileName.getMeasuredWidth()) / 2, (height + mProfileName.getMeasuredHeight()) / 2 + 30 * density);
                 mProfileName.setVisibility(VISIBLE);
                 //  mProfileImage.setVisibility(VISIBLE);
@@ -667,8 +667,7 @@ public class CellStateView extends ViewGroup {
             smallDisplayName.setVisibility(VISIBLE);
             fullDisplayName.setVisibility(GONE);
             smallDisplayName.setText(nameText);
-            smallDisplayName.layout(r - smallDisplayName.getMeasuredWidth(), gap,
-                    r - gap, smallDisplayName.getMeasuredHeight() + gap);
+            smallDisplayName.layout(gap, b - smallDisplayName.getMeasuredHeight() - gap, smallDisplayName.getMeasuredWidth() + gap, b - gap);
             mVideoMuteText.measure(0, 0);
             mNoVideoText.measure(0, 0);
             mAudioOnlyText.measure(0, 0);
@@ -685,7 +684,7 @@ public class CellStateView extends ViewGroup {
             } else if (isUsingPSTN) {
                 mCellStateBg.setVisibility(VISIBLE);
             } else if (audioOnlyState) {
-                Log.i(TAG,"audioOnlyStateCSL2=="+audioOnlyState);
+                Log.i(TAG, "audioOnlyStateCSL2==" + audioOnlyState);
                 mBlack40Bg.setVisibility(GONE);
                 mCellStateBg.setVisibility(VISIBLE);
                 mAudioOnlyText.setGravity(Gravity.CENTER_HORIZONTAL);

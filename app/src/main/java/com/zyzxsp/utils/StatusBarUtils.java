@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 
 /**
@@ -33,15 +34,25 @@ public class StatusBarUtils {
     @TargetApi(Build.VERSION_CODES.KITKAT)
     private static void transparentStatusBar(Activity activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            //需要设置这个flag contentView才能延伸到状态栏
-            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-            //状态栏覆盖在contentView上面，设置透明使contentView的背景透出来
-            activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
+            Window window = activity.getWindow();
+            View decorView = window.getDecorView();
+            //两个 flag 要结合使用，表示让应用的主体内容占用系统状态栏的空间
+            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+            decorView.setSystemUiVisibility(option);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            //设置状态栏为透明，否则在部分手机上会呈现系统默认的浅灰色
+            window.setStatusBarColor(Color.TRANSPARENT);
+            //导航栏颜色也可以考虑设置为透明色
+            //window.setNavigationBarColor(Color.TRANSPARENT);
         } else {
-            //让contentView延伸到状态栏并且设置状态栏颜色透明
-            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            Window window = activity.getWindow();
+            WindowManager.LayoutParams attributes = window.getAttributes();
+            int flagTranslucentStatus = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
+            int flagTranslucentNavigation = WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION;
+            attributes.flags |= flagTranslucentStatus;
+//                attributes.flags |= flagTranslucentNavigation;
+            window.setAttributes(attributes);
         }
     }
 
