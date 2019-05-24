@@ -42,6 +42,7 @@ import com.zyzxsp.activity.ZyMainActivity;
 import com.zyzxsp.myInterface.CallListener;
 import com.zyzxsp.presenter.CallPresenter;
 import com.zyzxsp.presenter.CallPresenterImpl;
+import com.zyzxsp.presenter.MainPresenterImpl;
 import com.zyzxsp.utils.AlertUtil;
 import com.zyzxsp.utils.CommonTime;
 import com.zyzxsp.utils.PermissionUtils;
@@ -268,6 +269,7 @@ public class VideoFragment extends Fragment implements CallListener,
     @Override
     public void onViewCreated(View view, final Bundle savedInstanceState) {
         mCallPresenter = new CallPresenterImpl();
+        MainPresenterImpl.getInstants().setCallPresenter(mCallPresenter);
         mCallPresenter.setView(this);
         countTimer();
         initialization(view);
@@ -1219,11 +1221,7 @@ public class VideoFragment extends Fragment implements CallListener,
                 closeVideo();
                 break;
             case R.id.ll_drop_call:
-                NemoSDK.getInstance().hangup();
-                if (mHangupListener != null) {
-                    mHangupListener.hangup();
-                }
-                mStats.setVisibility(GONE);
+                mCallPresenter.hangUp();
                 break;
             case R.id.remote_video_view:
                 break;
@@ -1286,6 +1284,14 @@ public class VideoFragment extends Fragment implements CallListener,
                 break;
 
         }
+    }
+
+    @Override
+    public void onHangUp() {
+        if (mHangupListener != null) {
+            mHangupListener.hangup();
+        }
+        mStats.setVisibility(GONE);
     }
 
     public void closeVideo() {

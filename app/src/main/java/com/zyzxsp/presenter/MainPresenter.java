@@ -15,5 +15,11 @@ public interface MainPresenter {
 
     MainActivityPresenter getMainActivityPresenter();
 
+    MainGuard getMainGuard();
+
     void logout(Context context);
+
+    void setCallPresenter(CallPresenter presenter);
+
+    CallPresenter getCallPresenter();
 }

@@ -5,5 +5,7 @@ package com.zyzxsp.view;
  */
 
 public interface CallView {
+    void onHangUp();
+
     void onCloseMicrophone(boolean close);
 }

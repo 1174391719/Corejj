@@ -1,7 +1,10 @@
 package com.zyzxsp.activity;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.log.L;
+import android.net.ConnectivityManager;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -96,11 +99,15 @@ public class ZyMainActivity extends BaseActivity implements RadioGroup.OnChecked
 //            }
 //        });
 
-        if (myNumber != null)
+        if (myNumber != null) {
             mHomeFragment.setMyNumber(myNumber);
+        }
 
-        if (displayName != null)
+        if (displayName != null) {
             mHomeFragment.setDisplayName(displayName);
+        }
+
+        MainPresenterImpl.getInstants().getMainGuard().register(this);
     }
 
     private void initFragment() {
@@ -176,6 +183,11 @@ public class ZyMainActivity extends BaseActivity implements RadioGroup.OnChecked
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        MainPresenterImpl.getInstants().getMainGuard().unRegister(this);
+    }
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {

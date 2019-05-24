@@ -163,7 +163,7 @@ public class ZyCallActivity extends FragmentActivity implements BackHandledInter
 
                                         Log.i(TAG, "CallInfo nemoSDKDidReceiveCall onCallStateChange  is==" + reason);
                                         if (reason.equals("CANCEL")) {
-                                            Toast.makeText(ZyCallActivity.this, "call canceled", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(ZyCallActivity.this, "取消呼叫", Toast.LENGTH_SHORT).show();
                                             finish();
                                         }
 
@@ -300,7 +300,10 @@ public class ZyCallActivity extends FragmentActivity implements BackHandledInter
 
             @Override
             public void onNetworkIndicatorLevel(final int level) {
-                L.i(TAG, "onNetworkIndicatorLevel called. level=" + level);
+                ZLog.d("onNetworkIndicatorLevel. level" + level);
+                if (level < 3) {
+                    Toast.makeText(ZyCallActivity.this, "当前网络连接质量不佳", Toast.LENGTH_SHORT).show();
+                }
 //                runOnUiThread(new Runnable() {
 //                    @Override
 //                    public void run() {

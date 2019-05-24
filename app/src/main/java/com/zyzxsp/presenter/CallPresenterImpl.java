@@ -1,7 +1,10 @@
 package com.zyzxsp.presenter;
 
 import com.ainemo.sdk.otf.NemoSDK;
+import com.zyzxsp.utils.ZLog;
 import com.zyzxsp.view.CallView;
+
+import static android.view.View.GONE;
 
 /**
  * Created by Administrator on 2019/05/23.
@@ -19,5 +22,12 @@ public class CallPresenterImpl implements CallPresenter {
     public void closeMicrophone(boolean close) {
         NemoSDK.getInstance().enableMic(close, true);
         mCallView.onCloseMicrophone(close);
+    }
+
+    @Override
+    public void hangUp() {
+        ZLog.d("");
+        NemoSDK.getInstance().hangup();
+        mCallView.onHangUp();
     }
 }

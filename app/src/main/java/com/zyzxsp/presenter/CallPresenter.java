@@ -9,5 +9,7 @@ import com.zyzxsp.view.CallView;
 public interface CallPresenter {
     void setView(CallView callView);
 
+    void hangUp();
+
     void closeMicrophone(boolean close);
 }

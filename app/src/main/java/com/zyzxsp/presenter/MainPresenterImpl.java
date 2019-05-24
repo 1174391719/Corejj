@@ -18,12 +18,15 @@ public class MainPresenterImpl implements MainPresenter {
     private UserBean mUser = null;
     private RecentCallPresenter mRecentCallPresenter = null;
     private MainActivityPresenter mMainActivityPresenter = null;
+    private MainGuard mMainGuard = null;
+    private CallPresenter mCallPresenter = null;
 
     private MainPresenterImpl() {
         ZLog.i("Init...");
         mUser = new UserBean();
         mRecentCallPresenter = new RecentCallPresenterImpl();
         mMainActivityPresenter = new MainActivityPresenterImpl();
+        mMainGuard = new MainGuardImpl();
     }
 
     public static MainPresenter getInstants() {
@@ -55,5 +58,20 @@ public class MainPresenterImpl implements MainPresenter {
     @Override
     public MainActivityPresenter getMainActivityPresenter() {
         return mMainActivityPresenter;
+    }
+
+    @Override
+    public MainGuard getMainGuard() {
+        return mMainGuard;
+    }
+
+    @Override
+    public void setCallPresenter(CallPresenter presenter) {
+        mCallPresenter = presenter;
+    }
+
+    @Override
+    public CallPresenter getCallPresenter() {
+        return mCallPresenter;
     }
 }
