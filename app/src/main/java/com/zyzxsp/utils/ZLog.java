@@ -26,6 +26,12 @@ public class ZLog {
         Log.i(generateTag(TAG_E), msg);
     }
 
+    public static void p() {
+        RuntimeException exception = new RuntimeException("kk");
+        exception.fillInStackTrace();
+        Log.e(TAG_E, "here:", exception);
+    }
+
     private static String generateTag(String prefixTag) {
         StackTraceElement caller = new Throwable().getStackTrace()[2];
         String tag = "%s.%s(L:%d)";

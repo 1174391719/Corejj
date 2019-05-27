@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import com.zyzxsp.R;
 import com.zyzxsp.bean.MeetingRoomBean;
 import com.zyzxsp.constant.ConstantUrl;
+import com.zyzxsp.presenter.MainPresenterImpl;
 import com.zyzxsp.utils.StatusBarUtils;
 import com.zyzxsp.utils.ZLog;
 import com.zyzxsp.view.HeaderTitleView;
@@ -59,7 +60,7 @@ public class MyCloudMeetingActivity extends AppCompatActivity {
         String url = ConstantUrl.HOST + ConstantUrl.GET_MEETING_INFO;
         ZLog.d("url:" + url);
         Map map = new HashMap();
-        map.put("token", ZyMainActivity.sUserBean.getToken());
+        map.put("token", MainPresenterImpl.getInstants().getUser().getToken());
 
         OkhttpUtil.okHttpPostJson(url, null, map, new CallBackUtil.CallBackString() {
             @Override

@@ -510,7 +510,7 @@ public class VideoFragment extends Fragment implements CallListener,
         mVolumeManager = new VolumeManager(getActivity(), view.findViewById(R.id.operation_volume_brightness), AudioManager.STREAM_VOICE_CALL);
         mVolumeManager.setMuteCallback(this);
         currentVolume = mVolumeManager.getVolume();
-        mName.setText(ZyMainActivity.sUserBean.getName());
+        mName.setText(MainPresenterImpl.getInstants().getUser().getName());
 
         TimeHide();
     }

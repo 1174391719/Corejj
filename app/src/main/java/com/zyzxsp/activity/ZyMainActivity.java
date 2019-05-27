@@ -36,7 +36,6 @@ public class ZyMainActivity extends BaseActivity implements RadioGroup.OnChecked
     public static final String ADDRESSLIST_FRAGMENT_TAG = "addresslist_fragment_tag";
     public static final String FILE_FRAGMENT_TAG = "file_fragment_tag";
     public static final String MINE_FRAGMENT_TAG = "mine_fragment_tag";
-    public static final UserBean sUserBean = new UserBean();
 
     private FrameLayout mFrameLayout;
     private RadioGroup mRadioGroup;

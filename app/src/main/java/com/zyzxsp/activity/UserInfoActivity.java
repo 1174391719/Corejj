@@ -118,7 +118,7 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
         String url = ConstantUrl.HOST + ConstantUrl.CHECKOUT;
         Log.d(TAG, "requestLoginOut: 登出 url  " + url);
         Map map = new HashMap();
-        map.put("token", ZyMainActivity.sUserBean.getToken());
+        map.put("token", MainPresenterImpl.getInstants().getUser().getToken());
 
         OkhttpUtil.okHttpPostJson(url, null, map, new CallBackUtil.CallBackString() {
             @Override

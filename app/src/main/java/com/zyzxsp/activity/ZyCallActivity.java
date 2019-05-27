@@ -64,7 +64,7 @@ public class ZyCallActivity extends FragmentActivity implements BackHandledInter
         manager = getFragmentManager();
         manager.beginTransaction().add(R.id.content_frame_zy, mVideoFragment).commitAllowingStateLoss();
 
-        mVideoFragment.setDisplayName(ZyMainActivity.sUserBean.getName());
+        mVideoFragment.setDisplayName(MainPresenterImpl.getInstants().getUser().getName());
         mVideoFragment.setCallNumber(myNumber);
 
         boolean isIncomingCall = intent.getBooleanExtra("isIncomingCall", false);
@@ -301,15 +301,15 @@ public class ZyCallActivity extends FragmentActivity implements BackHandledInter
             @Override
             public void onNetworkIndicatorLevel(final int level) {
                 ZLog.d("onNetworkIndicatorLevel. level" + level);
-                if (level < 3) {
-                    Toast.makeText(ZyCallActivity.this, "当前网络连接质量不佳", Toast.LENGTH_SHORT).show();
-                }
-//                runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        mVideoFragment.onNetworkIndicatorLevel(level);
-//                    }
-//                });
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //mVideoFragment.onNetworkIndicatorLevel(level);
+//                        if (level < 3) {
+//                            Toast.makeText(ZyCallActivity.this, "当前网络连接质量不佳", Toast.LENGTH_SHORT).show();
+//                        }
+                    }
+                });
             }
 
             @Override
@@ -426,6 +426,9 @@ public class ZyCallActivity extends FragmentActivity implements BackHandledInter
                 getSupportFragmentManager().popBackStack();
                 NemoSDK.getInstance().logout();
             }
+        }
+        if (MainPresenterImpl.getInstants().getCallPresenter() != null) {
+            MainPresenterImpl.getInstants().getCallPresenter().hangUp();
         }
         finish();
 

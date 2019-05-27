@@ -19,6 +19,7 @@ import com.zyzxsp.constant.ConstantUrl;
 import com.zyzxsp.bean.LoginResData;
 import com.zyzxsp.dialog.DialogPresenter;
 import com.zyzxsp.dialog.DialogPresenterImpl;
+import com.zyzxsp.presenter.MainPresenterImpl;
 import com.zyzxsp.utils.StatusBarUtils;
 import com.zyzxsp.utils.Utils;
 import com.zyzxsp.utils.ZLog;
@@ -231,8 +232,8 @@ public class ZyLoginActivity extends BaseActivity implements View.OnClickListene
                     if ("0".equals(dataBean.getReturnCode())) {
                         LoginResData.LoginData mLoginData = dataBean.getObject();
                         String token = mLoginData.getToken();
-                        ZyMainActivity.sUserBean.setToken(token);
-                        ZyMainActivity.sUserBean.setAccount(name);
+                        MainPresenterImpl.getInstants().getUser().setToken(token);
+                        MainPresenterImpl.getInstants().getUser().setAccount(name);
                         ZLog.d("token:" + token);
                         goHomeActivity();
                         finish();

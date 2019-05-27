@@ -210,7 +210,7 @@ public class ModifyPasswordActivity extends BaseActivity implements View.OnClick
         String url = ConstantUrl.HOST + ConstantUrl.CHECK_PASSWORD;
         ZLog.d(url);
         Map header = new HashMap();
-        header.put("token", ZyMainActivity.sUserBean.getToken());
+        header.put("token", MainPresenterImpl.getInstants().getUser().getToken());
 
         JSONObject object = new JSONObject();
         try {
@@ -256,7 +256,7 @@ public class ModifyPasswordActivity extends BaseActivity implements View.OnClick
         String url = ConstantUrl.HOST + ConstantUrl.MODIFY_PASSWORD;
         ZLog.d(" url:" + url);
         Map header = new HashMap();
-        header.put("token", ZyMainActivity.sUserBean.getToken());
+        header.put("token", MainPresenterImpl.getInstants().getUser().getToken());
 
         JSONObject object = new JSONObject();
         try {

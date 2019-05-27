@@ -30,6 +30,7 @@ import com.zyzxsp.constant.ConstantUrl;
 import com.zyzxsp.bean.UserInfoResData;
 import com.zyzxsp.dialog.DialogPresenter;
 import com.zyzxsp.dialog.DialogPresenterImpl;
+import com.zyzxsp.presenter.MainPresenterImpl;
 import com.zyzxsp.utils.StatusBarUtils;
 import com.zyzxsp.utils.ZLog;
 
@@ -114,13 +115,13 @@ public class MineFragment extends Fragment implements View.OnClickListener {
      * 获取用户信息请求
      */
     public void requestGetUserInfo() {
-        if (ZyMainActivity.sUserBean == null || ZyMainActivity.sUserBean.getToken() == null) {
+        if (MainPresenterImpl.getInstants().getUser() == null || MainPresenterImpl.getInstants().getUser().getToken() == null) {
             return;
         }
         String url = ConstantUrl.HOST + ConstantUrl.GET_USER_INFO;
         ZLog.d("url:" + url);
         Map map = new HashMap();
-        map.put("token", ZyMainActivity.sUserBean.getToken());
+        map.put("token", MainPresenterImpl.getInstants().getUser().getToken());
 
         OkhttpUtil.okHttpPostJson(url, null, map, new CallBackUtil.CallBackString() {
             @Override
@@ -156,7 +157,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                                 .setAutoPlayAnimations(true)
                                 .build();
                         mSimpleDraweeView.setController(controller);
-                        ZyMainActivity.sUserBean.setName(mUserinfo.getName());
+                        MainPresenterImpl.getInstants().getUser().setName(mUserinfo.getName());
                         loginXiaoyu();
                     }
 
@@ -172,9 +173,10 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
     //**********************************************************************************************
     private void loginXiaoyu() {
-        ZLog.i("Name:" + ZyMainActivity.sUserBean.getName() + " account:" + ZyMainActivity.sUserBean.getAccount());
-        NemoSDK.getInstance().loginExternalAccount(ZyMainActivity.sUserBean.getName(),
-                ZyMainActivity.sUserBean.getAccount(), new ConnectNemoCallback() {
+        ZLog.i("Name:" + MainPresenterImpl.getInstants().getUser().getName() + " account:" +
+                MainPresenterImpl.getInstants().getUser().getAccount());
+        NemoSDK.getInstance().loginExternalAccount(MainPresenterImpl.getInstants().getUser().getName(),
+                MainPresenterImpl.getInstants().getUser().getAccount(), new ConnectNemoCallback() {
                     @Override
                     public void onFailed(int i) {
                         ZLog.e("i:" + i);
