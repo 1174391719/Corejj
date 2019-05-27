@@ -22,7 +22,6 @@ import com.ainemo.sdk.otf.LoginResponseData;
 import com.ainemo.sdk.otf.NemoSDK;
 import com.zyzxsp.R;
 import com.zyzxsp.dialog.LoadingDialog;
-import com.zyzxsp.download.ApkUpdateRequest;
 import com.zyzxsp.download.PackageInfoUtil;
 import com.zyzxsp.view.HeaderTitleView;
 
@@ -147,7 +146,7 @@ public class MyTestActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.sign:
 
-                ApkUpdateRequest.requestUpdateApk(MyTestActivity.this);
+               // ApkUpdateRequest.requestUpdateApk(MyTestActivity.this);
                 break;
             case R.id.login:
                 String url =displayName.getText().toString();

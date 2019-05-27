@@ -1,12 +1,8 @@
 package com.zyzxsp.presenter;
-
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
-
 import com.zyzxsp.UserBean;
 import com.zyzxsp.activity.BaseActivity;
-import com.zyzxsp.activity.UserInfoActivity;
 import com.zyzxsp.activity.ZyLoginActivity;
 import com.zyzxsp.utils.ZLog;
 

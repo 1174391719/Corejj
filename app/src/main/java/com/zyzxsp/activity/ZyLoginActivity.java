@@ -19,6 +19,7 @@ import com.zyzxsp.constant.ConstantUrl;
 import com.zyzxsp.bean.LoginResData;
 import com.zyzxsp.dialog.DialogPresenter;
 import com.zyzxsp.dialog.DialogPresenterImpl;
+import com.zyzxsp.download.UpdateVersion;
 import com.zyzxsp.presenter.MainPresenterImpl;
 import com.zyzxsp.utils.StatusBarUtils;
 import com.zyzxsp.utils.Utils;
@@ -155,6 +156,7 @@ public class ZyLoginActivity extends BaseActivity implements View.OnClickListene
                 mLoginPassword.setSelection(mLoginPassword.length());
             }
         });
+        UpdateVersion.autoCheck(this);
 
     }
 
@@ -163,7 +165,7 @@ public class ZyLoginActivity extends BaseActivity implements View.OnClickListene
         int id = v.getId();
         switch (id) {
             case R.id.login_button:
-                String loginNameStr = ZLog.use_config_data ? "13678888889" : mLoginName.getText().toString();
+                String loginNameStr = ZLog.use_config_data ? "13788914153" : mLoginName.getText().toString();
                 String loginPasswordStr = ZLog.use_config_data ? "123456a" : mLoginPassword.getText().toString();
                 mLoginPassword.getText().toString();
                 if (loginNameStr.length() == 0 || loginPasswordStr.length() == 0) {

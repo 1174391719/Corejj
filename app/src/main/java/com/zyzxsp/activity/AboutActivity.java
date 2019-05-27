@@ -8,7 +8,8 @@ import android.widget.TextView;
 
 import com.zyzxsp.BuildConfig;
 import com.zyzxsp.R;
-import com.zyzxsp.download.ApkUpdateRequest;
+import com.zyzxsp.download.UpdateVersion;
+import com.zyzxsp.presenter.MainPresenterImpl;
 import com.zyzxsp.utils.StatusBarUtils;
 import com.zyzxsp.view.HeaderTitleView;
 
@@ -44,7 +45,7 @@ public class AboutActivity extends AppCompatActivity {
         mCheckUpdateLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ApkUpdateRequest.requestUpdateApk(AboutActivity.this);
+                UpdateVersion.requestUpdateApk(AboutActivity.this);
             }
         });
     }
