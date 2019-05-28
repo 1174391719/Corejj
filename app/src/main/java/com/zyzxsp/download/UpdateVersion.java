@@ -101,41 +101,45 @@ public class UpdateVersion {
                 if (response == null) {
                     return;
                 }
-                UpdateBean dataBean = new Gson().fromJson(response, UpdateBean.class);
-                if ("0".equals(dataBean.getReturnCode())) {
-                    final UpdateBean.Version version = dataBean.getObject().getVersion();
-                    if (!version.isLatestFlag()) {
-                        //不是是最新版
-                        if (version.isUpgradeFlag()) {
-                            //Force
-                            DialogPresenter presenter = new DialogPresenterImpl();
-                            presenter.confirm(context, new DialogPresenter.Callback() {
-                                @Override
-                                public void onPositiveClick() {
-                                    DownLoadManagerSingleton.getSingleton().downLoadPackage(context, version);
-                                }
+                try {
+                    UpdateBean dataBean = new Gson().fromJson(response, UpdateBean.class);
+                    if ("0".equals(dataBean.getReturnCode())) {
+                        final UpdateBean.Version version = dataBean.getObject().getVersion();
+                        if (!version.isLatestFlag()) {
+                            //不是是最新版
+                            if (version.isUpgradeFlag()) {
+                                //Force
+                                DialogPresenter presenter = new DialogPresenterImpl();
+                                presenter.confirm(context, new DialogPresenter.Callback() {
+                                    @Override
+                                    public void onPositiveClick() {
+                                        DownLoadManagerSingleton.getSingleton().downLoadPackage(context, version);
+                                    }
 
-                                @Override
-                                public void onNegativeClick() {
-                                }
-                            }, "有新版本可更新，请下载", "确定");
+                                    @Override
+                                    public void onNegativeClick() {
+                                    }
+                                }, "有新版本可更新，请下载", "确定");
 
-                        } else if (SharedPreferencesUtils.getString(context.getApplicationContext(), version.getVersion()).equals("")) {
-                            DialogPresenter dialogPresenter = new DialogPresenterImpl();
-                            dialogPresenter.choose(context, new DialogPresenter.Callback() {
-                                @Override
-                                public void onPositiveClick() {
-                                    DownLoadManagerSingleton.getSingleton().downLoadPackage(context, version);
-                                }
+                            } else if (SharedPreferencesUtils.getString(context.getApplicationContext(), version.getVersion()).equals("")) {
+                                DialogPresenter dialogPresenter = new DialogPresenterImpl();
+                                dialogPresenter.choose(context, new DialogPresenter.Callback() {
+                                    @Override
+                                    public void onPositiveClick() {
+                                        DownLoadManagerSingleton.getSingleton().downLoadPackage(context, version);
+                                    }
 
-                                @Override
-                                public void onNegativeClick() {
-                                    SharedPreferencesUtils.putString(context, version.getVersion(), version.getVersion());
-                                }
-                            }, "有新版本可更新，请下载", "取消", "确定");
+                                    @Override
+                                    public void onNegativeClick() {
+                                        SharedPreferencesUtils.putString(context, version.getVersion(), version.getVersion());
+                                    }
+                                }, "有新版本可更新，请下载", "取消", "确定");
 
+                            }
                         }
                     }
+                } catch (Exception e) {
+                    ZLog.e(e.toString());
                 }
             }
         });

@@ -211,7 +211,6 @@ public class ZyLoginActivity extends BaseActivity implements View.OnClickListene
         OkhttpUtil.okHttpPostJson(url, objectStr, new CallBackUtil.CallBackString() {
             @Override
             public void onFailure(Call call, Exception e) {
-                Call mcall = call;
                 ZLog.e(e.toString());
                 DialogPresenter dialog = new DialogPresenterImpl();
                 if (e instanceof ConnectException) {

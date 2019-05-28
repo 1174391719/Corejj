@@ -1,0 +1,3 @@
+[submodule "corejj"]
+	path = corejj
+	url = git@github.com:1174391719/corejj.git

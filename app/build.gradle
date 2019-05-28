@@ -71,6 +71,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     api project(':netlibrary')
+    api project(':corejj')
 
     //Xiaoyu
     api 'io.reactivex.rxjava2:rxjava:2.1.2'
