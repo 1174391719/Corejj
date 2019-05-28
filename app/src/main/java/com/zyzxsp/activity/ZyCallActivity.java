@@ -128,7 +128,7 @@ public class ZyCallActivity extends FragmentActivity implements BackHandledInter
 
             @Override
             public void onCallStateChange(final CallState state, final String reason) {
-                Log.i(TAG, "onCallStateChangeNemoSdk state==" + state + "=reason==" + state);
+                ZLog.i("onCallStateChange. state:" + state + " reason:" + reason);
                 Observable.just(state)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
@@ -168,13 +168,13 @@ public class ZyCallActivity extends FragmentActivity implements BackHandledInter
                                         }
 
                                         if (reason.equals("BUSY")) {
-                                            Toast.makeText(ZyCallActivity.this, "the side is busy, please call later", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(ZyCallActivity.this, "对方正忙，请稍后再拨", Toast.LENGTH_SHORT).show();
 //                                            manager.beginTransaction().hide(mDialFragment).show(mVideoFragment).commitAllowingStateLoss();
 //                                            manager.beginTransaction().show(mVideoFragment).commitAllowingStateLoss();
                                             finish();
                                         }
                                         if ("NORMAL_CONF_SESSION_EXCEED".equals(reason)) {
-                                            Toast.makeText(ZyCallActivity.this, "您呼叫的会议已达最大支持人数", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(ZyCallActivity.this, "已达到最大会议方数，请与管理员联系", Toast.LENGTH_LONG).show();
                                             finish();
                                         }
 

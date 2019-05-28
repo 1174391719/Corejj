@@ -106,8 +106,7 @@ public class MeetingFragment extends Fragment implements View.OnClickListener {
                     return;
                 }
                 if (!Utils.isNetworkConnected(getContext())) {
-                    DialogPresenter dialogPresenter = new DialogPresenterImpl();
-                    dialogPresenter.confirm(getContext(), null, "网络连接异常，请重试", "确定");
+                    DialogPresenterImpl.newInstance().confirm(getContext(), null, "网络连接异常，请重试", "确定");
                     return;
                 }
                 if (!PermissionUtils.allowJoinMeeting(getActivity())) {

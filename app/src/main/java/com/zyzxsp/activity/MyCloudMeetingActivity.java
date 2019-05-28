@@ -9,11 +9,15 @@ import com.google.gson.Gson;
 import com.zyzxsp.R;
 import com.zyzxsp.bean.MeetingRoomBean;
 import com.zyzxsp.constant.ConstantUrl;
+import com.zyzxsp.dialog.DialogPresenter;
+import com.zyzxsp.dialog.DialogPresenterImpl;
 import com.zyzxsp.presenter.MainPresenterImpl;
 import com.zyzxsp.utils.StatusBarUtils;
 import com.zyzxsp.utils.ZLog;
 import com.zyzxsp.view.HeaderTitleView;
 
+import java.net.ConnectException;
+import java.net.SocketTimeoutException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -65,8 +69,12 @@ public class MyCloudMeetingActivity extends AppCompatActivity {
         OkhttpUtil.okHttpPostJson(url, null, map, new CallBackUtil.CallBackString() {
             @Override
             public void onFailure(Call call, Exception e) {
-                Call mcall = call;
                 ZLog.d(e.toString());
+                if (e instanceof ConnectException || e instanceof SocketTimeoutException) {
+                    DialogPresenterImpl.newInstance().confirm(MyCloudMeetingActivity.this, null, getString(R.string.dialog_network_exception), "确定");
+                } else {
+                    DialogPresenterImpl.newInstance().confirm(MyCloudMeetingActivity.this, null, getString(R.string.dialog_get_info_exception), "确定");
+                }
             }
 
             @Override

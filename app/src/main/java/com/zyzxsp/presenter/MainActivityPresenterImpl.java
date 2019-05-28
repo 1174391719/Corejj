@@ -23,8 +23,7 @@ public class MainActivityPresenterImpl implements MainActivityPresenter {
     @Override
     public void showLogoutDialog() {
         ZLog.d("");
-        DialogPresenter dialogPresenter = new DialogPresenterImpl();
-        dialogPresenter.confirm(mContext, new DialogPresenter.Callback() {
+        DialogPresenterImpl.newInstance().confirm(mContext, new DialogPresenter.Callback() {
             @Override
             public void onPositiveClick() {
                 MainPresenterImpl.getInstants().logout(mContext);

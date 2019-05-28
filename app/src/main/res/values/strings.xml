@@ -1,4 +1,11 @@
 <resources>
+    <!--Call-->
+    <string name="call_video_mute">视频暂时关闭</string>
+
+    <!--Dialog-->
+    <string name="dialog_network_exception">网络连接异常，请重试</string>
+    <string name="dialog_get_info_exception">信息获取异常，请收受重试</string>
+
     <string name="app_name">在线视频</string>
     <string name="hang_up">挂断</string>
     <string name="switch_camera">切摄像头</string>
@@ -27,7 +34,6 @@
 
     <string name="start_record_video">录制</string>
     <string name="end_record_video">录制结束</string>
-    <string name="call_video_mute">视频暂停</string>
     <string name="call_no_video">网络不给力，暂时无法接收视频</string>
     <string name="MuteByNoInput">对方未开启视频</string>
 

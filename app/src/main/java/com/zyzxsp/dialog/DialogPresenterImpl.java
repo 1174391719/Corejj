@@ -2,6 +2,7 @@ package com.zyzxsp.dialog;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,14 @@ import com.zyzxsp.R;
  */
 
 public class DialogPresenterImpl implements DialogPresenter {
+
+    public static DialogPresenter newInstance() {
+        return new DialogPresenterImpl();
+    }
+
+    private DialogPresenterImpl() {
+    }
+
     @Override
     public void confirm(Context context, final Callback callback, String title, String bottomText) {
         if (context == null) {

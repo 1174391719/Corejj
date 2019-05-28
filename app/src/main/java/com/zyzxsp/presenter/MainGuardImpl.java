@@ -66,6 +66,9 @@ public class MainGuardImpl extends BroadcastReceiver implements MainGuard {
                             mHandler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
+                                    if (MainPresenterImpl.getInstants().getCallPresenter() == null) {
+                                        return;
+                                    }
                                     MainPresenterImpl.getInstants().getCallPresenter().hangUp();
                                 }
                             }, 1000);

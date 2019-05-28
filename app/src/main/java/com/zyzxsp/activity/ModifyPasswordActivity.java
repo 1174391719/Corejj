@@ -224,8 +224,7 @@ public class ModifyPasswordActivity extends BaseActivity implements View.OnClick
             public void onFailure(Call call, Exception e) {
                 Call mcall = call;
                 ZLog.d(e.toString());
-                DialogPresenter dialog = new DialogPresenterImpl();
-                dialog.confirm(ModifyPasswordActivity.this, null, "原密码有误", "确定");
+                DialogPresenterImpl.newInstance().confirm(ModifyPasswordActivity.this, null, "原密码有误", "确定");
             }
 
             @Override

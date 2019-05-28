@@ -268,6 +268,7 @@ public class VideoFragment extends Fragment implements CallListener,
 
     @Override
     public void onViewCreated(View view, final Bundle savedInstanceState) {
+        ZLog.i("onViewCreated...");
         mCallPresenter = new CallPresenterImpl();
         MainPresenterImpl.getInstants().setCallPresenter(mCallPresenter);
         mCallPresenter.setView(this);
@@ -285,12 +286,12 @@ public class VideoFragment extends Fragment implements CallListener,
 
             isMicrophoneMuted = mCloseVoiceFromActivity ||
                     ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED;
-            mMuteMicBtn.postDelayed(new Runnable() {
-                @Override
-                public void run() {
+//            mMuteMicBtn.postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
                     mCallPresenter.closeMicrophone(isMicrophoneMuted);
-                }
-            }, 1000);
+//                }
+//            }, 1000);
 
         }
         super.onViewCreated(view, savedInstanceState);

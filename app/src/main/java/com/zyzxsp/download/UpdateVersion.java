@@ -54,8 +54,7 @@ public class UpdateVersion {
                     final UpdateBean.Version version = dataBean.getObject().getVersion();
                     if (!dataBean.getObject().getVersion().isLatestFlag()) {
                         //不是是最新版本
-                        DialogPresenter dialogPresenter = new DialogPresenterImpl();
-                        dialogPresenter.choose(context, new DialogPresenter.Callback() {
+                        DialogPresenterImpl.newInstance().choose(context, new DialogPresenter.Callback() {
                             @Override
                             public void onPositiveClick() {
                                 DownLoadManagerSingleton.getSingleton().downLoadPackage(context, version);
@@ -67,8 +66,7 @@ public class UpdateVersion {
                         }, "有新版可更新，是否更新", "取消", "确定");
                     } else {
                         ZLog.d("It's latest version. ");
-                        DialogPresenter presenter = new DialogPresenterImpl();
-                        presenter.confirm(context, null, "此版本为最新版本", "确定");
+                        DialogPresenterImpl.newInstance().confirm(context, null, "此版本为最新版本", "确定");
                     }
                 }
             }
@@ -109,8 +107,7 @@ public class UpdateVersion {
                             //不是是最新版
                             if (version.isUpgradeFlag()) {
                                 //Force
-                                DialogPresenter presenter = new DialogPresenterImpl();
-                                presenter.confirm(context, new DialogPresenter.Callback() {
+                                DialogPresenterImpl.newInstance().confirm(context, new DialogPresenter.Callback() {
                                     @Override
                                     public void onPositiveClick() {
                                         DownLoadManagerSingleton.getSingleton().downLoadPackage(context, version);
@@ -122,8 +119,7 @@ public class UpdateVersion {
                                 }, "有新版本可更新，请下载", "确定");
 
                             } else if (SharedPreferencesUtils.getString(context.getApplicationContext(), version.getVersion()).equals("")) {
-                                DialogPresenter dialogPresenter = new DialogPresenterImpl();
-                                dialogPresenter.choose(context, new DialogPresenter.Callback() {
+                                DialogPresenterImpl.newInstance().choose(context, new DialogPresenter.Callback() {
                                     @Override
                                     public void onPositiveClick() {
                                         DownLoadManagerSingleton.getSingleton().downLoadPackage(context, version);
@@ -134,7 +130,6 @@ public class UpdateVersion {
                                         SharedPreferencesUtils.putString(context, version.getVersion(), version.getVersion());
                                     }
                                 }, "有新版本可更新，请下载", "取消", "确定");
-
                             }
                         }
                     }

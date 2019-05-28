@@ -1,6 +1,8 @@
 package com.zyzxsp.presenter;
+
 import android.content.Context;
 import android.content.Intent;
+
 import com.zyzxsp.UserBean;
 import com.zyzxsp.activity.BaseActivity;
 import com.zyzxsp.activity.ZyLoginActivity;
@@ -17,6 +19,7 @@ public class MainPresenterImpl implements MainPresenter {
     private MainActivityPresenter mMainActivityPresenter = null;
     private MainGuard mMainGuard = null;
     private CallPresenter mCallPresenter = null;
+    private NetWorkPresenter mNetWorkPresenter = null;
 
     private MainPresenterImpl() {
         ZLog.i("Init...");
@@ -24,6 +27,7 @@ public class MainPresenterImpl implements MainPresenter {
         mRecentCallPresenter = new RecentCallPresenterImpl();
         mMainActivityPresenter = new MainActivityPresenterImpl();
         mMainGuard = new MainGuardImpl();
+        mNetWorkPresenter = new NetWorkPresenterImpl();
     }
 
     public static MainPresenter getInstants() {
@@ -70,5 +74,10 @@ public class MainPresenterImpl implements MainPresenter {
     @Override
     public CallPresenter getCallPresenter() {
         return mCallPresenter;
+    }
+
+    @Override
+    public NetWorkPresenter getNetWorkPresenter() {
+        return mNetWorkPresenter;
     }
 }

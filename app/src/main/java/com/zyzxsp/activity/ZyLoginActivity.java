@@ -1,5 +1,6 @@
 package com.zyzxsp.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -45,6 +46,8 @@ public class ZyLoginActivity extends BaseActivity implements View.OnClickListene
     private CheckBox mPasswordVisibility = null;
     private View mCleanPassword = null;
     private View mCleanAccount = null;
+    private ProgressDialog mProgressDialog = null;
+    private boolean mIsLoading = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -194,6 +197,9 @@ public class ZyLoginActivity extends BaseActivity implements View.OnClickListene
 
     private void requestLogin(final String name, String password) {
         //    goHomeActivity();
+        if (mIsLoading) {
+            return;
+        }
         String url = ConstantUrl.HOST + ConstantUrl.LOGIN;
         ZLog.d("登录 url  " + url);
 
@@ -211,19 +217,20 @@ public class ZyLoginActivity extends BaseActivity implements View.OnClickListene
         OkhttpUtil.okHttpPostJson(url, objectStr, new CallBackUtil.CallBackString() {
             @Override
             public void onFailure(Call call, Exception e) {
+                mIsLoading = false;
                 ZLog.e(e.toString());
-                DialogPresenter dialog = new DialogPresenterImpl();
                 if (e instanceof ConnectException) {
-                    dialog.confirm(ZyLoginActivity.this, null, "网络连接已断开，请检查网络设置", "确定");
+                    DialogPresenterImpl.newInstance().confirm(ZyLoginActivity.this, null, "网络连接已断开，请检查网络设置", "确定");
                 } else if (e instanceof SocketTimeoutException) {
-                    dialog.confirm(ZyLoginActivity.this, null, "网络连接异常，请重试", "确定");
+                    DialogPresenterImpl.newInstance().confirm(ZyLoginActivity.this, null, "网络连接异常，请重试", "确定");
                 } else {
-                    dialog.confirm(ZyLoginActivity.this, null, "暂时无法登录，请稍后重试", "确定");
+                    DialogPresenterImpl.newInstance().confirm(ZyLoginActivity.this, null, "暂时无法登录，请稍后重试", "确定");
                 }
             }
 
             @Override
             public void onResponse(String response) {
+                mIsLoading = false;
                 ZLog.i(response);
                 if (response == null) {
                     return;
@@ -239,8 +246,7 @@ public class ZyLoginActivity extends BaseActivity implements View.OnClickListene
                         goHomeActivity();
                         finish();
                     } else {
-                        DialogPresenter dialog = new DialogPresenterImpl();
-                        dialog.confirm(ZyLoginActivity.this, null, "账号或者密码错误", "确定");
+                        DialogPresenterImpl.newInstance().confirm(ZyLoginActivity.this, null, "账号或者密码错误", "确定");
                     }
                 } catch (Exception e) {
                     ZLog.d("e:" + e);
@@ -262,5 +268,30 @@ public class ZyLoginActivity extends BaseActivity implements View.OnClickListene
             mLoginBtn.setBackgroundResource(R.drawable.round_corner_clicked);
             mLoginBtn.setClickable(true);
         }
+    }
+
+    /**
+     * 加载框
+     */
+    private void showProgressDialog() {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(this);
+            mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        }
+        mProgressDialog.setMessage("登陆中...");
+        mProgressDialog.setCancelable(true);
+        mProgressDialog.show();
+    }
+
+    /**
+     * @Description: TODO 取消加载框
+     * @author Sunday
+     * @date 2015年12月25日
+     */
+    public void cancelProgressDialog() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+        }
+        mProgressDialog = null;
     }
 }

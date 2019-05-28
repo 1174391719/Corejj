@@ -20,6 +20,7 @@ public class CallPresenterImpl implements CallPresenter {
 
     @Override
     public void closeMicrophone(boolean close) {
+        ZLog.d("close:" + close + " isMicMuted:" + NemoSDK.getInstance().isMicMuted());
         NemoSDK.getInstance().enableMic(close, true);
         mCallView.onCloseMicrophone(close);
     }

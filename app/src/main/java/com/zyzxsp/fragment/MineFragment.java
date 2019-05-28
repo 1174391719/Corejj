@@ -115,24 +115,14 @@ public class MineFragment extends Fragment implements View.OnClickListener {
      * 获取用户信息请求
      */
     public void requestGetUserInfo() {
-        if (MainPresenterImpl.getInstants().getUser() == null || MainPresenterImpl.getInstants().getUser().getToken() == null) {
-            return;
-        }
-        String url = ConstantUrl.HOST + ConstantUrl.GET_USER_INFO;
-        ZLog.d("url:" + url);
-        Map map = new HashMap();
-        map.put("token", MainPresenterImpl.getInstants().getUser().getToken());
-
-        OkhttpUtil.okHttpPostJson(url, null, map, new CallBackUtil.CallBackString() {
+        MainPresenterImpl.getInstants().getNetWorkPresenter().getUserInfo(new CallBackUtil.CallBackString() {
             @Override
             public void onFailure(Call call, Exception e) {
-                Call mcall = call;
                 ZLog.e(e.toString());
-                DialogPresenter dialog = new DialogPresenterImpl();
                 if (e instanceof ConnectException || e instanceof SocketTimeoutException) {
-                    dialog.confirm(getContext(), null, "网络连接异常，请重试", "确定");
+                    DialogPresenterImpl.newInstance().confirm(getContext(), null, getString(R.string.dialog_network_exception), "确定");
                 } else {
-                    dialog.confirm(getContext(), null, "信息获取异常，请收受重试", "确定");
+                    DialogPresenterImpl.newInstance().confirm(getContext(), null, getString(R.string.dialog_get_info_exception), "确定");
                 }
             }
 

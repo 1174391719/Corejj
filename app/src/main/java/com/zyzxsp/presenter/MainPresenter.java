@@ -22,4 +22,6 @@ public interface MainPresenter {
     void setCallPresenter(CallPresenter presenter);
 
     CallPresenter getCallPresenter();
+
+    NetWorkPresenter getNetWorkPresenter();
 }

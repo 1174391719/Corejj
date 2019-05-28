@@ -94,8 +94,7 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
                 startActivity(intent);
                 break;
             case R.id.login_out:
-                DialogPresenter dialog = new DialogPresenterImpl();
-                dialog.choose(UserInfoActivity.this, new DialogPresenter.Callback() {
+                DialogPresenterImpl.newInstance().choose(UserInfoActivity.this, new DialogPresenter.Callback() {
                     @Override
                     public void onPositiveClick() {
                         requestLoginOut();
