@@ -6,10 +6,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.TextView;
 
-import java.io.Serializable;
+import com.corejj.callback.ItemClickCallback;
+
 import java.util.List;
 
 /**
@@ -19,7 +19,7 @@ import java.util.List;
 public class SimpleRvAdapterImpl extends RecyclerView.Adapter<SimpleRvAdapterImpl.ViewHolder> implements SimpleRvAdapter {
     private Context mContext;
     private List<SimpleRvData> mData;
-    private RecycleViewItemClick mCallback;
+    private ItemClickCallback mCallback;
 
     public SimpleRvAdapterImpl(Context context) {
         mContext = context;
@@ -41,7 +41,7 @@ public class SimpleRvAdapterImpl extends RecyclerView.Adapter<SimpleRvAdapterImp
             @Override
             public void onClick(View v) {
                 if (mCallback != null) {
-                    mCallback.onRecycleViewItemClick(i, null);
+                    mCallback.onItemClickCallback(i, null, null);
                 }
             }
         });
@@ -62,7 +62,7 @@ public class SimpleRvAdapterImpl extends RecyclerView.Adapter<SimpleRvAdapterImp
         notifyDataSetChanged();
     }
 
-    public void setCallback(RecycleViewItemClick mCallback) {
+    public void setCallback(ItemClickCallback mCallback) {
         this.mCallback = mCallback;
     }
 

@@ -1,4 +1,4 @@
-package com.corejj;
+package com.corejj.callback;
 
 public interface CCallback {
     void onSuccess(String response);

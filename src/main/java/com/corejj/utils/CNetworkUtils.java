@@ -1,5 +1,7 @@
 package com.corejj.utils;
 
+import com.corejj.callback.NetworkCallback;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
@@ -49,7 +51,7 @@ public class CNetworkUtils {
         }
     }
 
-    public static void uploadFile(String url, File file, Map<String, String> header, Map<String, String> bodyParams, Callback callback) {
+    public static void uploadFile(String url, File file, Map<String, String> header, Map<String, String> bodyParams, final NetworkCallback callback) {
         OkHttpClient httpClient = new OkHttpClient.Builder()
                 .retryOnConnectionFailure(true)
                 .connectTimeout(120000, TimeUnit.SECONDS) //连接超时
@@ -64,8 +66,10 @@ public class CNetworkUtils {
 
         MultipartBody.Builder builder = new MultipartBody.Builder();
         builder.setType(MultipartBody.FORM);
-        for (String key : bodyParams.keySet()) {
-            builder.addFormDataPart(key, bodyParams.get(key));
+        if (bodyParams != null) {
+            for (String key : bodyParams.keySet()) {
+                builder.addFormDataPart(key, bodyParams.get(key));
+            }
         }
         if (file != null) {
             builder.addFormDataPart("multipartFile", "jpg", requestBody);//文件名,请求体里的文件
@@ -84,7 +88,19 @@ public class CNetworkUtils {
 
         Request request = requestBuilder.build();
         Call call = httpClient.newCall(request);
-        call.enqueue(callback);
+        Callback cb = new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                callback.onFailure(call, e);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) {
+                callback.onResponse(call, response);
+
+            }
+        };
+        call.enqueue(cb);
     }
 
     public static void uploadFile22(String url, File

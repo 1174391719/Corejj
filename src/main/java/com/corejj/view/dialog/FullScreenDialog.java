@@ -1,4 +1,4 @@
-package com.corejj.view;
+package com.corejj.view.dialog;
 
 import android.app.Dialog;
 import android.content.Context;

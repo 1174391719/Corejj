@@ -1,11 +1,22 @@
 package com.corejj.utils;
 
 import android.text.TextUtils;
+import android.widget.EditText;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CStringUtils {
+    public static String toPureString(String str) {
+        if (TextUtils.isEmpty(str)) {
+            return str;
+        }
+        str = str.replace(" ", "");
+        return replaceBlank(str);
+    }
+
     public static String replaceBlank(String str) {
         String dest = "";
         if (str != null) {
@@ -68,4 +79,71 @@ public class CStringUtils {
         }
         return true;
     }
+
+    public static boolean equals(String str1, String str2) {
+        try {
+            return str1.equals(str2);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    /**
+     * MD5加密
+     *
+     * @param byteStr 需要加密的内容
+     * @return 返回 byteStr的md5值
+     */
+    public static String encryptionMD5(byte[] byteStr) {
+        MessageDigest messageDigest = null;
+        StringBuffer md5StrBuff = new StringBuffer();
+        try {
+            messageDigest = MessageDigest.getInstance("MD5");
+            messageDigest.reset();
+            messageDigest.update(byteStr);
+            byte[] byteArray = messageDigest.digest();
+//            return Base64.encodeToString(byteArray,Base64.NO_WRAP);
+            for (int i = 0; i < byteArray.length; i++) {
+                if (Integer.toHexString(0xFF & byteArray[i]).length() == 1) {
+                    md5StrBuff.append("0").append(Integer.toHexString(0xFF & byteArray[i]));
+                } else {
+                    md5StrBuff.append(Integer.toHexString(0xFF & byteArray[i]));
+                }
+            }
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return md5StrBuff.toString();
+    }
+
+    public static void setPhoneStyleString(CharSequence s, int start, int before, EditText editText) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            if (i != 3 && i != 8 && s.charAt(i) == ' ') {
+                continue;
+            } else {
+                sb.append(s.charAt(i));
+                if ((sb.length() == 4 || sb.length() == 9) && sb.charAt(sb.length() - 1) != ' ') {
+                    sb.insert(sb.length() - 1, ' ');
+                }
+            }
+        }
+        if (!sb.toString().equals(s.toString())) {
+            int index = start + 1;
+            if (sb.charAt(start) == ' ') {
+                if (before == 0) {
+                    index++;
+                } else {
+                    index--;
+                }
+            } else {
+                if (before == 1) {
+                    index--;
+                }
+            }
+            editText.setText(sb.toString());
+            editText.setSelection(index);
+        }
+    }
+
 }

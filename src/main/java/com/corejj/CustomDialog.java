@@ -2,7 +2,9 @@ package com.corejj;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
@@ -28,7 +30,11 @@ public class CustomDialog extends Dialog {
 
     private void initView() {
         setContentView(R.layout.layout_dialog);
-        ((TextView) findViewById(R.id.tvcontent)).setText(content);
+        if (!TextUtils.isEmpty(content)) {
+            ((TextView) findViewById(R.id.tvcontent)).setText(content);
+        } else {
+            ((TextView) findViewById(R.id.tvcontent)).setVisibility(View.GONE);
+        }
         setCanceledOnTouchOutside(true);
         WindowManager.LayoutParams attributes = getWindow().getAttributes();
         attributes.alpha = 0.8f;

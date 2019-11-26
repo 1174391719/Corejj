@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.corejj.utils.ZLog;
+
 public class HeadTitleView extends ConstraintLayout {
     private OnItemClickListener mOnHeaderClick;
     private LinearLayout mLeftLinLayout;
@@ -17,6 +19,7 @@ public class HeadTitleView extends ConstraintLayout {
     private TextView mTitle;
     private LinearLayout mRightLinLayout;
     private TextView mRightTextView;
+    private ImageView mRightImageView;
 
     public HeadTitleView(Context context) {
         this(context, null);
@@ -37,7 +40,11 @@ public class HeadTitleView extends ConstraintLayout {
             if (attr == R.styleable.HeadTitleView_title) {
                 mTitle.setText(array.getString(attr));
             } else if (attr == R.styleable.HeadTitleView_rightText) {
+                mRightTextView.setVisibility(VISIBLE);
                 mRightTextView.setText(array.getString(attr));
+            } else if (attr == R.styleable.HeadTitleView_rightImage) {
+                mRightImageView.setVisibility(VISIBLE);
+                mRightImageView.setImageResource(array.getResourceId(attr, -1));
             }
         }
         array.recycle();
@@ -65,6 +72,14 @@ public class HeadTitleView extends ConstraintLayout {
         this.mOnHeaderClick = mOnHeaderTitleViewClick;
     }
 
+    public void setRightViewVisibility(int visibility) {
+        mRightLinLayout.setVisibility(visibility);
+    }
+
+    public TextView getRightTextView() {
+        return mRightTextView;
+    }
+
 
     //**********************************************************************************************
     private void initView() {
@@ -73,6 +88,7 @@ public class HeadTitleView extends ConstraintLayout {
         mTitle = findViewById(R.id.title_text);
         mRightLinLayout = findViewById(R.id.title_right_layout);
         mRightTextView = findViewById(R.id.tv_right);
+        mRightImageView = findViewById(R.id.iv_right);
     }
 
     public interface OnItemClickListener {

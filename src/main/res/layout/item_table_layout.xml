@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="3dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="4dp"
         android:layout_marginRight="30dp"
         android:background="#05CBD8" />
 </LinearLayout>
