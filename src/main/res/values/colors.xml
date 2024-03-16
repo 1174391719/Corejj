@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <!--Common-->
-    <color name="common_black">#000000</color>
-    <color name="common_base_text">#8A000000</color>
-    <color name="common_base_bg">#60E5E8E9</color>
-</resources>
