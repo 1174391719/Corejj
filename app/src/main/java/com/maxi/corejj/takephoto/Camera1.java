@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.maxi.corejj.take_photo;
+package com.maxi.corejj.takephoto;
 
 import android.annotation.SuppressLint;
 import android.graphics.SurfaceTexture;

@@ -1,4 +1,4 @@
-package com.maxi.corejj;
+package com.maxi.corejj.infrastucture;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;

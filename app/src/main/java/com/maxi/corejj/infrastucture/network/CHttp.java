@@ -1,4 +1,4 @@
-package com.maxi.corejj;
+package com.maxi.corejj.infrastucture.network;
 
 import android.text.TextUtils;
 

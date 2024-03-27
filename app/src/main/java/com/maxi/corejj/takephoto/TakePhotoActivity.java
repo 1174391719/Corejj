@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.maxi.corejj.take_photo;
+package com.maxi.corejj.takephoto;
 
 import android.Manifest;
 import android.app.Dialog;
@@ -26,7 +26,6 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 

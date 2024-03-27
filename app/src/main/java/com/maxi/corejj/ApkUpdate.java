@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.core.content.FileProvider;
 
+import com.maxi.corejj.infrastucture.PackageInfoUtil;
 import com.maxi.corejj.utils.CFileUtils;
 import com.maxi.corejj.utils.ZLog;
 

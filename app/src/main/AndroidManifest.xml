@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".take_photo.TakePhotoActivity"
+            android:name=".takephoto.TakePhotoActivity"
             android:screenOrientation="portrait" />
     </application>
 

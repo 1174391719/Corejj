@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.maxi.corejj.take_photo;
+package com.maxi.corejj.takephoto;
 
 import android.os.Parcel;
 import android.os.Parcelable;
