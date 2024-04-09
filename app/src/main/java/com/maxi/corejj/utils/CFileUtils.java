@@ -3,6 +3,8 @@ package com.maxi.corejj.utils;
 import android.graphics.Bitmap;
 import android.os.Environment;
 
+import com.maxi.corejj.infrastucture.utils.L;
+
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -13,8 +15,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigInteger;
 import java.security.MessageDigest;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class CFileUtils {
     public static File getFile(Bitmap bitmap) {
@@ -74,7 +74,7 @@ public class CFileUtils {
     }
 
     public static File createTempFile(String prefix, String suffix, String path) {
-        ZLog.d("path:" + path + " prefix:" + prefix + " suffix:" + suffix);
+        L.d("path:" + path + " prefix:" + prefix + " suffix:" + suffix);
         File dir = new File(path);
         if (!dir.exists()) {
             dir.mkdir();
@@ -130,7 +130,7 @@ public class CFileUtils {
                 }
                 fos.flush();
             } catch (Exception e) {
-                ZLog.e(e);
+                L.e(e);
             } finally {
                 try {
                     if (is != null) {
@@ -144,7 +144,7 @@ public class CFileUtils {
                 }
             }
         } catch (Exception e) {
-            ZLog.e(e);
+            L.e(e);
         }
     }
 

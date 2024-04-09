@@ -1,4 +1,4 @@
-package com.maxi.corejj.utils;
+package com.maxi.corejj.infrastucture.utils;
 
 import android.text.TextUtils;
 import android.util.Log;
@@ -7,14 +7,14 @@ import android.util.Log;
  * Created by Administrator on 2019/05/07.
  */
 
-public class ZLog {
+public class L {
     public static final boolean offline = false;
-    private static final String TAG_D = "ZyMeeting/D";
-    private static final String TAG_I = "ZyMeeting/I";
-    private static final String TAG_E = "ZyMeeting/E";
+    private static final String TAG_D = "CoreJJ/D";
+    private static final String TAG_I = "CoreJJ/I";
+    private static final String TAG_E = "CoreJJ/E";
 
     public static void k(String msg) {
-        Log.i(generateTag(TAG_D + "kkku"), msg);
+        Log.i(generateTag(TAG_D + "kku"), msg);
     }
 
     public static void d(String msg) {

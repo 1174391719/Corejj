@@ -3,7 +3,7 @@ package com.maxi.corejj.infrastucture.network;
 import android.text.TextUtils;
 
 import com.maxi.corejj.callback.NetworkCallback;
-import com.maxi.corejj.utils.ZLog;
+import com.maxi.corejj.infrastucture.utils.L;
 
 import org.json.JSONObject;
 
@@ -165,7 +165,7 @@ public class CHttp {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            ZLog.d("url:" + url + " json:" + json);
+            L.d("url:" + url + " json:" + json);
             new CHttp(this).enqueue();
         }
     }

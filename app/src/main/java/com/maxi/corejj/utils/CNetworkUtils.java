@@ -2,6 +2,7 @@ package com.maxi.corejj.utils;
 
 
 import com.maxi.corejj.callback.NetworkCallback;
+import com.maxi.corejj.infrastucture.utils.L;
 
 import java.io.File;
 import java.io.IOException;
@@ -163,14 +164,14 @@ public class CNetworkUtils {
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                ZLog.e("onFailure. " + call.toString() + " e:" + e.toString());
+                L.e("onFailure. " + call.toString() + " e:" + e.toString());
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String string = response.body().string();
 
-                ZLog.e("onResponse. response:" + string);
+                L.e("onResponse. response:" + string);
             }
         });
     }

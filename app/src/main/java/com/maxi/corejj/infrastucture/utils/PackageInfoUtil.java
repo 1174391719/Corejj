@@ -1,4 +1,4 @@
-package com.maxi.corejj.infrastucture;
+package com.maxi.corejj.infrastucture.utils;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -24,7 +24,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class PackageInfoUtil {
-    public static String TAG="DownLoadManagerSingleton";
+    public static String TAG="PackageInfoUtil";
     public final static String SHA1 = "SHA1";
     /**
      * 获取版本号

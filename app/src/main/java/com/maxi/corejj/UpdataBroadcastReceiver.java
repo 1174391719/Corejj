@@ -16,7 +16,7 @@ import java.io.File;
 
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
-import com.maxi.corejj.utils.ZLog;
+import com.maxi.corejj.infrastucture.utils.L;
 
 public class UpdataBroadcastReceiver extends BroadcastReceiver {
 
@@ -92,7 +92,7 @@ public class UpdataBroadcastReceiver extends BroadcastReceiver {
         try {
             context.startActivity(intent);
         } catch (Exception e) {
-            ZLog.e(e);
+            L.e(e);
             e.printStackTrace();
             Toast.makeText(context, "没有找到打开此类文件的程序", Toast.LENGTH_SHORT).show();
         }

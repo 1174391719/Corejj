@@ -12,8 +12,8 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.view.ViewOutlineProvider;
-import android.widget.EditText;
-import android.widget.Toast;
+
+import com.maxi.corejj.infrastucture.utils.L;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -99,7 +99,7 @@ public class CUtils {
             cTime.s = startTimeArrTemp2[2];
 
         } catch (Exception e) {
-            ZLog.e(e);
+            L.e(e);
         }
         return cTime;
     }

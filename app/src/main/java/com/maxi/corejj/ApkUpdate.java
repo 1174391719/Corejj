@@ -15,9 +15,9 @@ import android.widget.Toast;
 
 import androidx.core.content.FileProvider;
 
-import com.maxi.corejj.infrastucture.PackageInfoUtil;
+import com.maxi.corejj.infrastucture.utils.PackageInfoUtil;
 import com.maxi.corejj.utils.CFileUtils;
-import com.maxi.corejj.utils.ZLog;
+import com.maxi.corejj.infrastucture.utils.L;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -54,12 +54,12 @@ public class ApkUpdate {
         try {
             this.mContext = context;
             APP_NAME = context.getPackageName();
-            ZLog.d("downLoadPackage: APP_NAME  " + APP_NAME);
+            L.d("downLoadPackage: APP_NAME  " + APP_NAME);
             this.mMd5FromServer = apkMd5;
             this.mSingFromServer = apkSignature;
             String downLoadUrl = apkPath;
 
-            ZLog.i("downLoadPackage");
+            L.i("downLoadPackage");
             mDownloadManager = (DownloadManager) context.getSystemService(context.DOWNLOAD_SERVICE);
             //   Uri uri = Uri.parse("https://upload-images.jianshu.io/upload_images/15384734-eb9527f5ad21d751.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp");
             Uri uri = Uri.parse(downLoadUrl);
@@ -68,10 +68,10 @@ public class ApkUpdate {
             String sdcardDirPath = context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS).getPath();
             mMyPackagePath = sdcardDirPath + File.separator + APP_NAME;
             mPackageFile = new File(mMyPackagePath);
-            ZLog.d("downLoadPackage:  mPackageFile  " + mPackageFile);
+            L.d("downLoadPackage:  mPackageFile  " + mPackageFile);
             if (mPackageFile.exists()) {
                 boolean del = mPackageFile.delete();
-                ZLog.d("downloadApk: 删除已有的apk: " + del);
+                L.d("downloadApk: 删除已有的apk: " + del);
             }
             request.setDestinationInExternalFilesDir(context, Environment.DIRECTORY_DOWNLOADS, APP_NAME);
             request.setTitle("下载最新版本App");
@@ -91,7 +91,7 @@ public class ApkUpdate {
             context.registerReceiver(downLoadBroadCastReceiver, mIntentFilter);
             mRecevierList.add(downLoadBroadCastReceiver);
         } catch (Exception e) {
-            ZLog.e(e.toString());
+            L.e(e.toString());
         }
     }
 
@@ -111,7 +111,7 @@ public class ApkUpdate {
 
         //获取下载文件的Uri
         Uri downloadFileUri = mDownloadManager.getUriForDownloadedFile(downloadId);
-        ZLog.k("downloadId:" + downloadId + " downloadFileUri:" + downloadFileUri);
+        L.k("downloadId:" + downloadId + " downloadFileUri:" + downloadFileUri);
         if (downloadFileUri != null) {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setDataAndType(downloadFileUri, "application/vnd.android.package-archive");
@@ -208,7 +208,7 @@ public class ApkUpdate {
                     case DownloadManager.STATUS_SUCCESSFUL:
                         //下载完成安装APK
 //                        installAPK(context,downloadId);
-                        ZLog.d("checkStatus  status  下载完成");
+                        L.d("checkStatus  status  下载完成");
                         verificationPackage(context, mMd5FromServer, mSingFromServer, downloadId);
                         break;
                     //下载失败
@@ -224,19 +224,19 @@ public class ApkUpdate {
          * 验证下载包
          */
         private void verificationPackage(Context context, String md5FromServer, String singFromServer, long downloadId) {
-            ZLog.d("verificationPackage: md5FromServer  " + md5FromServer);
-            ZLog.d("verificationPackage: singFromServer  " + singFromServer);
-            ZLog.d("verificationPackage: mPackageFilePath  " + mMyPackagePath);
+            L.d("verificationPackage: md5FromServer  " + md5FromServer);
+            L.d("verificationPackage: singFromServer  " + singFromServer);
+            L.d("verificationPackage: mPackageFilePath  " + mMyPackagePath);
             File packageFile = new File(mMyPackagePath);
             String packageMd5 = CFileUtils.getMD5(packageFile);
-            ZLog.d("verificationPackage: 下载的apk Md5 值 " + packageMd5);
+            L.d("verificationPackage: 下载的apk Md5 值 " + packageMd5);
             //已安装的pak签名
             String mInstallApkSign = PackageInfoUtil.getInstallApkSign(context);
-            ZLog.d("verificationPackage: 已安装的apk的签名   " + mInstallApkSign);
+            L.d("verificationPackage: 已安装的apk的签名   " + mInstallApkSign);
             //sdcard里下载的pak签名
 //            String apkSdCardShaStr = PackageInfoUtil.getApkSignatureByFilePath(context, mMyPackagePath, PackageInfoUtil.SHA1);
             String apkSdCardShaStr = PackageInfoUtil.getApkSignatureByFilePathLZ(mMyPackagePath);
-            ZLog.d("verificationPackage: sdcard里下载的apk签名  " + apkSdCardShaStr);
+            L.d("verificationPackage: sdcard里下载的apk签名  " + apkSdCardShaStr);
             if (!TextUtils.isEmpty(packageMd5) && packageMd5.equalsIgnoreCase(md5FromServer)) {
                 //包未被篡改
                 //  if (!TextUtils.isEmpty(mInstallApkSign) && mInstallApkSign.equals(singFromServer) && mInstallApkSign.equals(apkSdCardShaStr)) {
@@ -249,7 +249,7 @@ public class ApkUpdate {
                 //   }
             } else {
                 //包被篡改
-                ZLog.d("verificationPackage: MD5值不一致");
+                L.d("verificationPackage: MD5值不一致");
                 PackageInfoUtil.deletDownLoadApk(packageFile);
             }
         }

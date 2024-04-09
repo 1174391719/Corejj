@@ -9,8 +9,8 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.GCMParameterSpec;
 
-public class PasswordUtil {
-    public static String TAG = "PasswordUtil";
+public class EncryptUtil {
+    public static String TAG = "EncryptUtil";
 
     public static String encryptText(final String alias, final String textToEncrypt) {
         try {
