@@ -14,4 +14,3 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Corejj"
 include ':app'
-include ':mylibrary'
