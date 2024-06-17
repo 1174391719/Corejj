@@ -1,11 +1,12 @@
-package com.maxi.corejj.broadcast;
+package com.maxi.sub2.broadcast;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 
-import com.maxi.corejj.infrastucture.utils.L;
+import com.maxi.sub2.infrastucture.utils.L;
+
 
 public class BroadcastPresenter {
     private static final String TAG = "BroadcastPresenter";
@@ -29,18 +30,6 @@ public class BroadcastPresenter {
     public void main(Context context) {
         initBroadcastReceiver(context);
         initBroadcastReceiver2(context);
-
-        L.k(TAG, "main.  ");
-        new Thread() {
-            @Override
-            public void run() {
-                for (int i = 0; i < 1; i++) {
-               //     send(context);
-                }
-            }
-        }.start();
-        send(context);
-        send2(context);
     }
 
     private void send(Context context) {
@@ -77,7 +66,7 @@ public class BroadcastPresenter {
             }
         };
         IntentFilter filter = new IntentFilter();
-        filter.addAction("com.example.MY_CUSTOM_BROADCAST");
+        filter.addAction("com.example.MY_CUSTOM_BROADCAST2");
         context.registerReceiver(receiver, filter);
 
     }

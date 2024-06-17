@@ -1,4 +1,4 @@
-package com.maxi.sub2;
+package com.maxi.sub2.infrastucture.utils;
 
 import android.text.TextUtils;
 import android.util.Log;

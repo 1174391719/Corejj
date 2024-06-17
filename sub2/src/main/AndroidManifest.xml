@@ -19,6 +19,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver
+            android:name=".broadcast.Receiver1"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.example.MY_CUSTOM_BROADCAST2" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

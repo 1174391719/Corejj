@@ -1,10 +1,10 @@
-package com.maxi.sub2.broadcast;
+package com.maxi.sub1.broadcast;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.maxi.sub2.L;
+import com.maxi.sub1.L;
 
 
 public class Receiver1 extends BroadcastReceiver {
@@ -16,12 +16,12 @@ public class Receiver1 extends BroadcastReceiver {
         String message = intent.getStringExtra("message_key");
         if (message != null) {
             // 处理接收到的消息
-            L.k(TAG, "onReceive. message: " + message);
+            L.k(TAG, "onReceive. message777: " + message);
         }
-//        try {
-//            Thread.sleep(1000);
-//
-//        } catch (Exception e) {
-//        }
+        try {
+            Thread.sleep(2000);
+
+        } catch (Exception e) {
+        }
     }
 }

@@ -1,10 +1,10 @@
-package com.xiaopeng.sub1.broadcast;
+package com.maxi.sub2.broadcast;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.xiaopeng.sub1.L;
+import com.maxi.sub2.infrastucture.utils.L;
 
 
 public class Receiver2 extends BroadcastReceiver {

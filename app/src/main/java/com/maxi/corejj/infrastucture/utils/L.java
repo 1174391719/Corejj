@@ -9,6 +9,7 @@ import android.util.Log;
 
 public class L {
     public static final boolean offline = false;
+    private static final String PREFIX = "kkucom.maxi.corejj:";
     private static final String TAG_D = "CoreJJ/D";
     private static final String TAG_I = "CoreJJ/I";
     private static final String TAG_E = "CoreJJ/E";
@@ -17,8 +18,16 @@ public class L {
         Log.i(generateTag(TAG_D + "kku"), msg);
     }
 
+    public static void k(String tag, String msg) {
+        Log.d(PREFIX + tag, msg);
+    }
+
     public static void d(String msg) {
         Log.i(generateTag(TAG_D), msg);
+    }
+
+    public static void d(String tag, String msg) {
+        Log.d(tag, msg);
     }
 
     public static void i(String msg) {
