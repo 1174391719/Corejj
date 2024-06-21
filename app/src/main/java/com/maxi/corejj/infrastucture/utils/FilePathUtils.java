@@ -1,9 +1,7 @@
-package com.maxi.corejj.utils;
+package com.maxi.corejj.infrastucture.utils;
 
 import android.graphics.Bitmap;
 import android.os.Environment;
-
-import com.maxi.corejj.infrastucture.utils.L;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
@@ -16,7 +14,7 @@ import java.io.InputStream;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 
-public class CFileUtils {
+public class FileUtils {
     public static File getFile(Bitmap bitmap) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
