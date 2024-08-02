@@ -1,4 +1,4 @@
-package com.maxi.corejj.utils;
+package com.maxi.corejj.infrastucture.utils;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -13,13 +13,11 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.view.ViewOutlineProvider;
 
-import com.maxi.corejj.infrastucture.utils.L;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class CUtils {
+public class Utils {
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public static void setViewCornerRadius(View view, final int radius) {

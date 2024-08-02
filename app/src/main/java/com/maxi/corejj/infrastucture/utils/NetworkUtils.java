@@ -1,8 +1,7 @@
-package com.maxi.corejj.utils;
+package com.maxi.corejj.infrastucture.utils;
 
 
 import com.maxi.corejj.callback.NetworkCallback;
-import com.maxi.corejj.infrastucture.utils.L;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,7 +17,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class CNetworkUtils {
+public class NetworkUtils {
     public static void uploadFile(String url, String fileKey, String fileName, File file, Map<String, String> header, Map<String, String> bodyParams, Callback callback) {
         try {
             OkHttpClient client = new OkHttpClient.Builder()

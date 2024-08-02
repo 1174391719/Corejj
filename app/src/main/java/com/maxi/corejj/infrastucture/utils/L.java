@@ -9,13 +9,11 @@ import android.util.Log;
 
 public class L {
     public static final boolean offline = false;
-    private static final String PREFIX = "kkucom.maxi.corejj:";
-    private static final String TAG_D = "CoreJJ/D";
-    private static final String TAG_I = "CoreJJ/I";
-    private static final String TAG_E = "CoreJJ/E";
+    private static final String PREFIX = "kku:com.maxi.corejj:";
+
 
     public static void k(String msg) {
-        Log.i(generateTag(TAG_D + "kku"), msg);
+        Log.i(generateTag("kku"), msg);
     }
 
     public static void k(String tag, String msg) {
@@ -23,30 +21,30 @@ public class L {
     }
 
     public static void d(String msg) {
-        Log.i(generateTag(TAG_D), msg);
+        Log.i(generateTag(PREFIX), msg);
     }
 
     public static void d(String tag, String msg) {
-        Log.d(tag, msg);
+        Log.d(PREFIX + tag, msg);
     }
 
     public static void i(String msg) {
-        Log.i(generateTag(TAG_I), msg);
+        Log.i(generateTag(PREFIX), msg);
     }
 
     public static void e(String msg) {
-        Log.i(generateTag(TAG_E), msg);
+        Log.i(generateTag(PREFIX), msg);
     }
 
     public static void e(Exception e) {
         e.fillInStackTrace();
-        Log.e(generateTag(TAG_E), "here:", e);
+        Log.e(generateTag(PREFIX), "here:", e);
     }
 
     public static void p() {
         RuntimeException exception = new RuntimeException("kk");
         exception.fillInStackTrace();
-        Log.e(TAG_E, "here:", exception);
+        Log.e(PREFIX, "here:", exception);
     }
 
     private static String generateTag(String prefixTag) {

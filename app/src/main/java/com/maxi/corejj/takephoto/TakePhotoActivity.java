@@ -38,7 +38,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 
 import com.maxi.corejj.R;
-import com.maxi.corejj.utils.StatusBarUtils;
+import com.maxi.corejj.infrastucture.utils.StatusBarUtils;
 
 import java.io.File;
 import java.io.FileOutputStream;

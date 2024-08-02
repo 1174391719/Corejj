@@ -16,7 +16,7 @@ import android.widget.Toast;
 import androidx.core.content.FileProvider;
 
 import com.maxi.corejj.infrastucture.utils.PackageInfoUtil;
-import com.maxi.corejj.utils.CFileUtils;
+import com.maxi.corejj.infrastucture.utils.FileUtils;
 import com.maxi.corejj.infrastucture.utils.L;
 
 import java.io.File;
@@ -228,7 +228,7 @@ public class ApkUpdate {
             L.d("verificationPackage: singFromServer  " + singFromServer);
             L.d("verificationPackage: mPackageFilePath  " + mMyPackagePath);
             File packageFile = new File(mMyPackagePath);
-            String packageMd5 = CFileUtils.getMD5(packageFile);
+            String packageMd5 = FileUtils.getMD5(packageFile);
             L.d("verificationPackage: 下载的apk Md5 值 " + packageMd5);
             //已安装的pak签名
             String mInstallApkSign = PackageInfoUtil.getInstallApkSign(context);

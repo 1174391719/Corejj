@@ -1,4 +1,4 @@
-package com.maxi.corejj.utils;
+package com.maxi.corejj.infrastucture.utils;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

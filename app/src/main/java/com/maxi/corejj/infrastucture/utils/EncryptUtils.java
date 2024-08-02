@@ -1,4 +1,4 @@
-package com.maxi.corejj.utils;
+package com.maxi.corejj.infrastucture.utils;
 
 import java.io.File;
 import java.io.FileInputStream;

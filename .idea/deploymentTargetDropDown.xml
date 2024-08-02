@@ -11,6 +11,9 @@
       <entry key="sub2">
         <State />
       </entry>
+      <entry key="useAppContext()">
+        <State />
+      </entry>
     </value>
   </component>
 </project>
